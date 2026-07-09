@@ -1,26 +1,472 @@
 @import "tailwindcss";
 
+/* ── Happy Global Design Tokens ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --hg-color-primary: #09233f;
+  --hg-color-secondary: #0e8a9a;
+  --hg-color-accent: #5dadec;
+  --hg-color-bg: #f7fafc;
+  --hg-color-surface: #ffffff;
+  --hg-color-text-primary: #102033;
+  --hg-color-text-secondary: #5b6675;
+  --hg-color-border: #d8e1ea;
+  --hg-color-action: #0b7280;
+  --hg-color-action-text: #ffffff;
+
+  --hg-font-heading: "Inter Tight", "Inter", "Aptos Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --hg-font-body: "Inter", "Aptos", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --hg-font-ui: "Inter", "Aptos", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --hg-type-h1: 64px;
+  --hg-type-h2: 40px;
+  --hg-type-h3: 24px;
+  --hg-type-body-lg: 20px;
+  --hg-type-body: 16px;
+  --hg-type-button: 15px;
+
+  --hg-weight-h1: 700;
+  --hg-weight-body: 400;
+  --hg-weight-button: 700;
+
+  --hg-radius-card: 8px;
+  --hg-radius-control: 6px;
+
+  --hg-layout-max-width: 1120px;
+  --hg-section-padding-y: 88px;
+  --hg-section-padding-x: 32px;
+  --hg-card-padding: 28px;
+  --hg-control-height: 46px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (max-width: 767px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --hg-type-h1: 41px;
+    --hg-type-h2: 31px;
+    --hg-type-h3: 22px;
+    --hg-type-body-lg: 18px;
+    --hg-section-padding-y: 56px;
+    --hg-section-padding-x: 20px;
+    --hg-card-padding: 22px;
   }
 }
 
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--hg-color-bg);
+  color: var(--hg-color-text-primary);
+  font-family: var(--hg-font-body);
+}
+
+/* ── Shared utility classes ── */
+.hg-heading {
+  font-family: var(--hg-font-heading);
+  color: var(--hg-color-text-primary);
+}
+
+.hg-text-secondary {
+  color: var(--hg-color-text-secondary);
+}
+
+.hg-gradient-btn {
+  background: linear-gradient(135deg, var(--hg-color-accent), var(--hg-color-secondary));
+}
+
+/* ── Layout utilities ── */
+.hg-container {
+  margin-inline: auto;
+  max-width: var(--hg-layout-max-width);
+  padding-inline: var(--hg-section-padding-x);
+}
+
+/* ── Buttons (used by Banner.tsx) ── */
+.hg-button-primary,
+.hg-button-secondary {
+  align-items: center;
+  border-radius: var(--hg-radius-control);
+  display: inline-flex;
+  font-family: var(--hg-font-ui);
+  font-size: var(--hg-type-button);
+  font-weight: var(--hg-weight-button);
+  justify-content: center;
+  line-height: 1;
+  min-height: var(--hg-control-height);
+  padding: 0 24px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hg-button-primary {
+  background: var(--hg-color-action);
+  border: 2px solid transparent;
+  color: var(--hg-color-action-text);
+}
+
+.hg-button-primary:hover {
+  background: #0a5a6b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(9, 35, 63, 0.15);
+}
+
+.hg-button-secondary {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  color: #ffffff;
+}
+
+.hg-button-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── Nav hover effect ── */
+.hg-nav-link:hover {
+  color: var(--hg-color-primary);
+  background: rgba(18, 67, 63, 0.05);
+}
+
+/* ── Nav dropdown ── */
+.hg-nav-dropdown {
+  position: relative;
+}
+
+.hg-nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: inherit;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  user-select: none;
+}
+
+.hg-nav-dropdown-trigger:hover {
+  color: var(--hg-color-primary);
+  background: rgba(18, 67, 63, 0.05);
+}
+
+.hg-nav-chevron {
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.hg-nav-dropdown.open .hg-nav-chevron {
+  transform: rotate(180deg);
+}
+
+.hg-nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 220px;
+  background: var(--hg-color-surface);
+  border: 1px solid var(--hg-color-border);
+  border-radius: var(--hg-radius-card);
+  box-shadow: 0 12px 32px rgba(18, 67, 63, 0.12);
+  padding: 8px 0;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 100;
+}
+
+.hg-nav-dropdown.open .hg-nav-dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.hg-nav-dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: var(--hg-color-text-secondary);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.hg-nav-dropdown-item:hover {
+  color: var(--hg-color-primary);
+  background: rgba(18, 67, 63, 0.04);
+}
+
+/* ── Nav CTA button ── */
+.hg-nav-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  min-height: 40px;
+  border-radius: 8px;
+  font-family: var(--hg-font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  background: #5dadec;
+  color: #ffffff;
+  border: none;
+  transition: color 0.35s ease;
+}
+
+.hg-nav-cta .hg-nav-cta-label {
+  position: relative;
+  z-index: 2;
+  transition: color 0.35s ease;
+}
+
+.hg-nav-cta .hg-nav-cta-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.45s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hg-nav-cta:hover .hg-nav-cta-ripple {
+  transform: translate(-50%, -50%) scale(150);
+}
+
+.hg-nav-cta:hover .hg-nav-cta-label {
+  color: #102033;
+}
+
+.hg-nav-cta.mobile {
+  overflow: visible;
+}
+
+.hg-nav-cta.mobile .hg-nav-cta-ripple {
+  display: none;
+}
+
+/* ── Transparent nav overrides ── */
+.hg-nav-transparent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.hg-nav-transparent.scrolled {
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--hg-color-border);
+}
+
+.hg-nav-transparent .hg-nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.hg-nav-transparent.scrolled .hg-nav-link {
+  color: var(--hg-color-text-secondary) !important;
+}
+
+.hg-nav-transparent .hg-nav-logo-text {
+  color: #fff;
+}
+
+.hg-nav-transparent.scrolled .hg-nav-logo-text {
+  color: var(--hg-color-primary);
+}
+
+.hg-nav-transparent .hg-mobile-hamburger {
+  color: #fff;
+}
+
+.hg-nav-transparent.scrolled .hg-mobile-hamburger {
+  color: var(--hg-color-text-primary);
+}
+
+.hg-nav-transparent .hg-nav-dropdown-trigger {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hg-nav-transparent .hg-nav-dropdown-trigger:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hg-nav-transparent.scrolled .hg-nav-dropdown-trigger {
+  color: var(--hg-color-text-secondary);
+}
+
+.hg-nav-transparent.scrolled .hg-nav-dropdown-trigger:hover {
+  color: var(--hg-color-primary);
+  background: rgba(18, 67, 63, 0.05);
+}
+
+.hg-nav-transparent .hg-nav-dropdown-menu {
+  background: var(--hg-color-surface);
+}
+
+.hg-nav-transparent .hg-nav-dropdown-item {
+  color: var(--hg-color-text-secondary);
+}
+
+.hg-nav-transparent .hg-nav-dropdown-item:hover {
+  color: var(--hg-color-primary);
+}
+
+/* ── Keyframes ── */
+@keyframes hg-banner-fade-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hg-banner-fade-in {
+  animation: hg-banner-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes hero-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: hero-spin-slow 30s linear infinite;
+}
+
+@keyframes hero-bg-out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.animate-hero-bg-out {
+  animation: hero-bg-out 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes hero-progress {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+
+.animate-hero-progress {
+  animation: hero-progress 6s linear infinite;
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2.5s ease-in-out infinite;
+}
+
+@keyframes hero-slide-in-right {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-hero-slide-in-right {
+  animation: hero-slide-in-right 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Logo Marquee ── */
+@keyframes hg-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.hg-marquee-container {
+  position: relative;
+  width: 100%;
+}
+
+.hg-marquee-track {
+  display: flex;
+  gap: 60px;
+  padding: 20px 0;
+  animation: hg-marquee-scroll linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.hg-marquee-item {
+  flex-shrink: 0;
+  font-size: 36px;
+  font-weight: 600;
+  color: #b0bec5;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+  cursor: default;
+  font-family: var(--hg-font-heading);
+}
+
+.hg-marquee-item:hover {
+  color: var(--hg-color-secondary);
+}
+
+/* ── KeyPoint Card ── */
+.hg-keypoint-card {
+  position: relative;
+  background: var(--hg-color-surface);
+  border: 1px solid var(--hg-color-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.hg-keypoint-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(18, 67, 63, 0.1);
+  border-color: rgba(93, 173, 236, 0.3);
+}
+
+/* ── WhyUs Card ── */
+.hg-whyus-card {
+  position: relative;
+  background: var(--hg-color-surface);
+  border: 1px solid var(--hg-color-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.hg-whyus-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(18, 67, 63, 0.1);
+  border-color: rgba(93, 173, 236, 0.3);
+}
+
+/* ── Services Card (CSS-var driven hover) ── */
+.hg-service-card:hover {
+  border-color: var(--card-accent);
+}
+
+@media (min-width: 768px) {
+  .hg-marquee-item {
+    font-size: 44px;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
