@@ -2,11 +2,11 @@ import PageHeader from "@/app/components/PageHeader";
 import Link from "next/link";
 
 const capabilities = [
-  { t: "Technology & Engineering", d: "Software engineers, AI/ML, data science, DevOps, cybersecurity — we cover the full stack.", icon: "💻", c: "#5dadec" },
+  { t: "Technology & Engineering", d: "Software engineers, AI/ML, data science, DevOps, cybersecurity — we cover the full stack.", icon: "💻", c: "#D96C57" },
   { t: "Sales & Marketing", d: "Revenue leaders, growth marketers, brand strategists who drive customer acquisition.", icon: "📈", c: "#14b8a6" },
   { t: "Finance & Operations", d: "CFOs, controllers, supply chain experts, and operations directors.", icon: "📊", c: "#f59e0b" },
   { t: "HR & People", d: "CHROs, HRBPs, talent acquisition leaders, and L&D specialists.", icon: "👥", c: "#a855f7" },
-  { t: "Legal & Compliance", d: "General counsels, IP specialists, and compliance officers.", icon: "⚖️", c: "#0e8a9a" },
+  { t: "Legal & Compliance", d: "General counsels, IP specialists, and compliance officers.", icon: "⚖️", c: "#2d8a7a" },
   { t: "Product & Design", d: "Product managers, UX researchers, and design leads.", icon: "🎨", c: "#f43f5e" },
 ];
 
@@ -17,7 +17,7 @@ export default function ProfessionalRecruitmentPage() {
 
       {/* ═══ Overview ═══ */}
       <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(180deg, #fff 0%, var(--hg-color-bg) 100%)" }}>
-        <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #09233f 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+        <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -27,7 +27,7 @@ export default function ProfessionalRecruitmentPage() {
               <p className="text-sm leading-relaxed hg-text-secondary">Every candidate is assessed for technical skill, culture fit, and long-term potential — not just resume keywords. Initial response within 24 hours, average placement in 30 days.</p>
             </div>
             <div className="grid grid-cols-1 gap-4">
-              {[{ v: "2000+", l: "Professional Placements", c: "#5dadec" }, { v: "24h", l: "Initial Response", c: "#14b8a6" }, { v: "98%", l: "Client Satisfaction", c: "#f59e0b" }].map((s) => (
+              {[{ v: "2000+", l: "Professional Placements", c: "#D96C57" }, { v: "24h", l: "Initial Response", c: "#14b8a6" }, { v: "98%", l: "Client Satisfaction", c: "#f59e0b" }].map((s) => (
                 <div key={s.l} className="group rounded-2xl p-6 text-center transition-all duration-500 hover:-translate-y-1" style={{ background: "var(--hg-color-bg)", border: "1px solid var(--hg-color-border)" }}>
                   <p className="text-3xl md:text-4xl font-bold hg-heading group-hover:scale-105 transition-transform duration-500" style={{ color: s.c }}>{s.v}</p>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.15em] mt-1 hg-text-secondary">{s.l}</p>
@@ -40,7 +40,7 @@ export default function ProfessionalRecruitmentPage() {
 
       {/* ═══ Capabilities ═══ */}
       <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "#060e18" }}>
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(93,173,236,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(93,173,236,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(217,108,87,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(217,108,87,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
         <div className="relative container mx-auto px-6">
           <div className="text-center mb-14">
             <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full text-white/40" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>Functional Expertise</span>

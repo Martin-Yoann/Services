@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./tokens/harbor-human.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,12 +23,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <script dangerouslySetInnerHTML={{ __html: `
-          if (typeof window !== 'undefined') {
-            const theme = localStorage.getItem('happy-global-theme') || 'atlantic-trust';
-            document.documentElement.setAttribute('data-theme', theme);
-          }
-        `}} />
       </head>
       <body className="antialiased">
         {children}

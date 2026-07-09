@@ -5,14 +5,14 @@ const services = [
     id: 1, title: "Executive Search", subtitle: "Leadership Hiring",
     description: "Strategic C-suite, VP, and Director-level placements with deep market knowledge across U.S., China, and global markets.",
     features: ["Market mapping & intelligence", "Passive candidate sourcing", "Compensation negotiation & closing"],
-    href: "/services/executive-search", accent: "#0e8a9a", accentRgb: "14,138,154",
+    href: "/services/executive-search", accent: "#2d8a7a", accentRgb: "45,138,122",
     stat: { value: "500+", label: "Annual Placements" },
   },
   {
     id: 2, title: "Professional Recruitment", subtitle: "Specialist Talent",
     description: "Permanent placements for mid-to-senior professionals across technology, finance, sales, operations, and more.",
     features: ["Skills assessment & verification", "Culture fit & retention analysis", "Avg. 30-day delivery"],
-    href: "/services/professional-recruitment", accent: "#5dadec", accentRgb: "93,173,236",
+    href: "/services/professional-recruitment", accent: "#D96C57", accentRgb: "217,108,87",
     stat: { value: "98%", label: "Client Satisfaction" },
   },
   {
@@ -29,7 +29,7 @@ export default function Services() {
     <>
       {/* ═══ Section A: Feature Cards ═══ */}
       <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, var(--hg-color-bg) 100%)" }}>
-        <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #09233f 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+        <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {services.map((svc) => (
@@ -77,14 +77,14 @@ export default function Services() {
       </section>
 
       {/* ═══ Section B: Differentiator + CTA ═══ */}
-      <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "#060e18" }}>
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(93,173,236,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(93,173,236,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[180px] opacity-[0.04] pointer-events-none" style={{ background: "#5dadec" }} />
+      <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "#061410" }}>
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(217,108,87,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(217,108,87,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[180px] opacity-[0.04] pointer-events-none" style={{ background: "#D96C57" }} />
 
         <div className="relative container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-14">
             {[
-              { title: "Global Reach", desc: "13 cities, 3 continents, 5+ languages spoken — local expertise, global scale.", icon: "🌍", color: "#5dadec" },
+              { title: "Global Reach", desc: "13 cities, 3 continents, 5+ languages spoken — local expertise, global scale.", icon: "🌍", color: "#D96C57" },
               { title: "Speed & Quality", desc: "Average 30-day time-to-hire. 3-5 thoroughly vetted candidates per role, not a flood of resumes.", icon: "⚡", color: "#14b8a6" },
               { title: "Proven Retention", desc: "95% of our placements stay beyond 12 months. 12-month guarantee on every engagement.", icon: "🎯", color: "#f59e0b" },
             ].map((item) => (
@@ -98,8 +98,8 @@ export default function Services() {
           </div>
 
           <div className="text-center max-w-md mx-auto">
-            <Link href="/contact" className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
-              style={{ background: "linear-gradient(135deg, #5dadec, #0e8a9a)", boxShadow: "0 4px 24px rgba(14,138,154,0.35)" }}>
+            <Link href="/contact" className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hg-gradient-coral"
+              style={{ boxShadow: "0 4px 24px rgba(217,108,87,0.35)" }}>
               Get Started Today
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transition-transform duration-300 group-hover:translate-x-1"><polyline points="9 18 15 12 9 6" /></svg>
             </Link>

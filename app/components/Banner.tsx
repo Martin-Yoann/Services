@@ -54,7 +54,7 @@ export default function Banner() {
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(135deg, rgba(18,67,63,0.92) 0%, rgba(18,67,63,0.65) 50%, rgba(18,67,63,0.45) 100%)",
+            background: "linear-gradient(135deg, rgba(10,47,42,0.92) 0%, rgba(10,47,42,0.65) 50%, rgba(10,47,42,0.45) 100%)",
           }}
         />
       </div>
@@ -70,8 +70,8 @@ export default function Banner() {
               className="inline-block px-5 py-2 rounded-full text-sm font-semibold tracking-widest uppercase hg-banner-fade-in"
               style={{
                 color: "var(--hg-color-accent)",
-                background: "rgba(117,191,192,0.15)",
-                border: "1px solid rgba(117,191,192,0.3)",
+                background: "rgba(var(--hh-color-accent-rgb), 0.15)",
+                border: "1px solid rgba(var(--hh-color-accent-rgb), 0.3)",
               }}
             >
               {current.title}
@@ -179,7 +179,7 @@ export default function Banner() {
       </div>
 
       {/* Partner logo wall */}
-      <div className="relative z-10 pb-8 pt-6" style={{ background: "rgba(18,67,63,0.4)", backdropFilter: "blur(8px)" }}>
+      <div className="relative z-10 pb-8 pt-6" style={{ background: "rgba(10,47,42,0.4)", backdropFilter: "blur(8px)" }}>
         <div className="hg-container">
           <p className="text-center text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: "rgba(255,255,255,0.4)" }}>
             Trusted by Industry Leaders Across Sectors

@@ -21,7 +21,7 @@ const locations = [
 ];
 
 const stats = [
-  { v: "500+", l: "Placements Annually", color: "#5dadec" },
+  { v: "500+", l: "Placements Annually", color: "#D96C57" },
   { v: "95%", l: "Retention Rate", color: "#14b8a6" },
   { v: "30d", l: "Avg. Time-to-Hire", color: "#f59e0b" },
 ];
@@ -30,7 +30,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[#050c16] text-white overflow-hidden">
+    <footer className="relative bg-[#061410] text-white overflow-hidden">
       {/* ═══ LAYERED BACKGROUNDS ═══ */}
 
       {/* Fine tech grid */}
@@ -38,18 +38,18 @@ export default function Footer() {
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(93,173,236,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(93,173,236,0.25) 1px, transparent 1px)",
+            "linear-gradient(rgba(217,108,87,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(217,108,87,0.25) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
 
       {/* Three soft glow orbs for depth */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[200px] pointer-events-none opacity-[0.04]" style={{ background: "#5dadec", transform: "translate(30%, -30%)" }} />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[160px] pointer-events-none opacity-[0.03]" style={{ background: "#0e8a9a", transform: "translate(-20%, 30%)" }} />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[200px] pointer-events-none opacity-[0.04]" style={{ background: "#D96C57", transform: "translate(30%, -30%)" }} />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[160px] pointer-events-none opacity-[0.03]" style={{ background: "#2d8a7a", transform: "translate(-20%, 30%)" }} />
       <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] rounded-full blur-[120px] pointer-events-none opacity-[0.025]" style={{ background: "#14b8a6", transform: "translate(-50%, -50%)" }} />
 
       {/* ═══ TOP ACCENT LINE ═══ */}
-      <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: "linear-gradient(90deg, transparent, #5dadec 20%, #0e8a9a 80%, transparent)" }} />
+      <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: "linear-gradient(90deg, transparent, #D96C57 20%, #2d8a7a 80%, transparent)" }} />
 
       <div className="relative container mx-auto px-6">
         {/* ═══ MAIN GRID ═══ */}
@@ -62,8 +62,8 @@ export default function Footer() {
                 <span
                   className="w-11 h-11 rounded-xl flex items-center justify-center text-sm font-black transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg"
                   style={{
-                    background: "linear-gradient(135deg, #5dadec, #0e8a9a)",
-                    boxShadow: "0 0 20px rgba(93,173,236,0.25)",
+                    background: "linear-gradient(135deg, #D96C57, #c45a47)",
+                    boxShadow: "0 0 20px rgba(217,108,87,0.25)",
                   }}
                 >
                   HG
@@ -136,7 +136,7 @@ export default function Footer() {
                         href={l.href}
                         className="group/link inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-all duration-300"
                       >
-                        <span className="w-0 group-hover/link:w-3 h-[1.5px] rounded-full transition-all duration-300" style={{ background: "#5dadec" }} />
+                        <span className="w-0 group-hover/link:w-3 h-[1.5px] rounded-full transition-all duration-300" style={{ background: "#D96C57" }} />
                         {l.label}
                       </Link>
                     </li>
@@ -156,7 +156,7 @@ export default function Footer() {
                         href={l.href}
                         className="group/link inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-all duration-300"
                       >
-                        <span className="w-0 group-hover/link:w-3 h-[1.5px] rounded-full transition-all duration-300" style={{ background: "#5dadec" }} />
+                        <span className="w-0 group-hover/link:w-3 h-[1.5px] rounded-full transition-all duration-300" style={{ background: "#D96C57" }} />
                         {l.label}
                       </Link>
                     </li>

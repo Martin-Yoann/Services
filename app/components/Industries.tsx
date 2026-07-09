@@ -3,10 +3,10 @@
 import Link from "next/link";
 
 const industries = [
-  { id: "tech", name: "Technology & AI", description: "From Series-A startups to global platforms — engineers, data scientists, AI/ML specialists, and product leaders who build the future.", roles: ["Software Engineers", "AI/ML Specialists", "Product Managers", "CTOs & VPs of Eng", "Data Scientists", "DevOps Leaders"], stat: { v: "120+", l: "Placements/yr" }, accent: "#5dadec", accentRgb: "93,173,236" },
+  { id: "tech", name: "Technology & AI", description: "From Series-A startups to global platforms — engineers, data scientists, AI/ML specialists, and product leaders who build the future.", roles: ["Software Engineers", "AI/ML Specialists", "Product Managers", "CTOs & VPs of Eng", "Data Scientists", "DevOps Leaders"], stat: { v: "120+", l: "Placements/yr" }, accent: "#D96C57", accentRgb: "217,108,87" },
   { id: "finance", name: "Financial Services", description: "CFOs, controllers, risk analysts, and compliance leaders across banking, fintech, private equity, and insurance.", roles: ["Chief Financial Officers", "Risk & Compliance", "Fintech PMs", "Investment Analysts", "Controllers", "Quant Researchers"], stat: { v: "85+", l: "Placements/yr" }, accent: "#14b8a6", accentRgb: "20,184,166" },
   { id: "healthcare", name: "Healthcare & Biotech", description: "Clinical leaders, R&D scientists, and med-tech executives — connecting life sciences with world-class talent.", roles: ["Medical Directors", "Clinical Research", "Regulatory (FDA)", "R&D Scientists", "Healthcare IT", "Pharma Commercial"], stat: { v: "60+", l: "Placements/yr" }, accent: "#f59e0b", accentRgb: "245,158,11" },
-  { id: "manufacturing", name: "Advanced Manufacturing", description: "Operations directors, supply chain leaders, and plant managers — the engine behind global production.", roles: ["Plant GMs", "Supply Chain Dir.", "Quality Assurance", "Industrial Engineers", "Procurement Heads", "Lean/6σ Experts"], stat: { v: "45+", l: "Placements/yr" }, accent: "#0e8a9a", accentRgb: "14,138,154" },
+  { id: "manufacturing", name: "Advanced Manufacturing", description: "Operations directors, supply chain leaders, and plant managers — the engine behind global production.", roles: ["Plant GMs", "Supply Chain Dir.", "Quality Assurance", "Industrial Engineers", "Procurement Heads", "Lean/6σ Experts"], stat: { v: "45+", l: "Placements/yr" }, accent: "#2d8a7a", accentRgb: "45,138,122" },
   { id: "consumer", name: "Consumer & Retail", description: "Brand leaders, e-commerce directors, and retail operations executives driving global consumer growth.", roles: ["Brand Directors", "E-Commerce Heads", "Category Managers", "Retail Ops VPs", "Consumer Insights", "D2C Specialists"], stat: { v: "70+", l: "Placements/yr" }, accent: "#a855f7", accentRgb: "168,85,247" },
   { id: "logistics", name: "Logistics & Supply Chain", description: "Logistics directors, trade compliance leads, and global trade managers — the backbone of cross-border commerce.", roles: ["Logistics Directors", "Trade Compliance", "Warehouse Ops", "Fleet Management", "Customs Specialists", "Procurement Dir."], stat: { v: "35+", l: "Placements/yr" }, accent: "#f43f5e", accentRgb: "244,63,94" },
 ];
@@ -16,7 +16,7 @@ export default function Industries() {
     <>
       {/* ═══ Section A: Industry Grid ═══ */}
       <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(180deg, #fff 0%, var(--hg-color-bg) 100%)" }}>
-        <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #09233f 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+        <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {industries.map((ind) => (
@@ -55,15 +55,15 @@ export default function Industries() {
       </section>
 
       {/* ═══ Section B: Approach ═══ */}
-      <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "#060e18" }}>
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(93,173,236,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(93,173,236,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[150px] opacity-[0.05] pointer-events-none" style={{ background: "#5dadec", transform: "translate(30%, -30%)" }} />
+      <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "#061410" }}>
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(217,108,87,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(217,108,87,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[150px] opacity-[0.05] pointer-events-none" style={{ background: "#D96C57", transform: "translate(30%, -30%)" }} />
 
         <div className="relative container mx-auto px-6">
           <div className="text-center mb-14">
             <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full text-white/40"
               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>Our Approach</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white hg-heading tracking-tight">Deep sector expertise, <span style={{ color: "#5dadec" }}>proven results</span></h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white hg-heading tracking-tight">Deep sector expertise, <span style={{ color: "#D96C57" }}>proven results</span></h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-14">
             {[
@@ -81,11 +81,11 @@ export default function Industries() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-12 text-center">
             {[{ v: "400+", l: "Active Placements" }, { v: "50+", l: "Industries Served" }, { v: "15+", l: "Years Exp." }, { v: "8+", l: "Market Hubs" }].map((s) => (
-              <div key={s.l}><p className="text-3xl md:text-4xl font-bold text-[#5dadec] hg-heading">{s.v}</p><p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40 mt-1">{s.l}</p></div>))}
+              <div key={s.l}><p className="text-3xl md:text-4xl font-bold text-[#D96C57] hg-heading">{s.v}</p><p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40 mt-1">{s.l}</p></div>))}
           </div>
           <div className="text-center">
-            <Link href="/contact" className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
-              style={{ background: "linear-gradient(135deg, #5dadec, #0e8a9a)", boxShadow: "0 4px 24px rgba(14,138,154,0.35)" }}>
+            <Link href="/contact" className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hg-gradient-coral"
+              style={{ boxShadow: "0 4px 24px rgba(217,108,87,0.35)" }}>
               Discuss Your Industry Needs <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transition-transform duration-300 group-hover:translate-x-1"><polyline points="9 18 15 12 9 6" /></svg>
             </Link>
           </div>

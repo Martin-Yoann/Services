@@ -17,8 +17,8 @@ const advantages = [
         <polyline points="9 22 9 12 15 12 15 22" />
       </svg>
     ),
-    accent: "#5dadec",
-    accentRgb: "93,173,236",
+    accent: "#D96C57",
+    accentRgb: "217,108,87",
   },
   {
     id: "02",
@@ -87,7 +87,7 @@ const values = [
 ];
 
 const stats = [
-  { v: "500+", l: "Annual Placements", color: "#5dadec" },
+  { v: "500+", l: "Annual Placements", color: "#D96C57" },
   { v: "95%", l: "Retention Rate", color: "#14b8a6" },
   { v: "30d", l: "Avg. Time-to-Hire", color: "#f59e0b" },
   { v: "8+", l: "Market Hubs", color: "#a855f7" },
@@ -102,7 +102,7 @@ export default function WhyUs() {
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.025]"
           style={{
-            backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #09233f 1px, transparent 0)",
+            backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)",
             backgroundSize: "32px 32px",
           }}
         />
@@ -113,8 +113,8 @@ export default function WhyUs() {
               className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full"
               style={{
                 color: "var(--hg-color-secondary)",
-                background: "rgba(14,138,154,0.08)",
-                border: "1px solid rgba(14,138,154,0.15)",
+                background: "rgba(45,138,122,0.08)",
+                border: "1px solid rgba(45,138,122,0.15)",
               }}
             >
               What Sets Us Apart
@@ -124,7 +124,7 @@ export default function WhyUs() {
               style={{ fontFamily: "var(--hg-font-heading)", color: "var(--hg-color-text-primary)" }}
             >
               Different by{" "}
-              <span style={{ background: "linear-gradient(135deg, #5dadec, #0e8a9a)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: "linear-gradient(135deg, #D96C57, #2d8a7a)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 design
               </span>
             </h2>
@@ -194,8 +194,8 @@ export default function WhyUs() {
             <div
               className="rounded-2xl p-8 md:p-10 relative overflow-hidden"
               style={{
-                background: "linear-gradient(135deg, rgba(93,173,236,0.06), rgba(14,138,154,0.04))",
-                border: "1px solid rgba(93,173,236,0.12)",
+                background: "linear-gradient(135deg, rgba(217,108,87,0.06), rgba(45,138,122,0.04))",
+                border: "1px solid rgba(217,108,87,0.12)",
               }}
             >
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center relative z-10">
@@ -221,7 +221,7 @@ export default function WhyUs() {
           <div className="text-center mb-14">
             <span
               className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full"
-              style={{ color: "var(--hg-color-secondary)", background: "rgba(14,138,154,0.08)", border: "1px solid rgba(14,138,154,0.15)" }}
+              style={{ color: "var(--hg-color-secondary)", background: "rgba(45,138,122,0.08)", border: "1px solid rgba(45,138,122,0.15)" }}
             >
               Our Values
             </span>
@@ -241,7 +241,7 @@ export default function WhyUs() {
               >
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold mb-5"
-                  style={{ fontFamily: "var(--hg-font-heading)", background: `rgba(${["93,173,236","20,184,166","245,158,11"][i]},0.1)`, color: ["#5dadec","#14b8a6","#f59e0b"][i] }}
+                  style={{ fontFamily: "var(--hg-font-heading)", background: `rgba(${["217,108,87","20,184,166","245,158,11"][i]},0.1)`, color: ["#D96C57","#14b8a6","#f59e0b"][i] }}
                 >
                   {i + 1}
                 </div>
@@ -258,7 +258,7 @@ export default function WhyUs() {
       </section>
 
       {/* ── Section D: CTA ── */}
-      <section className="py-16 bg-linear-to-r from-[#09233f] to-[#1a5a73]">
+      <section className="py-16 bg-linear-to-r from-[#0a2f2a] to-[#1a5a73]">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "var(--hg-font-heading)" }}>
             Experience the difference
@@ -269,7 +269,7 @@ export default function WhyUs() {
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-lg text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            style={{ background: "linear-gradient(135deg, #5dadec, #0e8a9a)", boxShadow: "0 4px 20px rgba(14,138,154,0.35)" }}
+            style={{ background: "linear-gradient(135deg, #D96C57, #2d8a7a)", boxShadow: "0 4px 20px rgba(45,138,122,0.35)" }}
           >
             Start a Conversation
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

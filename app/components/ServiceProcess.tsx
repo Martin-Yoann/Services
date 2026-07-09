@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 const BASE = "https://www.meetsocial.com";
@@ -10,7 +10,7 @@ const steps = [
     num: "01", title: "Needs Analysis", titleZh: "Requirements Analysis",
     desc: "We deep-dive into your business goals, culture, and role requirements — mapping the ideal candidate profile and market strategy.",
     cta: "Learn more", ctaHref: "/services/executive-search",
-    bg: `${BASE}/templates/dist/images/s001-2.jpg`, icon: `${BASE}/templates/dist/images/s001.png`, color: "#5dadec",
+    bg: `${BASE}/templates/dist/images/s001-2.jpg`, icon: `${BASE}/templates/dist/images/s001.png`, color: "#D96C57",
   },
   {
     num: "02", title: "Market Mapping", titleZh: "Market Positioning",
@@ -28,7 +28,7 @@ const steps = [
     num: "04", title: "Assessment & Screening", titleZh: "Evaluation",
     desc: "Competency-based interviews, skills verification, culture-fit analysis — rigorous evaluation at every stage.",
     cta: "Learn more", ctaHref: "/services/professional-recruitment",
-    bg: `${BASE}/templates/dist/images/s004-2.jpg`, icon: `${BASE}/templates/dist/images/s004.png`, color: "#0e8a9a",
+    bg: `${BASE}/templates/dist/images/s004-2.jpg`, icon: `${BASE}/templates/dist/images/s004.png`, color: "#2d8a7a",
   },
   {
     num: "05", title: "Offer & Onboarding", titleZh: "Onboarding",
@@ -59,105 +59,18 @@ const TICK_POSITIONS = Array.from({ length: 12 }).map((_, i) => {
 export default function ServiceProcess() {
   const [active, setActive] = useState(0);
   const [rotation, setRotation] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const activeRef = useRef(0);
-  activeRef.current = active;
 
   const activeStep = steps[active];
 
   /* ── rotate wheel ── */
-  const rotateBy = useCallback((delta: number) => {
+  const rotateBy = (delta: number) => {
     setRotation((prev) => prev + delta * SEG);
     setActive((prev) => {
       let next = (prev + delta) % TOTAL;
       if (next < 0) next += TOTAL;
       return next;
     });
-  }, []);
-
-  /* ── Auto-snap: when entering from above, scroll section into full view ── */
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    let snapTimer: ReturnType<typeof setTimeout> | null = null;
-    let lastY = window.scrollY;
-
-    const onScroll = () => {
-      const nowY = window.scrollY;
-      const scrollingDown = nowY > lastY;
-      lastY = nowY;
-      if (!scrollingDown) return; // only snap when scrolling down into the section
-
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      // Section top is between 20%–70% of viewport → snap it to top
-      const topRatio = rect.top / vh;
-      if (topRatio > 0.2 && topRatio < 0.7) {
-        if (snapTimer) clearTimeout(snapTimer);
-        snapTimer = setTimeout(() => {
-          const r2 = el.getBoundingClientRect();
-          // Re-check: still in zone and still scrolling down?
-          if (r2.top > 0 && r2.top < vh * 0.7) {
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }, 150);
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (snapTimer) clearTimeout(snapTimer);
-    };
-  }, []);
-
-  /* ── scroll wheel with pass-through at boundaries ── */
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    let pending = 0;
-    let raf = 0;
-    let boundaryTicks = 0;
-
-    const onWheel = (e: WheelEvent) => {
-      const dir = e.deltaY > 0 ? 1 : -1;
-      const a = activeRef.current;
-
-      // At boundary: let page scroll
-      const atTop = a === 0 && dir < 0;
-      const atBottom = a === TOTAL - 1 && dir > 0;
-      if (atTop || atBottom) {
-        boundaryTicks += Math.abs(e.deltaY);
-        if (boundaryTicks > 120) {
-          // Let this event through to page scroll
-          boundaryTicks = 0;
-          return;
-        }
-        e.preventDefault();
-        return;
-      }
-      boundaryTicks = 0;
-
-      e.preventDefault();
-      pending += e.deltaY;
-      if (!raf) {
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          const moveDir = pending > 0 ? 1 : -1;
-          const count = Math.floor(Math.abs(pending) / 60);
-          for (let i = 0; i < count; i++) rotateBy(moveDir);
-          pending = 0;
-        });
-      }
-    };
-
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => {
-      el.removeEventListener("wheel", onWheel);
-      cancelAnimationFrame(raf);
-    };
-  }, [rotateBy]);
+  };
 
   /* ── click to jump ── */
   const jumpTo = (index: number) => {
@@ -178,15 +91,14 @@ export default function ServiceProcess() {
 
   return (
     <section
-      ref={containerRef}
       className="relative w-full overflow-hidden select-none"
-      style={{ height: "100vh", background: "#0a0f1a" }}
+      style={{ height: "100vh", background: "#061410" }}
     >
       {/* ── Layered backgrounds ── */}
       {steps.map((s, i) => (
         <div key={s.num} className="absolute inset-0 transition-opacity duration-700" style={{ opacity: i === active ? 1 : 0 }}>
           <div className="absolute inset-0" style={{ background: `url("${s.bg}") center / cover no-repeat` }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,15,26,0.4) 0%, rgba(10,15,26,0.8) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(6,20,16,0.4) 0%, rgba(6,20,16,0.8) 100%)" }} />
         </div>
       ))}
       {/* Dot pattern */}
@@ -200,7 +112,7 @@ export default function ServiceProcess() {
         </h2>
         <div className="flex items-center gap-2 mt-3 text-white/25 text-xs">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg>
-          <span className="uppercase tracking-[0.15em] font-semibold">Scroll to rotate</span>
+          <span className="uppercase tracking-[0.15em] font-semibold">Click to explore</span>
         </div>
       </div>
 

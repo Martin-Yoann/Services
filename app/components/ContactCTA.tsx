@@ -45,7 +45,7 @@ export default function ContactCTA() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(90deg, rgba(9,35,63,0.92) 0%, rgba(9,35,63,0.7) 60%, rgba(9,35,63,0.4) 100%)",
+            "linear-gradient(90deg, rgba(10,47,42,0.92) 0%, rgba(10,47,42,0.7) 60%, rgba(10,47,42,0.4) 100%)",
         }}
       />
 
@@ -72,10 +72,9 @@ export default function ContactCTA() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-lg text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+            className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-lg text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hg-gradient-coral"
             style={{
-              background: "linear-gradient(135deg, #5dadec, #0e8a9a)",
-              boxShadow: "0 4px 20px rgba(14,138,154,0.35)",
+              boxShadow: "0 4px 20px rgba(217,108,87,0.35)",
             }}
           >
             Get in Touch

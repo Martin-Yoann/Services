@@ -7,12 +7,12 @@ interface PageHeaderProps {
   accentColor?: string;
 }
 
-export default function PageHeader({ title, subtitle, breadcrumb, accentColor = "#5dadec" }: PageHeaderProps) {
+export default function PageHeader({ title, subtitle, breadcrumb, accentColor = "#D96C57" }: PageHeaderProps) {
   return (
-    <section className="relative bg-[#060e18] pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden">
+    <section className="relative bg-[#061410] pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden">
       {/* Tech grid */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: "linear-gradient(rgba(93,173,236,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(93,173,236,0.3) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(rgba(217,108,87,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(217,108,87,0.3) 1px, transparent 1px)",
         backgroundSize: "50px 50px" }} />
       {/* Glow orbs */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[180px] opacity-[0.07] pointer-events-none"

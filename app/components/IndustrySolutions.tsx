@@ -16,8 +16,8 @@ const solutions = [
     bg: `${BASE}/templates/dist/images/i001.jpg.webp`,
     icon: `${BASE}/templates/dist/images/i010.png`,
     badge: `${BASE}/templates/dist/images/logos001.png`,
-    solidBg: "#0B00BE",
-    labelColor: "#7B8CFF",
+    solidBg: "#0a2f2a",
+    labelColor: "#D96C57",
   },
   {
     id: "finance",
@@ -29,8 +29,8 @@ const solutions = [
     bg: `${BASE}/templates/dist/images/i002.jpg.webp`,
     icon: `${BASE}/templates/dist/images/i016-1.png`,
     badge: `${BASE}/templates/dist/images/logos002.png`,
-    solidBg: "#006BF7",
-    labelColor: "#7BB5FF",
+    solidBg: "#1a4a3e",
+    labelColor: "#5a9a8a",
   },
   {
     id: "healthcare",

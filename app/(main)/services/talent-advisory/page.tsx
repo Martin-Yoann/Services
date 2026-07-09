@@ -3,10 +3,10 @@ import Link from "next/link";
 
 const advisoryServices = [
   { t: "Compensation Benchmarking", d: "Data-driven analysis across markets — covering base, bonus, equity, and total rewards for your target roles and competitors.", icon: "💰", c: "#f59e0b" },
-  { t: "Organizational Design", d: "Strategic guidance on team structure, reporting lines, and org scaling optimized for cross-border and matrixed environments.", icon: "🏗️", c: "#5dadec" },
+  { t: "Organizational Design", d: "Strategic guidance on team structure, reporting lines, and org scaling optimized for cross-border and matrixed environments.", icon: "🏗️", c: "#D96C57" },
   { t: "Market Intelligence", d: "Talent landscape analysis, competitor hiring patterns, and trend reports tailored to your industry and target markets.", icon: "🔍", c: "#14b8a6" },
   { t: "Employer Brand Strategy", d: "Positioning your organization as an employer of choice — from EVP development to localization in new markets.", icon: "🏆", c: "#a855f7" },
-  { t: "Workforce Planning", d: "Multi-year talent forecasting aligned to business strategy — building pipelines before you have open roles.", icon: "📋", c: "#0e8a9a" },
+  { t: "Workforce Planning", d: "Multi-year talent forecasting aligned to business strategy — building pipelines before you have open roles.", icon: "📋", c: "#2d8a7a" },
   { t: "Cross-Border HR Compliance", d: "Navigating employment law, visa requirements, and statutory benefits across U.S., China, and international jurisdictions.", icon: "🛡️", c: "#f43f5e" },
 ];
 
@@ -17,7 +17,7 @@ export default function TalentAdvisoryPage() {
 
       {/* ═══ Overview ═══ */}
       <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(180deg, #fff 0%, var(--hg-color-bg) 100%)" }}>
-        <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #09233f 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+        <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -27,7 +27,7 @@ export default function TalentAdvisoryPage() {
               <p className="text-sm leading-relaxed hg-text-secondary">We deliver actionable frameworks and data — not slide decks you'll file away. From startups to enterprises, our advisors average 15+ years in global talent strategy.</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {[{ v: "50+", l: "Enterprise Clients", c: "#5dadec" }, { v: "15+", l: "Years Experience", c: "#14b8a6" }, { v: "12yr", l: "Avg. Partnership", c: "#f59e0b" }, { v: "8+", l: "Markets Covered", c: "#a855f7" }].map((s) => (
+              {[{ v: "50+", l: "Enterprise Clients", c: "#D96C57" }, { v: "15+", l: "Years Experience", c: "#14b8a6" }, { v: "12yr", l: "Avg. Partnership", c: "#f59e0b" }, { v: "8+", l: "Markets Covered", c: "#a855f7" }].map((s) => (
                 <div key={s.l} className="group rounded-2xl p-5 text-center transition-all duration-500 hover:-translate-y-1" style={{ background: "var(--hg-color-bg)", border: "1px solid var(--hg-color-border)" }}>
                   <p className="text-3xl font-bold hg-heading group-hover:scale-105 transition-transform duration-500" style={{ color: s.c }}>{s.v}</p>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.12em] mt-2 hg-text-secondary">{s.l}</p>
@@ -40,7 +40,7 @@ export default function TalentAdvisoryPage() {
 
       {/* ═══ Advisory Services ═══ */}
       <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "#060e18" }}>
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(93,173,236,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(93,173,236,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(217,108,87,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(217,108,87,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
         <div className="relative container mx-auto px-6">
           <div className="text-center mb-14">
             <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full text-white/40" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>Advisory Capabilities</span>

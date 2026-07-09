@@ -31,7 +31,7 @@ export default function CookieBanner() {
       <div
         className="fixed inset-0 z-998 transition-opacity duration-500 cursor-pointer"
         style={{
-          background: "rgba(6,14,24,0.5)",
+          background: "rgba(6,20,16,0.5)",
           backdropFilter: "blur(4px)",
           WebkitBackdropFilter: "blur(4px)",
           opacity: visible ? 1 : 0,
@@ -54,13 +54,13 @@ export default function CookieBanner() {
               background: "#ffffff",
               border: "1px solid var(--hg-color-border)",
               boxShadow:
-                "0 24px 64px rgba(18,67,63,0.14), 0 8px 20px rgba(18,67,63,0.06)",
+                "0 24px 64px rgba(10,47,42,0.14), 0 8px 20px rgba(10,47,42,0.06)",
             }}
           >
             {/* Icon */}
             <div
               className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
-              style={{ background: "rgba(93,173,236,0.1)", color: "#5dadec" }}
+              style={{ background: "rgba(217,108,87,0.1)", color: "#D96C57" }}
             >
               <svg
                 width="20"
@@ -99,7 +99,7 @@ export default function CookieBanner() {
               <a
                 href="/privacy-policy"
                 className="font-semibold underline hover:opacity-70"
-                style={{ color: "#5dadec" }}
+                style={{ color: "#D96C57" }}
               >
                 Learn more
               </a>
@@ -111,15 +111,15 @@ export default function CookieBanner() {
                 onClick={accept}
                 className="flex-1 text-sm font-bold px-6 py-3 rounded-lg text-white transition-all duration-300 hover:-translate-y-0.5"
                 style={{
-                  background: "linear-gradient(135deg, #5dadec, #0e8a9a)",
-                  boxShadow: "0 2px 12px rgba(14,138,154,0.25)",
+                  background: "linear-gradient(135deg, #D96C57, #c45a47)",
+                  boxShadow: "0 2px 12px rgba(217,108,87,0.25)",
                 }}
               >
                 Accept All Cookies
               </button>
               <button
                 onClick={decline}
-                className="flex-1 text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[#f7fafc]"
+                className="flex-1 text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[#f7f8f6]"
                 style={{
                   color: "var(--hg-color-text-secondary)",
                   background: "transparent",

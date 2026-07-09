@@ -3,7 +3,7 @@ import LogoMarquee from "@/app/components/LogoMarquee";
 import IndustrySolutions from "@/app/components/IndustrySolutions";
 import ServiceProcess from "@/app/components/ServiceProcess";
 import ClientCases from "@/app/components/ClientCases";
-import ContactCTA from "@/app/components/ContactCTA";
+import ContactFormCompact from "@/app/components/ContactFormCompact";
 
 export default function HomePage() {
   return (
@@ -23,8 +23,8 @@ export default function HomePage() {
       {/* ── Section 5: Client Cases Carousel ── */}
       <ClientCases />
 
-      {/* ── Section 6: Contact CTA Strip ── */}
-      <ContactCTA />
+      {/* ── Section 6: Contact Form ── */}
+      <ContactFormCompact />
     </>
   );
 }

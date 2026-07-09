@@ -1,0 +1,17 @@
+/* ── Harbor Human Brand Tokens ──
+   Harbor Green + Warm Coral palette for global talent brand */
+
+:root {
+  /* ── Core palette ── */
+  --hh-color-primary: #0a2f2a;
+  --hh-color-secondary: #2d8a7a;
+  --hh-color-accent: #D96C57;
+  --hh-color-action: #c45a47;
+  --hh-color-bg-dark: #061410;
+  --hh-color-bg: #f7f8f6;
+
+  /* ── RGB tuples for rgba() usage in JSX inline styles ── */
+  --hh-color-primary-rgb: 10, 47, 42;
+  --hh-color-secondary-rgb: 45, 138, 122;
+  --hh-color-accent-rgb: 217, 108, 87;
+}

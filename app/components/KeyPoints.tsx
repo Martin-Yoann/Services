@@ -14,8 +14,8 @@ const points = [
         <line x1="12" y1="2" x2="12" y2="4" />
       </svg>
     ),
-    accent: "#5dadec",
-    accentRgb: "93,173,236",
+    accent: "#D96C57",
+    accentRgb: "217,108,87",
   },
   {
     id: "02",
@@ -82,7 +82,7 @@ export default function KeyPoints() {
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1.5px 1.5px, #09233f 1px, transparent 0)",
+            "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -94,8 +94,8 @@ export default function KeyPoints() {
             className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full"
             style={{
               color: "var(--hg-color-secondary)",
-              background: "rgba(14,138,154,0.08)",
-              border: "1px solid rgba(14,138,154,0.15)",
+              background: "rgba(45,138,122,0.08)",
+              border: "1px solid rgba(45,138,122,0.15)",
             }}
           >
             Why Choose Us
@@ -107,7 +107,7 @@ export default function KeyPoints() {
             Built for{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, #5dadec, #0e8a9a)",
+                background: "linear-gradient(135deg, #D96C57, #2d8a7a)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -202,8 +202,8 @@ export default function KeyPoints() {
           <div
             className="rounded-2xl p-8 md:p-10 relative overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, rgba(93,173,236,0.06), rgba(14,138,154,0.04))",
-              border: "1px solid rgba(93,173,236,0.12)",
+              background: "linear-gradient(135deg, rgba(217,108,87,0.06), rgba(45,138,122,0.04))",
+              border: "1px solid rgba(217,108,87,0.12)",
             }}
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center relative z-10">
@@ -218,7 +218,7 @@ export default function KeyPoints() {
                     className="text-3xl md:text-4xl font-bold mb-1 transition-all duration-300"
                     style={{
                       fontFamily: "var(--hg-font-heading)",
-                      color: points[i]?.accent ?? "#5dadec",
+                      color: points[i]?.accent ?? "#D96C57",
                     }}
                   >
                     {s.v}

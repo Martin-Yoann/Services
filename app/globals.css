@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
-/* ── Happy Global Design Tokens ── */
+/* ── Happy Global Design Tokens (aliased to Harbor Human palette) ── */
 :root {
-  --hg-color-primary: #09233f;
-  --hg-color-secondary: #0e8a9a;
-  --hg-color-accent: #5dadec;
-  --hg-color-bg: #f7fafc;
+  --hg-color-primary: var(--hh-color-primary);
+  --hg-color-secondary: var(--hh-color-secondary);
+  --hg-color-accent: var(--hh-color-accent);
+  --hg-color-bg: var(--hh-color-bg);
   --hg-color-surface: #ffffff;
   --hg-color-text-primary: #102033;
   --hg-color-text-secondary: #5b6675;
   --hg-color-border: #d8e1ea;
-  --hg-color-action: #0b7280;
+  --hg-color-action: var(--hh-color-action);
   --hg-color-action-text: #ffffff;
 
   --hg-font-heading: "Inter Tight", "Inter", "Aptos Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -75,6 +75,17 @@ body {
   background: linear-gradient(135deg, var(--hg-color-accent), var(--hg-color-secondary));
 }
 
+.hg-gradient-coral {
+  background: linear-gradient(135deg, var(--hh-color-accent), var(--hh-color-action));
+}
+
+.hg-gradient-text {
+  background: linear-gradient(135deg, var(--hh-color-accent), var(--hh-color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* ── Layout utilities ── */
 .hg-container {
   margin-inline: auto;
@@ -107,9 +118,9 @@ body {
 }
 
 .hg-button-primary:hover {
-  background: #0a5a6b;
+  background: var(--hh-color-action);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(9, 35, 63, 0.15);
+  box-shadow: 0 4px 12px rgba(var(--hh-color-primary-rgb), 0.15);
 }
 
 .hg-button-secondary {
@@ -126,7 +137,7 @@ body {
 /* ── Nav hover effect ── */
 .hg-nav-link:hover {
   color: var(--hg-color-primary);
-  background: rgba(18, 67, 63, 0.05);
+  background: rgba(var(--hh-color-primary-rgb), 0.05);
 }
 
 /* ── Nav dropdown ── */
@@ -152,7 +163,7 @@ body {
 
 .hg-nav-dropdown-trigger:hover {
   color: var(--hg-color-primary);
-  background: rgba(18, 67, 63, 0.05);
+  background: rgba(var(--hh-color-primary-rgb), 0.05);
 }
 
 .hg-nav-chevron {
@@ -172,7 +183,7 @@ body {
   background: var(--hg-color-surface);
   border: 1px solid var(--hg-color-border);
   border-radius: var(--hg-radius-card);
-  box-shadow: 0 12px 32px rgba(18, 67, 63, 0.12);
+  box-shadow: 0 12px 32px rgba(var(--hh-color-primary-rgb), 0.12);
   padding: 8px 0;
   opacity: 0;
   transform: translateY(6px);
@@ -199,7 +210,7 @@ body {
 
 .hg-nav-dropdown-item:hover {
   color: var(--hg-color-primary);
-  background: rgba(18, 67, 63, 0.04);
+  background: rgba(var(--hh-color-primary-rgb), 0.04);
 }
 
 /* ── Nav CTA button ── */
@@ -217,7 +228,7 @@ body {
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
-  background: #5dadec;
+  background: var(--hh-color-accent);
   color: #ffffff;
   border: none;
   transition: color 0.35s ease;
@@ -248,7 +259,7 @@ body {
 }
 
 .hg-nav-cta:hover .hg-nav-cta-label {
-  color: #102033;
+  color: var(--hg-color-text-primary);
 }
 
 .hg-nav-cta.mobile {
@@ -315,7 +326,7 @@ body {
 
 .hg-nav-transparent.scrolled .hg-nav-dropdown-trigger:hover {
   color: var(--hg-color-primary);
-  background: rgba(18, 67, 63, 0.05);
+  background: rgba(var(--hh-color-primary-rgb), 0.05);
 }
 
 .hg-nav-transparent .hg-nav-dropdown-menu {
@@ -338,33 +349,6 @@ body {
 
 .hg-banner-fade-in {
   animation: hg-banner-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes hero-spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-.animate-spin-slow {
-  animation: hero-spin-slow 30s linear infinite;
-}
-
-@keyframes hero-bg-out {
-  0%   { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-.animate-hero-bg-out {
-  animation: hero-bg-out 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes hero-progress {
-  0%   { width: 0%; }
-  100% { width: 100%; }
-}
-
-.animate-hero-progress {
-  animation: hero-progress 6s linear infinite;
 }
 
 @keyframes bounce-slow {
@@ -409,7 +393,8 @@ body {
   flex-shrink: 0;
   font-size: 36px;
   font-weight: 600;
-  color: #b0bec5;
+  color: var(--hh-color-accent);
+  opacity: 0.45;
   letter-spacing: -0.01em;
   transition: color 0.3s ease;
   cursor: default;
@@ -432,8 +417,8 @@ body {
 
 .hg-keypoint-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(18, 67, 63, 0.1);
-  border-color: rgba(93, 173, 236, 0.3);
+  box-shadow: 0 20px 48px rgba(var(--hh-color-primary-rgb), 0.1);
+  border-color: rgba(var(--hh-color-accent-rgb), 0.3);
 }
 
 /* ── WhyUs Card ── */
@@ -448,8 +433,8 @@ body {
 
 .hg-whyus-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(18, 67, 63, 0.1);
-  border-color: rgba(93, 173, 236, 0.3);
+  box-shadow: 0 20px 48px rgba(var(--hh-color-primary-rgb), 0.1);
+  border-color: rgba(var(--hh-color-accent-rgb), 0.3);
 }
 
 /* ── Services Card (CSS-var driven hover) ── */

@@ -15,7 +15,7 @@ const cases = [
     client: "CTO, Series-C AI Startup",
     highlights: ["40-person R&D team built", "Cross-border cultural fit", "28-day close"],
     stat: { value: "28", suffix: "d", label: "Time-to-Hire" },
-    accent: "#5dadec",
+    accent: "#D96C57",
   },
   {
     id: 2,
@@ -107,56 +107,6 @@ export default function ClientCases() {
   const next = useCallback(() => goTo(activeRef.current + 1), [goTo]);
   const prev = useCallback(() => goTo(activeRef.current - 1), [goTo]);
 
-  /* ── Scroll wheel ── */
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    let pending = 0;
-    let raf = 0;
-    let boundary = 0;
-
-    const onWheel = (e: WheelEvent) => {
-      const dir = e.deltaY > 0 ? 1 : -1;
-      const a = activeRef.current;
-      const atEnd = (a === TOTAL - 1 && dir > 0) || (a === 0 && dir < 0);
-      if (atEnd) {
-        boundary += Math.abs(e.deltaY);
-        if (boundary > 140) return;
-        e.preventDefault();
-        return;
-      }
-      boundary = 0;
-      e.preventDefault();
-      pending += e.deltaY;
-      if (!raf) {
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          const d = pending > 0 ? 1 : -1;
-          const steps = Math.floor(Math.abs(pending) / 80);
-          for (let i = 0; i < steps; i++) d > 0 ? next() : prev();
-          pending = 0;
-        });
-      }
-    };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => { el.removeEventListener("wheel", onWheel); cancelAnimationFrame(raf); };
-  }, [next, prev]);
-
-  /* ── Touch ── */
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    let startY = 0;
-    const onStart = (e: TouchEvent) => { startY = e.touches[0].clientY; };
-    const onEnd = (e: TouchEvent) => {
-      const dy = e.changedTouches[0].clientY - startY;
-      if (Math.abs(dy) > 50) dy > 0 ? prev() : next();
-    };
-    el.addEventListener("touchstart", onStart, { passive: true });
-    el.addEventListener("touchend", onEnd, { passive: true });
-    return () => { el.removeEventListener("touchstart", onStart); el.removeEventListener("touchend", onEnd); };
-  }, [next, prev]);
-
   /* ── Keyboard ── */
   useEffect(() => {
     const k = (e: KeyboardEvent) => {
@@ -175,7 +125,7 @@ export default function ClientCases() {
     >
       {/* ── Faint dot grid ── */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.015]"
-        style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #09233f 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+        style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "24px 24px" }} />
 
       {/* ── Soft focal glow behind card ── */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full blur-[200px] transition-colors duration-700 pointer-events-none"
@@ -200,7 +150,7 @@ export default function ClientCases() {
           style={{
             background: "#fff",
             border: "1px solid var(--hg-color-border)",
-            boxShadow: "0 24px 80px rgba(18,67,63,0.08), 0 6px 20px rgba(18,67,63,0.03)",
+            boxShadow: "0 24px 80px rgba(10,47,42,0.08), 0 6px 20px rgba(10,47,42,0.03)",
             opacity: stage === "show" ? 1 : stage === "exit" ? 0 : 0,
             transform: stage === "show" ? "translateY(0) scale(1)" : stage === "exit" ? "translateY(12px) scale(0.97)" : "translateY(-12px) scale(0.97)",
           }}
@@ -274,13 +224,13 @@ export default function ClientCases() {
       {/* ═══════════════ CONTROLS ═══════════════ */}
       <button onClick={prev}
         className="absolute top-1/2 left-[2%] md:left-[4%] -translate-y-1/2 z-30 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group pointer-events-auto"
-        style={{ background: "var(--hg-color-surface)", border: "1px solid var(--hg-color-border)", boxShadow: "0 2px 12px rgba(18,67,63,0.05)" }}
+        style={{ background: "var(--hg-color-surface)", border: "1px solid var(--hg-color-border)", boxShadow: "0 2px 12px rgba(10,47,42,0.05)" }}
         aria-label="Previous">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:-translate-x-0.5 transition-transform"><polyline points="15 18 9 12 15 6" /></svg>
       </button>
       <button onClick={next}
         className="absolute top-1/2 right-[2%] md:right-[4%] -translate-y-1/2 z-30 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group pointer-events-auto"
-        style={{ background: "var(--hg-color-surface)", border: "1px solid var(--hg-color-border)", boxShadow: "0 2px 12px rgba(18,67,63,0.05)" }}
+        style={{ background: "var(--hg-color-surface)", border: "1px solid var(--hg-color-border)", boxShadow: "0 2px 12px rgba(10,47,42,0.05)" }}
         aria-label="Next">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:translate-x-0.5 transition-transform"><polyline points="9 18 15 12 9 6" /></svg>
       </button>
