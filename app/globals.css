@@ -351,6 +351,15 @@ body {
   animation: hg-banner-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@keyframes hg-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: hg-spin-slow 20s linear infinite;
+}
+
 @keyframes bounce-slow {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(8px); }

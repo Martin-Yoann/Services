@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 
@@ -12,7 +12,7 @@ const bannerSlides = [
   {
     label: "Full-Funnel",
     title: "Full-Funnel Marketing Solutions",
-    desc: "From insights, media buying, and optimization to creative, branding, and data intelligence — covering every stage of global marketing.",
+    desc: "From insights, media buying, and optimization to creative, branding, and data intelligence.",
     bg: "/harbor-human-hero.png",
   },
   {
@@ -23,8 +23,14 @@ const bannerSlides = [
   },
 ];
 
-const heroLogos = [
-  "Meta", "Google", "TikTok", "Microsoft", "Amazon", "Anker",
+const stats = [
+  { value: "500+", label: "Annual Placements" },
+  { value: "95%", label: "Client Retention" },
+  { value: "30d", label: "Avg. Time-to-Hire" },
+];
+
+const partnerLogos = [
+  "Meta", "Google", "TikTok", "Microsoft", "Amazon",
   "BYD", "ByteDance", "Lilith", "Insta360", "TECNO", "Soul",
 ];
 
@@ -32,7 +38,6 @@ export default function Banner() {
   const [activeIndex, setActiveIndex] = useState(0);
   const current = bannerSlides[activeIndex];
 
-  // Auto-rotate every 5s
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % bannerSlides.length);
@@ -41,8 +46,11 @@ export default function Banner() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Background */}
+    <section
+      id="home"
+      className="relative min-h-[100dvh] flex flex-col overflow-hidden"
+    >
+      {/* ═══ Background layers ═══ */}
       <div
         className="absolute inset-0 transition-all duration-700 ease-out"
         style={{
@@ -50,152 +58,173 @@ export default function Banner() {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(135deg, rgba(10,47,42,0.92) 0%, rgba(10,47,42,0.65) 50%, rgba(10,47,42,0.45) 100%)",
-          }}
-        />
-      </div>
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(170deg, rgba(10,47,42,0.85) 0%, rgba(10,47,42,0.5) 70%, rgba(10,47,42,0.3) 100%)",
+        }}
+      />
 
-      {/* Main hero content */}
-      <div className="hg-container relative z-10 w-full flex-1 flex items-center py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
-          {/* Left: Main content */}
-          <div className="lg:col-span-8 space-y-7">
-            {/* Slide badge */}
-            <p
-              key={`en-${activeIndex}`}
-              className="inline-block px-5 py-2 rounded-full text-sm font-semibold tracking-widest uppercase hg-banner-fade-in"
+      {/* ═══ All content in one flex column, justify-between ═══ */}
+      <div className="relative z-10 flex-1 flex flex-col justify-between px-5 pt-20 pb-5 md:pb-8">
+        {/* ── Upper: Headline + CTA + Stats ── */}
+        <div className="w-full max-w-lg md:max-w-2xl">
+
+          {/* Tagline */}
+          <p
+            className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.25em] mb-3 md:mb-4"
+            style={{ color: "var(--hg-color-accent)" }}
+          >
+            Global Talent Solutions
+          </p>
+
+          {/* Headline */}
+          <h1
+            style={{
+              fontFamily: "var(--hg-font-heading)",
+              fontSize: "clamp(36px, 9vw, 72px)",
+              fontWeight: "var(--hg-weight-h1)",
+              lineHeight: 1.05,
+              color: "#fff",
+            }}
+          >
+            Connecting
+            <br />
+            <span style={{ color: "var(--hg-color-accent)" }}>Leadership</span>
+            <br />
+            Worldwide
+          </h1>
+
+          {/* Subtitle */}
+          <p
+            className="mt-4 max-w-md"
+            style={{
+              fontSize: "clamp(14px, 1.6vw, 17px)",
+              lineHeight: 1.6,
+              color: "rgba(255,255,255,0.65)",
+            }}
+          >
+            Executive search for C-suite, VP, and Director roles across U.S., China,
+            and key global markets — average placement in 30 days.
+          </p>
+
+          {/* CTA */}
+          <div className="mt-5">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 font-bold rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hg-gradient-coral w-full sm:w-auto"
               style={{
-                color: "var(--hg-color-accent)",
-                background: "rgba(var(--hh-color-accent-rgb), 0.15)",
-                border: "1px solid rgba(var(--hh-color-accent-rgb), 0.3)",
+                color: "#fff",
+                padding: "0 36px",
+                minHeight: "52px",
+                fontSize: "16px",
+                boxShadow: "0 6px 28px rgba(217,108,87,0.35)",
               }}
             >
-              {current.title}
-            </p>
-
-            {/* Main title */}
-            <div>
-              <h1
-                className="text-white leading-tight hg-banner-fade-in"
-                style={{
-                  fontFamily: "var(--hg-font-heading)",
-                  fontSize: "clamp(36px, 5.5vw, 64px)",
-                  fontWeight: "var(--hg-weight-h1)",
-                  lineHeight: 1.1,
-                  animationDelay: "0.08s",
-                }}
-              >
-                Cross-Border Digital Marketing
-              </h1>
-              <h1
-                key={`slide-${activeIndex}`}
-                className="text-white leading-tight hg-banner-fade-in"
-                style={{
-                  fontFamily: "var(--hg-font-heading)",
-                  fontSize: "clamp(36px, 5.5vw, 64px)",
-                  fontWeight: "var(--hg-weight-h1)",
-                  lineHeight: 1.1,
-                  animationDelay: "0.12s",
-                }}
-              >
-                <span style={{ color: "var(--hg-color-accent)" }}>{current.label}</span>
-                <span className="text-white"> Solutions</span>
-              </h1>
-            </div>
-
-            {/* Description */}
-            <p
-              key={`desc-${activeIndex}`}
-              className="max-w-xl hg-banner-fade-in"
-              style={{
-                fontSize: "clamp(15px, 1.8vw, 19px)",
-                lineHeight: 1.8,
-                color: "rgba(255,255,255,0.8)",
-                animationDelay: "0.2s",
-              }}
-            >
-              {current.desc}
-            </p>
-
-            {/* CTA buttons */}
-            <div key={`cta-${activeIndex}`} className="flex flex-col sm:flex-row items-start gap-4 hg-banner-fade-in" style={{ animationDelay: "0.28s" }}>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 hg-button-primary"
-                style={{ padding: "0 40px", minHeight: "52px", fontSize: "16px" }}
-              >
-                Get a Proposal
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="9 18 15 12 9 6" />
-                </svg>
-              </a>
-              <a
-                href="#solutions"
-                className="inline-flex items-center gap-2 hg-button-secondary"
-                style={{ padding: "0 36px", minHeight: "52px", fontSize: "16px" }}
-              >
-                Learn More
-              </a>
-            </div>
+              Start a Conversation
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </a>
           </div>
 
-          {/* Right: Circular navigation */}
-          <div className="lg:col-span-4 flex flex-col items-end gap-5">
-            {bannerSlides.map((slide, index) => (
+          {/* Stats */}
+          <div className="flex gap-6 md:gap-10 mt-6 pt-5 border-t border-white/8">
+            {stats.map((s) => (
+              <div key={s.label}>
+                <p
+                  className="text-2xl md:text-3xl font-bold"
+                  style={{ fontFamily: "var(--hg-font-heading)", color: "#fff" }}
+                >
+                  {s.value}
+                </p>
+                <p
+                  className="text-[11px] md:text-xs font-medium mt-0.5"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Slide dots — mobile */}
+          <div className="lg:hidden mt-4 flex items-center gap-2">
+            {bannerSlides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center transition-all duration-300 group relative overflow-hidden ${
-                  index === activeIndex
-                    ? "bg-white shadow-2xl scale-105"
-                    : "bg-white/15 hover:bg-white/30 backdrop-blur-md border border-white/20"
-                }`}
-                aria-label={`Switch to: ${slide.label}`}
-              >
-                {index === activeIndex && (
-                  <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "var(--hg-color-secondary)" }} />
-                )}
-                <div className="text-center px-2">
-                  <span
-                    className={`block text-2xl font-bold mb-1 ${index === activeIndex ? "text-gray-800" : "text-white/80"}`}
-                    style={{ fontFamily: "var(--hg-font-heading)" }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className={`block text-[10px] font-medium leading-tight ${index === activeIndex ? "text-gray-500" : "text-white/60"}`}
-                  >
-                    {slide.label}
-                  </span>
-                </div>
-              </button>
+                className="rounded-full transition-all duration-300"
+                style={{
+                  width: index === activeIndex ? "22px" : "6px",
+                  height: "6px",
+                  background: index === activeIndex ? "var(--hg-color-accent)" : "rgba(255,255,255,0.2)",
+                }}
+                aria-label={`Slide ${index + 1}`}
+              />
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Partner logo wall */}
-      <div className="relative z-10 pb-8 pt-6" style={{ background: "rgba(10,47,42,0.4)", backdropFilter: "blur(8px)" }}>
-        <div className="hg-container">
-          <p className="text-center text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: "rgba(255,255,255,0.4)" }}>
-            Trusted by Industry Leaders Across Sectors
+        {/* ── Bottom: Partner logos — hugs the bottom naturally ── */}
+        <div>
+          <p
+            className="text-center text-[9px] md:text-[11px] font-semibold uppercase tracking-[0.2em] mb-3"
+            style={{ color: "rgba(255,255,255,0.25)" }}
+          >
+            Trusted by Industry Leaders
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-            {heroLogos.map((name, i) => (
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 md:gap-x-8">
+            {partnerLogos.map((name, i) => (
               <span
                 key={i}
-                className="text-sm font-bold tracking-tight transition-all duration-300 hover:scale-110"
-                style={{ color: "rgba(255,255,255,0.5)" }}
+                className="text-[11px] md:text-sm font-bold tracking-tight"
+                style={{ color: "rgba(255,255,255,0.35)" }}
               >
                 {name}
               </span>
             ))}
           </div>
         </div>
+      </div>
+
+      {/* ═══ Right: circular nav — desktop only ═══ */}
+      <div className="hidden lg:flex absolute top-1/2 right-8 -translate-y-1/2 z-10 flex-col gap-5">
+        {bannerSlides.map((slide, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`w-24 h-24 rounded-2xl flex items-center justify-center transition-all duration-300 relative ${
+              index === activeIndex
+                ? "bg-white shadow-2xl scale-105"
+                : "bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/15"
+            }`}
+            aria-label={slide.label}
+          >
+            {index === activeIndex && (
+              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "var(--hg-color-secondary)" }} />
+            )}
+            <div className="text-center px-2">
+              <span
+                className="block text-2xl font-bold mb-1"
+                style={{
+                  fontFamily: "var(--hg-font-heading)",
+                  color: index === activeIndex ? "#1a1a1a" : "rgba(255,255,255,0.8)",
+                }}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span
+                className="block text-[10px] font-medium leading-tight"
+                style={{ color: index === activeIndex ? "#555" : "rgba(255,255,255,0.5)" }}
+              >
+                {slide.label}
+              </span>
+            </div>
+          </button>
+        ))}
       </div>
     </section>
   );

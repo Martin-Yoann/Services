@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 
 const BASE = "https://www.meetsocial.com";
@@ -60,19 +60,171 @@ const solutions = [
   },
 ];
 
+/* ══════════════════════════════════════
+   PC: accordion (hover-driven expand)
+   Mobile: full-screen swipeable cards
+   ══════════════════════════════════════ */
+
 export default function IndustrySolutions() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  /* ── Detect mobile viewport ── */
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  /* ── PC accordion logic ── */
   const activeIndex = hovered !== null ? hovered : 0;
   const activeSol = solutions[activeIndex];
   const collapsedBg = activeSol.solidBg;
   const labelTint = activeSol.labelColor;
-
-  /* Label on right side when active is card 0 or 1 */
   const labelOnRight = activeIndex < 2;
 
+  /* ── Mobile swipe handlers ── */
+  const goTo = useCallback(
+    (index: number) => {
+      const next = Math.max(0, Math.min(index, solutions.length - 1));
+      setMobileIndex(next);
+    },
+    [],
+  );
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const dy = e.changedTouches[0].clientY - touchStartY.current;
+    // Only horizontal swipes (ignore vertical scrolls)
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) goTo(mobileIndex + 1);
+      else goTo(mobileIndex - 1);
+    }
+  };
+
+  /* ══════════════════════════════════════
+     MOBILE: Full-screen swipeable cards
+     ══════════════════════════════════════ */
+  if (isMobile) {
+    const current = solutions[mobileIndex];
+
+    return (
+      <section
+        ref={containerRef}
+        className="relative w-full overflow-hidden"
+        style={{ height: "100vh" }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
+        {/* Full-screen background image */}
+        <div
+          className="absolute inset-0 transition-all duration-500"
+          style={{
+            backgroundImage: `url("${current.bg}")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        {/* Dark gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.8) 100%)",
+          }}
+        />
+
+        {/* Content at bottom */}
+        <div className="relative z-10 flex flex-col justify-end h-full p-6 pb-10">
+          {/* Icon */}
+          <img
+            src={current.icon}
+            alt=""
+            className="w-14 h-14 object-contain mb-4"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
+
+          <h2
+            className="text-3xl font-bold text-white mb-1 tracking-tight"
+            style={{ fontFamily: "var(--hg-font-heading)" }}
+          >
+            {current.title}
+          </h2>
+          <p className="text-xs text-white/40 font-semibold mb-3 tracking-[0.15em] uppercase">
+            {current.titleZh}
+          </p>
+
+          <p className="text-sm leading-relaxed text-white/65 mb-6 max-w-md">
+            {current.desc}
+          </p>
+
+          <Link
+            href={current.ctaHref}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white transition-all"
+          >
+            {current.cta}
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </Link>
+
+          {/* ═══ Dot indicators + labels ═══ */}
+          <div className="mt-8 pt-6 border-t border-white/10">
+            <div className="flex items-center justify-between">
+              {solutions.map((sol, i) => (
+                <button
+                  key={sol.id}
+                  onClick={() => goTo(i)}
+                  className="flex flex-col items-center gap-2 transition-all duration-300 cursor-pointer"
+                  style={{ opacity: i === mobileIndex ? 1 : 0.35 }}
+                >
+                  <span
+                    className="text-[11px] font-bold uppercase tracking-[0.1em]"
+                    style={{ color: i === mobileIndex ? current.labelColor : "rgba(255,255,255,0.5)" }}
+                  >
+                    {sol.title.length > 12 ? sol.title.slice(0, 12) + "…" : sol.title}
+                  </span>
+                  <span
+                    className="block rounded-full transition-all duration-300"
+                    style={{
+                      width: i === mobileIndex ? "24px" : "6px",
+                      height: "6px",
+                      background: i === mobileIndex ? current.labelColor : "rgba(255,255,255,0.3)",
+                    }}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  /* ══════════════════════════════════════
+     PC: Accordion (original behavior)
+     ══════════════════════════════════════ */
   return (
-    <section className="relative w-full overflow-hidden" style={{ height: "98vh" }}>
+    <section className="relative w-full overflow-hidden hidden md:block" style={{ height: "98vh" }}>
       {/* ── Cards row ── */}
       <div className="flex h-full w-full">
         {solutions.map((sol, i) => {
@@ -94,7 +246,6 @@ export default function IndustrySolutions() {
                   : collapsedBg,
               }}
             >
-              {/* ── Vertical divider ── */}
               {i > 0 && (
                 <div
                   className="absolute top-0 bottom-0 pointer-events-none"
@@ -102,17 +253,16 @@ export default function IndustrySolutions() {
                 />
               )}
 
-              {/* ── Dark overlay (active card only) ── */}
               {isActive && (
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
-                    background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.75) 100%)",
+                    background:
+                      "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.75) 100%)",
                   }}
                 />
               )}
 
-              {/* ── Expanded content ── */}
               <div className="relative z-10 flex flex-col justify-end h-full p-12">
                 {isActive && (
                   <>
@@ -122,7 +272,6 @@ export default function IndustrySolutions() {
                       className="w-16 h-16 object-contain mb-6 transition-transform duration-500"
                       style={{ filter: "brightness(0) invert(1)" }}
                     />
-
                     <h3
                       className="text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight"
                       style={{ fontFamily: "var(--hg-font-heading)" }}
@@ -132,25 +281,28 @@ export default function IndustrySolutions() {
                     <p className="text-xs text-white/40 font-semibold mb-4 tracking-[0.15em] uppercase">
                       {sol.titleZh}
                     </p>
-
                     <p className="text-sm leading-relaxed text-white/65 mb-8 max-w-[420px]">
                       {sol.desc}
                     </p>
-
                     <Link
                       href={sol.ctaHref}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white group/link transition-all duration-400 hover:gap-3 mb-8"
                     >
                       {sol.cta}
                       <svg
-                        width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="transition-transform duration-400 group-hover/link:translate-x-1"
                       >
                         <polyline points="9 18 15 12 9 6" />
                       </svg>
                     </Link>
-
                     <img
                       src={sol.badge}
                       alt=""
@@ -160,7 +312,6 @@ export default function IndustrySolutions() {
                   </>
                 )}
 
-                {/* ── Collapsed card: horizontal title at bottom ── */}
                 {!isActive && (
                   <div className="absolute bottom-0 left-0 right-0 pb-8 flex justify-center">
                     <span
@@ -183,11 +334,7 @@ export default function IndustrySolutions() {
         })}
       </div>
 
-      {/* ════════════════════════════════════════
-          OVERLAY LABEL — spans 2 collapsed cards
-          Position: TOP with padding, large text
-          ════════════════════════════════════════ */}
-
+      {/* ═══ OVERLAY LABEL ═══ */}
       {[true, false].map((rightSide) => {
         const visible = labelOnRight === rightSide;
         return (
@@ -203,9 +350,8 @@ export default function IndustrySolutions() {
               opacity: visible ? 1 : 0,
             }}
           >
-            {/* Main label — responsive, overflow hidden on parent */}
             <span
-              className="font-black uppercase mb-2 hidden sm:inline"
+              className="font-black uppercase mb-2"
               style={{
                 fontFamily: "var(--hg-font-heading)",
                 fontSize: "clamp(32px, 5.5vw, 56px)",
@@ -217,9 +363,8 @@ export default function IndustrySolutions() {
             >
               INDUSTRY SOLUTIONS
             </span>
-            {/* Subtitle — hidden on mobile */}
             <span
-              className="font-bold hidden sm:inline"
+              className="font-bold"
               style={{
                 fontFamily: "var(--hg-font-body)",
                 fontSize: "clamp(14px, 2vw, 20px)",

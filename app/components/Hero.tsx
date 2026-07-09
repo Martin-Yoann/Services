@@ -3,9 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 
-/* ───────────────────────────────────────────
- * Three brand themes (click to switch, no auto-rotate)
- * ─────────────────────────────────────────── */
 interface Theme {
   id: number;
   title: string;
@@ -65,70 +62,58 @@ const Hero = () => {
   const current = themes[activeIndex];
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex flex-col justify-center">
+    <section className="relative w-full min-h-[100dvh] overflow-hidden flex flex-col justify-center">
       {/* ═══════════════ BACKGROUND ═══════════════ */}
-
-      {/* Base gradient */}
       <div className="absolute inset-0 bg-[#0a2f2a]" />
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "linear-gradient(135deg, #0a2f2a 0%, #1a4a3e 40%, #2d5a4a 100%)",
+          background: "linear-gradient(135deg, #0a2f2a 0%, #1a4a3e 40%, #2d5a4a 100%)",
         }}
       />
-
-      {/* Subtle dot overlay for texture */}
       <div
         className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0)",
           backgroundSize: "32px 32px",
         }}
       />
-
-      {/* Soft glow orb */}
       <div
         className="absolute top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] pointer-events-none z-[2] opacity-[0.08]"
         style={{ background: current.accent }}
       />
 
       {/* ═══════════════ CONTENT ═══════════════ */}
-      <div className="relative z-10 container mx-auto px-6 py-28 md:py-36">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 min-h-140">
+      <div className="relative z-10 container mx-auto px-6 py-16 md:py-28 lg:py-36">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-12">
           {/* ── Left Column: Text ── */}
           <div className="lg:col-span-7 xl:col-span-8 flex flex-col justify-center">
             {/* Tagline badge */}
-            <div className="inline-flex items-center gap-2.5 w-fit bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/15 mb-6">
+            <div className="inline-flex items-center gap-2.5 w-fit bg-white/10 backdrop-blur-md px-4 py-2 md:px-5 md:py-2.5 rounded-full border border-white/15 mb-4 md:mb-6">
               <span
                 className="w-2 h-2 rounded-full animate-pulse"
                 style={{ background: current.accent }}
               />
-              <span className="text-sm font-semibold text-white/90 tracking-wide">
+              <span className="text-xs md:text-sm font-semibold text-white/90 tracking-wide">
                 Global Talent Solutions
               </span>
             </div>
 
-            {/* Main headline */}
+            {/* Main headline — compact on mobile */}
             <h1
-              className="mt-4 space-y-1"
               style={{
                 fontFamily: "var(--hg-font-heading)",
-                fontSize: "clamp(36px, 5vw, 64px)",
+                fontSize: "clamp(32px, 6vw, 64px)",
                 fontWeight: "var(--hg-weight-h1)",
+                lineHeight: 1.05,
               }}
             >
-              <span
-                className="block text-white leading-[1.05]"
-                style={{ animationDelay: "0s" }}
-              >
+              <span className="block text-white">
                 Build Local Teams
               </span>
               <span
-                className="block leading-[1.05]"
+                className="block"
                 style={{
-                  animationDelay: "0.08s",
                   backgroundImage: `linear-gradient(135deg, ${current.accent} 0%, #ffffff 100%)`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -137,17 +122,14 @@ const Hero = () => {
               >
                 Drive Global
               </span>
-              <span
-                className="block text-white leading-[1.05]"
-                style={{ animationDelay: "0.14s" }}
-              >
+              <span className="block text-white">
                 Ambition
               </span>
             </h1>
 
             {/* Subtitle */}
             <p
-              className="mt-6 max-w-lg text-base md:text-lg leading-relaxed"
+              className="mt-4 md:mt-6 max-w-lg text-sm md:text-lg leading-relaxed"
               style={{ color: "rgba(255,255,255,0.72)" }}
             >
               We connect leadership and specialist talent across U.S., China, and
@@ -156,46 +138,37 @@ const Hero = () => {
             </p>
 
             {/* CTA buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-5 md:mt-8">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center justify-center font-bold py-4 px-9 rounded-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden hg-gradient-coral"
+                className="group relative inline-flex items-center justify-center font-bold py-3 px-7 md:py-4 md:px-9 rounded-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden hg-gradient-coral text-sm md:text-base"
                 style={{
                   color: "#fff",
-                  boxShadow: `0 4px 20px rgba(217,108,87,0.3)`,
+                  boxShadow: "0 4px 20px rgba(217,108,87,0.3)",
                 }}
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Start Hiring
-                  <svg
-                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
+                  <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </span>
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
               </Link>
-
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center border-2 border-white/25 hover:border-white/55 text-white font-bold py-4 px-9 rounded-lg transition-all duration-300 hover:bg-white/8 backdrop-blur-sm hover:-translate-y-1"
+                className="inline-flex items-center justify-center border-2 border-white/25 hover:border-white/55 text-white font-bold py-3 px-7 md:py-4 md:px-9 rounded-lg transition-all duration-300 hover:bg-white/8 backdrop-blur-sm hover:-translate-y-1 text-sm md:text-base"
               >
                 Explore Services
               </Link>
             </div>
 
             {/* Stats bar */}
-            <div className="flex flex-wrap gap-8 mt-10 pt-8 border-t border-white/8">
-              {current.stats.map((stat, i) => (
+            <div className="flex gap-6 md:gap-8 mt-6 md:mt-10 pt-5 md:pt-8 border-t border-white/8">
+              {current.stats.map((stat) => (
                 <div key={stat.label}>
                   <p
-                    className="text-3xl md:text-4xl font-bold transition-colors duration-500"
+                    className="text-2xl md:text-4xl font-bold transition-colors duration-500"
                     style={{
                       color: current.accent,
                       fontFamily: "var(--hg-font-heading)",
@@ -203,14 +176,35 @@ const Hero = () => {
                   >
                     {stat.value}
                   </p>
-                  <p className="text-sm text-white/50 mt-0.5">{stat.label}</p>
+                  <p className="text-[11px] md:text-sm text-white/45 md:text-white/50 mt-0.5">{stat.label}</p>
                 </div>
+              ))}
+            </div>
+
+            {/* ═══ Mobile: compact Why Choose Us — dots only ═══ */}
+            <div className="lg:hidden flex items-center gap-2 mt-5">
+              {themes.map((theme, index) => (
+                <button
+                  key={`dot-${index}`}
+                  onClick={() => setActiveIndex(index)}
+                  className="transition-all duration-300 rounded-full flex items-center gap-1.5"
+                  style={{ opacity: index === activeIndex ? 1 : 0.5 }}
+                  aria-label={`Switch to ${theme.title}`}
+                >
+                  <span className="text-base">{theme.icon}</span>
+                  <span
+                    className="text-[10px] font-semibold uppercase tracking-[0.1em]"
+                    style={{ color: index === activeIndex ? theme.accent : "rgba(255,255,255,0.4)" }}
+                  >
+                    {theme.title}
+                  </span>
+                </button>
               ))}
             </div>
           </div>
 
-          {/* ── Right Column: Feature Cards (click to switch) ── */}
-          <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-3 lg:gap-4 justify-center lg:pt-16 xl:pt-24">
+          {/* ── Right Column: Feature Cards — desktop only ── */}
+          <div className="hidden lg:flex flex-col gap-3 lg:gap-4 justify-center lg:pt-16 xl:pt-24 col-span-5 xl:col-span-4">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/30 mb-1 pl-1">
               Why Choose Us
             </p>
@@ -250,7 +244,6 @@ const Hero = () => {
                       style={{ background: theme.accent }}
                     />
                   )}
-
                   <div className="flex items-start gap-4 lg:gap-5">
                     <div
                       className={`flex-shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center text-xl lg:text-2xl transition-all duration-300
@@ -260,16 +253,11 @@ const Hero = () => {
                         background: isActive
                           ? `linear-gradient(135deg, ${theme.accent}40, ${theme.accent}15)`
                           : "rgba(255,255,255,0.08)",
-                        boxShadow: isActive
-                          ? `0 0 24px rgba(${theme.accentRgb},0.2)`
-                          : "none",
+                        boxShadow: isActive ? `0 0 24px rgba(${theme.accentRgb},0.2)` : "none",
                       }}
                     >
-                      <span className="transition-transform duration-300 group-hover:scale-110">
-                        {theme.icon}
-                      </span>
+                      <span className="transition-transform duration-300 group-hover:scale-110">{theme.icon}</span>
                     </div>
-
                     <div className="flex-1 min-w-0 pt-0.5">
                       <h3
                         className="font-bold text-base lg:text-lg mb-1 transition-colors duration-300"
@@ -283,30 +271,18 @@ const Hero = () => {
                       <p
                         className="text-xs lg:text-sm leading-relaxed transition-colors duration-300"
                         style={{
-                          color: isActive
-                            ? "rgba(255,255,255,0.7)"
-                            : "rgba(255,255,255,0.5)",
+                          color: isActive ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.5)",
                         }}
                       >
                         {theme.subtitle}
                       </p>
                     </div>
-
                     <div
                       className={`flex-shrink-0 self-center transition-all duration-300
                         ${isActive ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-70 group-hover:translate-x-0"}
                       `}
                     >
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke={theme.accent}
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={theme.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="9 18 15 12 9 6" />
                       </svg>
                     </div>
@@ -319,20 +295,14 @@ const Hero = () => {
             <div className="flex items-center justify-center gap-3 mt-3">
               {themes.map((theme, index) => (
                 <button
-                  key={`dot-${index}`}
+                  key={`desk-dot-${index}`}
                   onClick={() => setActiveIndex(index)}
                   className="transition-all duration-300 rounded-full"
                   style={{
                     width: index === activeIndex ? "28px" : "8px",
                     height: "8px",
-                    background:
-                      index === activeIndex
-                        ? theme.accent
-                        : "rgba(255,255,255,0.25)",
-                    boxShadow:
-                      index === activeIndex
-                        ? `0 0 10px ${theme.accent}80`
-                        : "none",
+                    background: index === activeIndex ? theme.accent : "rgba(255,255,255,0.25)",
+                    boxShadow: index === activeIndex ? `0 0 10px ${theme.accent}80` : "none",
                   }}
                   aria-label={`Switch to ${theme.title}`}
                 />
@@ -342,22 +312,11 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* ═══════════════ SCROLL INDICATOR ═══════════════ */}
-      <div className="relative z-10 pb-6 flex justify-center">
+      {/* ═══════════════ SCROLL INDICATOR — hidden on very short screens ═══════════════ */}
+      <div className="relative z-10 pb-4 md:pb-6 hidden sm:flex justify-center">
         <div className="animate-bounce-slow flex flex-col items-center gap-2 text-white/25">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-semibold">
-            Scroll
-          </span>
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
+          <span className="text-[10px] uppercase tracking-[0.3em] font-semibold">Scroll</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="6 9 12 15 18 9" />
           </svg>
         </div>
