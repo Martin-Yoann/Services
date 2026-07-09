@@ -7,37 +7,37 @@ const BASE = "https://www.meetsocial.com";
 
 const steps = [
   {
-    num: "01", title: "Needs Analysis", titleZh: "需求分析",
+    num: "01", title: "Needs Analysis", titleZh: "Requirements Analysis",
     desc: "We deep-dive into your business goals, culture, and role requirements — mapping the ideal candidate profile and market strategy.",
     cta: "Learn more", ctaHref: "/services/executive-search",
     bg: `${BASE}/templates/dist/images/s001-2.jpg`, icon: `${BASE}/templates/dist/images/s001.png`, color: "#5dadec",
   },
   {
-    num: "02", title: "Market Mapping", titleZh: "市场定位",
+    num: "02", title: "Market Mapping", titleZh: "Market Positioning",
     desc: "Leveraging our global databases and local networks, we identify target organizations and map the talent landscape.",
     cta: "Learn more", ctaHref: "/services/professional-recruitment",
     bg: `${BASE}/templates/dist/images/s002-2.jpg`, icon: `${BASE}/templates/dist/images/s002.png`, color: "#14b8a6",
   },
   {
-    num: "03", title: "Candidate Sourcing", titleZh: "人才寻访",
+    num: "03", title: "Candidate Sourcing", titleZh: "Talent Sourcing",
     desc: "Multi-channel sourcing including passive candidate engagement, network referrals, and targeted outreach.",
     cta: "Learn more", ctaHref: "/services/executive-search",
     bg: `${BASE}/templates/dist/images/s003-2.jpg`, icon: `${BASE}/templates/dist/images/s003.png`, color: "#f59e0b",
   },
   {
-    num: "04", title: "Assessment & Screening", titleZh: "评估筛选",
+    num: "04", title: "Assessment & Screening", titleZh: "Evaluation",
     desc: "Competency-based interviews, skills verification, culture-fit analysis — rigorous evaluation at every stage.",
     cta: "Learn more", ctaHref: "/services/professional-recruitment",
     bg: `${BASE}/templates/dist/images/s004-2.jpg`, icon: `${BASE}/templates/dist/images/s004.png`, color: "#0e8a9a",
   },
   {
-    num: "05", title: "Offer & Onboarding", titleZh: "入职落地",
+    num: "05", title: "Offer & Onboarding", titleZh: "Onboarding",
     desc: "Compensation benchmarking, offer negotiation, and onboarding support — full close process for a smooth transition.",
     cta: "Learn more", ctaHref: "/services/talent-advisory",
     bg: `${BASE}/templates/dist/images/s005-2.jpg`, icon: `${BASE}/templates/dist/images/s005.png`, color: "#a855f7",
   },
   {
-    num: "06", title: "Post-Placement", titleZh: "长期护航",
+    num: "06", title: "Post-Placement", titleZh: "Long-Term Support",
     desc: "12-month integration tracking, performance check-ins, and retention support for long-term success.",
     cta: "Learn more", ctaHref: "/services/talent-advisory",
     bg: `${BASE}/templates/dist/images/s006-2.jpg`, icon: `${BASE}/templates/dist/images/s006.png`, color: "#f43f5e",

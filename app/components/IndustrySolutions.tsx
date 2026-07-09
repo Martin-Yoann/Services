@@ -9,7 +9,7 @@ const solutions = [
   {
     id: "tech",
     title: "Technology",
-    titleZh: "科技行业",
+    titleZh: "Technology Sector",
     desc: "From AI startups to global tech giants — we place the engineers, data scientists, and product leaders who ship the future.",
     cta: "Explore Tech",
     ctaHref: "/industries",
@@ -22,7 +22,7 @@ const solutions = [
   {
     id: "finance",
     title: "Financial Services",
-    titleZh: "金融服务",
+    titleZh: "Financial Services",
     desc: "CFOs, controllers, risk analysts, and compliance leaders — the financial minds that safeguard and scale your business.",
     cta: "Explore Finance",
     ctaHref: "/industries",
@@ -35,7 +35,7 @@ const solutions = [
   {
     id: "healthcare",
     title: "Healthcare & Biotech",
-    titleZh: "医疗健康",
+    titleZh: "Healthcare & Biotech",
     desc: "Clinical leaders, R&D scientists, and med-tech executives who drive innovation from bench to bedside.",
     cta: "Explore Healthcare",
     ctaHref: "/industries",
@@ -48,7 +48,7 @@ const solutions = [
   {
     id: "manufacturing",
     title: "Manufacturing & Supply Chain",
-    titleZh: "先进制造",
+    titleZh: "Advanced Manufacturing",
     desc: "Operations directors, supply chain strategists, and plant leaders — the engine behind global production and logistics.",
     cta: "Explore Manufacturing",
     ctaHref: "/industries",

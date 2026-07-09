@@ -4,28 +4,28 @@ import { useState, useEffect } from "react";
 
 const bannerSlides = [
   {
-    zhTitle: "全媒体资源",
-    enTitle: "Omnichannel Media Resources",
-    desc: "直连全球50+优质媒体资源，覆盖社媒、搜索、视频、DSP、户外等全渠道",
+    label: "Omnichannel Media",
+    title: "Omnichannel Media Resources",
+    desc: "Direct access to 50+ premium global media channels — social, search, video, DSP, OOH, and more.",
     bg: "/harbor-human-hero.png",
   },
   {
-    zhTitle: "全链路服务",
-    enTitle: "Full-Funnel Marketing Solutions",
-    desc: "从洞察、媒介、优化到品效、创意、数智，覆盖出海营销全链路环节",
+    label: "Full-Funnel",
+    title: "Full-Funnel Marketing Solutions",
+    desc: "From insights, media buying, and optimization to creative, branding, and data intelligence — covering every stage of global marketing.",
     bg: "/harbor-human-hero.png",
   },
   {
-    zhTitle: "全AI驱动",
-    enTitle: "AI-Powered Solutions",
-    desc: "领先的AI全球营销科技平台，数据驱动每一个营销决策",
+    label: "AI-Powered",
+    title: "AI-Powered Solutions",
+    desc: "A leading AI-driven global marketing platform — data powers every marketing decision.",
     bg: "/harbor-human-hero.png",
   },
 ];
 
 const heroLogos = [
   "Meta", "Google", "TikTok", "Microsoft", "Amazon", "Anker",
-  "比亚迪", "字节跳动", "莉莉丝", "Insta360", "TECNO", "Soul",
+  "BYD", "ByteDance", "Lilith", "Insta360", "TECNO", "Soul",
 ];
 
 export default function Banner() {
@@ -74,7 +74,7 @@ export default function Banner() {
                 border: "1px solid rgba(117,191,192,0.3)",
               }}
             >
-              {current.enTitle}
+              {current.title}
             </p>
 
             {/* Main title */}
@@ -89,7 +89,7 @@ export default function Banner() {
                   animationDelay: "0.08s",
                 }}
               >
-                跨境数字化营销
+                Cross-Border Digital Marketing
               </h1>
               <h1
                 key={`slide-${activeIndex}`}
@@ -102,8 +102,8 @@ export default function Banner() {
                   animationDelay: "0.12s",
                 }}
               >
-                <span style={{ color: "var(--hg-color-accent)" }}>{current.zhTitle}</span>
-                <span className="text-white">专家</span>
+                <span style={{ color: "var(--hg-color-accent)" }}>{current.label}</span>
+                <span className="text-white"> Solutions</span>
               </h1>
             </div>
 
@@ -128,7 +128,7 @@ export default function Banner() {
                 className="inline-flex items-center gap-2 hg-button-primary"
                 style={{ padding: "0 40px", minHeight: "52px", fontSize: "16px" }}
               >
-                获取方案
+                Get a Proposal
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6" />
                 </svg>
@@ -138,7 +138,7 @@ export default function Banner() {
                 className="inline-flex items-center gap-2 hg-button-secondary"
                 style={{ padding: "0 36px", minHeight: "52px", fontSize: "16px" }}
               >
-                了解更多
+                Learn More
               </a>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default function Banner() {
                     ? "bg-white shadow-2xl scale-105"
                     : "bg-white/15 hover:bg-white/30 backdrop-blur-md border border-white/20"
                 }`}
-                aria-label={`切换到: ${slide.zhTitle}`}
+                aria-label={`Switch to: ${slide.label}`}
               >
                 {index === activeIndex && (
                   <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "var(--hg-color-secondary)" }} />
@@ -169,7 +169,7 @@ export default function Banner() {
                   <span
                     className={`block text-[10px] font-medium leading-tight ${index === activeIndex ? "text-gray-500" : "text-white/60"}`}
                   >
-                    {slide.zhTitle}
+                    {slide.label}
                   </span>
                 </div>
               </button>
@@ -182,7 +182,7 @@ export default function Banner() {
       <div className="relative z-10 pb-8 pt-6" style={{ background: "rgba(18,67,63,0.4)", backdropFilter: "blur(8px)" }}>
         <div className="hg-container">
           <p className="text-center text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: "rgba(255,255,255,0.4)" }}>
-            全行业头部客户共同选择
+            Trusted by Industry Leaders Across Sectors
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
             {heroLogos.map((name, i) => (
