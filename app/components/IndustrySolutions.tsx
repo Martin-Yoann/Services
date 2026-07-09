@@ -85,8 +85,8 @@ export default function IndustrySolutions() {
               onMouseLeave={() => setHovered(null)}
               className="group relative cursor-pointer"
               style={{
-                flex: isActive ? "0 0 685px" : "1 1 0%",
-                minWidth: isActive ? "685px" : "120px",
+                flex: isActive ? "0 0 min(685px, 85vw)" : "1 1 0%",
+                minWidth: isActive ? "min(685px, 85vw)" : "80px",
                 transition:
                   "flex 0.65s cubic-bezier(0.25,0.1,0.25,1), background-color 0.5s ease, min-width 0.65s cubic-bezier(0.25,0.1,0.25,1)",
                 background: isActive
@@ -124,12 +124,12 @@ export default function IndustrySolutions() {
                     />
 
                     <h3
-                      className="text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight whitespace-nowrap"
+                      className="text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight"
                       style={{ fontFamily: "var(--hg-font-heading)" }}
                     >
                       {sol.title}
                     </h3>
-                    <p className="text-xs text-white/40 font-semibold mb-4 tracking-[0.15em] uppercase whitespace-nowrap">
+                    <p className="text-xs text-white/40 font-semibold mb-4 tracking-[0.15em] uppercase">
                       {sol.titleZh}
                     </p>
 
@@ -198,14 +198,14 @@ export default function IndustrySolutions() {
               top: 0,
               bottom: 0,
               paddingTop: "7%",
-              left: rightSide ? "calc(685px + (100% - 685px) / 3)" : 0,
-              right: rightSide ? 0 : "calc(685px + (100% - 685px) / 3)",
+              left: rightSide ? "clamp(320px, 685px, 85%)" : 0,
+              right: rightSide ? 0 : "clamp(320px, 685px, 85%)",
               opacity: visible ? 1 : 0,
             }}
           >
-            {/* Main label — one line, spans full width of 2 cards */}
+            {/* Main label — responsive, overflow hidden on parent */}
             <span
-              className="font-black uppercase whitespace-nowrap mb-2"
+              className="font-black uppercase mb-2 hidden sm:inline"
               style={{
                 fontFamily: "var(--hg-font-heading)",
                 fontSize: "clamp(32px, 5.5vw, 56px)",
@@ -215,11 +215,11 @@ export default function IndustrySolutions() {
                 lineHeight: 1.0,
               }}
             >
-              INDUSTRY SOLUTION
+              INDUSTRY SOLUTIONS
             </span>
-            {/* Subtitle — smaller, right below */}
+            {/* Subtitle — hidden on mobile */}
             <span
-              className="font-bold whitespace-nowrap"
+              className="font-bold hidden sm:inline"
               style={{
                 fontFamily: "var(--hg-font-body)",
                 fontSize: "clamp(14px, 2vw, 20px)",

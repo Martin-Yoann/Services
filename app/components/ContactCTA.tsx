@@ -61,12 +61,12 @@ export default function ContactCTA() {
           }}
         >
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 whitespace-nowrap"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
             style={{ fontFamily: "var(--hg-font-heading)" }}
           >
             Ready to find your next leader?
           </h2>
-          <p className="text-lg md:text-xl text-white/65 mb-8 whitespace-nowrap">
+          <p className="text-lg md:text-xl text-white/65 mb-8">
             Let&apos;s discuss how we can help you build world-class teams
             across borders.
           </p>

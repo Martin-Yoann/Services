@@ -167,7 +167,7 @@ export default function ServiceProcess() {
       </div>
 
       {/* ── CENTER DETAIL ── */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-25 text-center max-w-[360px] px-4 pointer-events-none">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-25 text-center w-[90%] max-w-sm px-4 pointer-events-none">
         <p className="text-7xl md:text-8xl font-black tracking-tighter mb-2" style={{ fontFamily: "var(--hg-font-heading)", color: activeStep.color, opacity: 0.15 }}>{activeStep.num}</p>
         <img src={activeStep.icon} alt="" className="w-14 h-14 object-contain mx-auto mb-4" style={{ filter: "brightness(0) invert(1)", opacity: 0.8, pointerEvents: "auto" }} />
         <h3 className="text-xl md:text-2xl font-bold text-white mb-1" style={{ fontFamily: "var(--hg-font-heading)" }}>{activeStep.title}</h3>
