@@ -1,266 +1,192 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
-/* ── Interactive stat counter ── */
-function useCountUp(target: number, trigger: boolean) {
-  const [val, setVal] = useState(0);
-  useState(() => {
-    if (!trigger) return;
-    let raf: number;
-    let cancelled = false;
-    const start = performance.now();
-    const tick = (now: number) => {
-      if (cancelled) return;
-      const p = Math.min((now - start) / 1000, 1);
-      setVal(Math.round(target * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => { cancelled = true; cancelAnimationFrame(raf); };
-  });
-  return val;
-}
-
-const officeCards = [
-  { city: "Dallas", region: "North America HQ", flag: "🇺🇸", timezone: "CST (UTC-6)", accent: "#D96C57" },
-  { city: "San Jose", region: "Silicon Valley", flag: "🇺🇸", timezone: "PST (UTC-8)", accent: "#14b8a6" },
-  { city: "Shanghai", region: "Asia-Pacific HQ", flag: "🇨🇳", timezone: "CST (UTC+8)", accent: "#f59e0b" },
+const offices = [
+  { city: "Dallas", role: "North America HQ", flag: "🇺🇸", tz: "CST", accent: "#D96C57" },
+  { city: "San Jose", role: "Silicon Valley", flag: "🇺🇸", tz: "PST", accent: "#14b8a6" },
+  { city: "Shanghai", role: "Asia-Pacific HQ", flag: "🇨🇳", tz: "CST", accent: "#f59e0b" },
 ];
 
-const services = [
-  { icon: "🔍", label: "Executive Search", desc: "C-suite & VP-level placements" },
-  { icon: "👥", label: "Professional Recruitment", desc: "Specialist mid-to-senior talent" },
-  { icon: "📊", label: "Talent Advisory", desc: "Strategy, benchmarking & planning" },
+const trustPoints = [
+  { v: "500+", l: "Annual Placements" },
+  { v: "30d", l: "Avg. Time-to-Hire" },
+  { v: "95%", l: "Retention Rate" },
+  { v: "24h", l: "Response Time" },
 ];
 
 const faqs = [
-  { q: "What's the typical timeline for an executive search?", a: "Executive searches average 30 days from kickoff to accepted offer, depending on role complexity and market conditions." },
-  { q: "Do you work on contingency or retained basis?", a: "Executive search engagements are retained. Professional recruitment can be structured as retained or contingent based on volume and urgency." },
-  { q: "Which markets do you cover?", a: "North America (Dallas, San Jose, LA, Seattle, Chicago), China (Shanghai, Beijing, Shenzhen), and select hubs — London, Toronto, Singapore." },
-  { q: "What's your placement guarantee?", a: "12-month guarantee on all placements. If a candidate leaves within the first year, we conduct a free replacement search." },
+  { q: "What's the typical timeline for an executive search?", a: "Most searches complete in 30 days from kickoff to accepted offer, depending on role complexity and market conditions." },
+  { q: "Do you work on contingency or retained basis?", a: "Executive search is retained. Professional recruitment can be retained or contingent based on volume and urgency." },
+  { q: "Which markets do you cover?", a: "North America (Dallas, San Jose, LA, Seattle, Chicago), China (Shanghai, Beijing, Shenzhen), plus London, Toronto, and Singapore." },
+  { q: "What's your placement guarantee?", a: "12 months on every placement. If a candidate departs within the first year, we run a free replacement search." },
 ];
 
-export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", company: "", phone: "", inquiryType: "hiring", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-  const [showStats, setShowStats] = useState(false);
-  const placements = useCountUp(500, showStats);
-  const retention = useCountUp(95, showStats);
-  const days = useCountUp(30, showStats);
+/* ── Scroll-triggered fade-up ── */
+function useScrollReveal(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, visible };
+}
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", company: "", phone: "", inquiryType: "hiring", message: "" });
+  const [sent, setSent] = useState(false);
+  const formReveal = useScrollReveal(0.1);
+  const trustReveal = useScrollReveal(0.1);
+
+  const update = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSent(true);
     setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", company: "", phone: "", inquiryType: "hiring", message: "" });
+      setSent(false);
+      setForm({ name: "", email: "", company: "", phone: "", inquiryType: "hiring", message: "" });
     }, 4000);
   };
 
   return (
     <>
-      {/* ═══════════════ SECTION A: Stats strip ═══════════════ */}
-      <section
-        className="relative py-16 md:py-24 overflow-hidden bg-white"
-        onMouseEnter={() => setShowStats(true)}
-      >
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.015]"
-          style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "24px 24px" }}
-        />
-        <div className="relative container mx-auto px-6 text-center">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-4 tracking-tight"
-            style={{ fontFamily: "var(--hg-font-heading)", color: "#0a2f2a" }}
-          >
-            Let&apos;s Build Your Team
-          </h2>
-          <p className="text-base md:text-lg max-w-xl mx-auto mb-12" style={{ color: "var(--hg-color-text-secondary)" }}>
-            Reach out and tell us what you need. We&apos;ll match you with the right expertise.
-          </p>
+      {/* ═══════════════ HERO STRIP ═══════════════ */}
+      <section className="relative py-16 md:py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
+            <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#D96C57] mb-3">Start a Conversation</p>
+            <h1 className="text-3xl md:text-5xl font-bold text-[#0a2f2a] mb-4" style={{ fontFamily: "var(--hg-font-heading)", lineHeight: 1.12 }}>
+              Tell us about the role.<br className="sm:hidden" /> We&apos;ll find the leader.
+            </h1>
+            <p className="text-base md:text-lg text-[#5b6675] max-w-lg mx-auto">
+              Every great hire starts with a conversation. Share your needs and we&apos;ll connect you with the right expertise — typically within 24 hours.
+            </p>
+          </div>
 
-          {/* Animated stats */}
-          <div className="grid grid-cols-3 gap-6 max-w-md mx-auto">
-            {[
-              { v: placements, suffix: "+", l: "Annual Placements", c: "#D96C57" },
-              { v: retention, suffix: "%", l: "Retention Rate", c: "#14b8a6" },
-              { v: days, suffix: "d", l: "Avg. Time-to-Hire", c: "#f59e0b" },
-            ].map((s) => (
-              <div key={s.l} className="group cursor-default">
-                <p
-                  className="text-3xl md:text-5xl font-black transition-all duration-500 group-hover:scale-110"
-                  style={{ fontFamily: "var(--hg-font-heading)", color: s.c }}
-                >
-                  {s.v}
-                  <span className="text-lg md:text-2xl opacity-50">{s.suffix}</span>
-                </p>
-                <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.12em] mt-1" style={{ color: "var(--hg-color-text-secondary)" }}>
-                  {s.l}
-                </p>
+          {/* Trust bar */}
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12">
+            {trustPoints.map((t) => (
+              <div key={t.l} className="text-center">
+                <p className="text-2xl md:text-3xl font-black text-[#D96C57]" style={{ fontFamily: "var(--hg-font-heading)" }}>{t.v}</p>
+                <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.12em] text-[#5b6675] mt-0.5">{t.l}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════ SECTION B: Contact cards + form ═══════════════ */}
+      {/* ═══════════════ FORM + SIDEBAR ═══════════════ */}
       <section className="relative py-16 md:py-24" style={{ background: "var(--hg-color-bg)" }}>
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10">
-              {/* ── Left sidebar: info cards ── */}
-              <div className="lg:col-span-2 space-y-5">
-                {/* Office cards */}
-                {officeCards.map((o) => (
-                  <div
-                    key={o.city}
-                    className="group relative rounded-2xl p-5 transition-all duration-400 hover:-translate-y-1 cursor-default"
-                    style={{
-                      background: "var(--hg-color-surface)",
-                      border: "1px solid var(--hg-color-border)",
-                      boxShadow: "0 2px 16px rgba(10,47,42,0.03)",
-                    }}
-                  >
-                    <div
-                      className="absolute top-0 left-4 right-4 h-[2px] rounded-full transition-all duration-500 origin-left group-hover:scale-x-100"
-                      style={{ background: `linear-gradient(90deg, ${o.accent}, transparent)`, transform: "scaleX(0.2)" }}
-                    />
-                    <div className="flex items-start gap-3 pt-1">
-                      <span className="text-xl mt-0.5">{o.flag}</span>
-                      <div>
-                        <p className="font-bold text-sm" style={{ color: "#0a2f2a" }}>{o.city}</p>
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.08em] mt-0.5" style={{ color: "var(--hg-color-text-secondary)" }}>{o.region}</p>
-                        <p className="text-[11px] mt-1" style={{ color: o.accent }}>{o.timezone}</p>
+        <div className="absolute inset-0 pointer-events-none opacity-[0.012]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "28px 28px" }} />
+
+        <div className="container mx-auto px-6 max-w-5xl relative">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* ── FORM (2/3) ── */}
+            <div className="lg:col-span-2" ref={formReveal.ref}>
+              <div
+                className="rounded-2xl bg-white border border-[#d8e1ea] overflow-hidden transition-all duration-700"
+                style={{
+                  boxShadow: "0 1px 3px rgba(10,47,42,0.04), 0 8px 40px rgba(10,47,42,0.04)",
+                  opacity: formReveal.visible ? 1 : 0,
+                  transform: formReveal.visible ? "translateY(0)" : "translateY(30px)",
+                }}
+              >
+                {/* Coral top accent */}
+                <div className="h-1 bg-[#D96C57]" />
+
+                {sent ? (
+                  <div className="text-center py-16 px-6">
+                    <div className="relative inline-flex mb-6">
+                      <div className="absolute inset-0 rounded-full animate-ping opacity-[0.06] bg-[#D96C57]" style={{ width: 72, height: 72 }} />
+                      <div className="relative w-[72px] h-[72px] rounded-full flex items-center justify-center" style={{ background: "rgba(217,108,87,0.08)" }}>
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D96C57" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
                       </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-[#0a2f2a] mb-2" style={{ fontFamily: "var(--hg-font-heading)" }}>Message sent</h3>
+                    <p className="text-[#5b6675] text-sm">We&apos;ll get back to you within 24 hours.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={submit} className="p-6 md:p-10 space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <Field label="Full Name" name="name" value={form.name} onChange={update} placeholder="Your name" required />
+                      <Field label="Work Email" name="email" type="email" value={form.email} onChange={update} placeholder="you@company.com" required />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <Field label="Company" name="company" value={form.company} onChange={update} placeholder="Company name" required />
+                      <Field label="Phone" name="phone" type="tel" value={form.phone} onChange={update} placeholder="+1 (555) 123-4567" />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#0a2f2a] mb-1.5">Inquiry Type</label>
+                      <select name="inquiryType" value={form.inquiryType} onChange={update}
+                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all">
+                        <option value="hiring">Hiring Inquiry</option>
+                        <option value="advisory">Talent Advisory</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="candidate">Candidate Inquiry</option>
+                        <option value="general">General Inquiry</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#0a2f2a] mb-1.5">Message</label>
+                      <textarea name="message" value={form.message} onChange={update} required rows={4}
+                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all resize-none"
+                        placeholder="Tell us about your hiring needs, the role, and what you're looking for..." />
+                    </div>
+                    <button type="submit"
+                      className="w-full sm:w-auto font-bold px-10 py-3.5 rounded-xl text-white transition-all duration-300 hover:-translate-y-0.5 hg-gradient-coral"
+                      style={{ boxShadow: "0 4px 20px rgba(217,108,87,0.28)" }}>
+                      Send Message →
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+
+            {/* ── SIDEBAR (1/3) ── */}
+            <div className="lg:col-span-1 space-y-5" ref={trustReveal.ref}>
+              {/* Offices */}
+              {offices.map((o, i) => (
+                <div key={o.city}
+                  className="rounded-xl bg-white border border-[#d8e1ea] p-4 transition-all duration-500 hover:border-[#D96C57]/30"
+                  style={{
+                    opacity: trustReveal.visible ? 1 : 0,
+                    transform: trustReveal.visible ? "translateY(0)" : "translateY(20px)",
+                    transitionDelay: `${i * 100}ms`,
+                  }}>
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg">{o.flag}</span>
+                    <div>
+                      <p className="text-sm font-bold text-[#0a2f2a]">{o.city}</p>
+                      <p className="text-[11px] text-[#5b6675]">{o.role} · {o.tz}</p>
                     </div>
                   </div>
-                ))}
-
-                {/* Service quick-links */}
-                <div
-                  className="rounded-2xl p-5"
-                  style={{ background: "rgba(10,47,42,0.03)", border: "1px solid rgba(10,47,42,0.06)" }}
-                >
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-4" style={{ color: "#D96C57" }}>
-                    Our Services
-                  </p>
-                  {services.map((svc) => (
-                    <div key={svc.label} className="flex items-start gap-3 py-2.5 border-b border-black/5 last:border-0 group cursor-default">
-                      <span className="text-lg group-hover:scale-110 transition-transform duration-300">{svc.icon}</span>
-                      <div>
-                        <p className="text-sm font-bold" style={{ color: "#0a2f2a" }}>{svc.label}</p>
-                        <p className="text-[11px]" style={{ color: "var(--hg-color-text-secondary)" }}>{svc.desc}</p>
-                      </div>
-                    </div>
-                  ))}
                 </div>
+              ))}
+
+              {/* Contact quick info */}
+              <div className="rounded-xl bg-[#0a2f2a] p-5 text-white">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D96C57] mb-3">Direct Contact</p>
+                <a href="mailto:echo.yang@happyglobalservice.com" className="block text-sm font-medium text-white/70 hover:text-white transition-colors mb-2">
+                  echo.yang@happyglobalservice.com
+                </a>
+                <a href="tel:+16698713588" className="block text-sm font-medium text-white/70 hover:text-white transition-colors">
+                  +1 669 871 3588
+                </a>
               </div>
 
-              {/* ── Right: Form ── */}
-              <div className="lg:col-span-3">
-                <div
-                  className="rounded-2xl p-6 md:p-8 relative overflow-hidden"
-                  style={{
-                    background: "var(--hg-color-surface)",
-                    border: "1px solid var(--hg-color-border)",
-                    boxShadow: "0 4px 32px rgba(10,47,42,0.04)",
-                  }}
-                >
-                  {/* Accent line */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-[3px]"
-                    style={{ background: "linear-gradient(90deg, #D96C57, #c45a47)" }}
-                  />
-
-                  {submitted ? (
-                    <div className="text-center py-14">
-                      <div className="relative inline-flex items-center justify-center mb-6">
-                        <div className="absolute inset-0 w-20 h-20 rounded-full animate-ping opacity-10" style={{ background: "#D96C57" }} />
-                        <div
-                          className="relative w-16 h-16 rounded-full flex items-center justify-center"
-                          style={{ background: "rgba(217,108,87,0.1)" }}
-                        >
-                          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D96C57" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="20 6 9 17 4 12" />
-                          </svg>
-                        </div>
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: "var(--hg-font-heading)", color: "#0a2f2a" }}>Thank you!</h3>
-                      <p style={{ color: "var(--hg-color-text-secondary)" }}>We&apos;ve received your inquiry and will respond within 24 hours.</p>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <div>
-                          <label htmlFor="name" className="block text-xs font-bold uppercase tracking-[0.1em] mb-1.5" style={{ color: "#0a2f2a" }}>Full Name *</label>
-                          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required
-                            className="w-full px-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:ring-2 transition-all"
-                            style={{ borderColor: "var(--hg-color-border)", background: "var(--hg-color-bg)" }}
-                            placeholder="Your name" />
-                        </div>
-                        <div>
-                          <label htmlFor="email" className="block text-xs font-bold uppercase tracking-[0.1em] mb-1.5" style={{ color: "#0a2f2a" }}>Work Email *</label>
-                          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required
-                            className="w-full px-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:ring-2 transition-all"
-                            style={{ borderColor: "var(--hg-color-border)", background: "var(--hg-color-bg)" }}
-                            placeholder="your@company.com" />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <div>
-                          <label htmlFor="company" className="block text-xs font-bold uppercase tracking-[0.1em] mb-1.5" style={{ color: "#0a2f2a" }}>Company *</label>
-                          <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} required
-                            className="w-full px-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:ring-2 transition-all"
-                            style={{ borderColor: "var(--hg-color-border)", background: "var(--hg-color-bg)" }}
-                            placeholder="Company name" />
-                        </div>
-                        <div>
-                          <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-[0.1em] mb-1.5" style={{ color: "#0a2f2a" }}>Phone</label>
-                          <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange}
-                            className="w-full px-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:ring-2 transition-all"
-                            style={{ borderColor: "var(--hg-color-border)", background: "var(--hg-color-bg)" }}
-                            placeholder="+1 (555) 123-4567" />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label htmlFor="inquiryType" className="block text-xs font-bold uppercase tracking-[0.1em] mb-1.5" style={{ color: "#0a2f2a" }}>Inquiry Type *</label>
-                        <select id="inquiryType" name="inquiryType" value={formData.inquiryType} onChange={handleChange}
-                          className="w-full px-4 py-2.5 border rounded-lg text-sm focus:outline-none focus:ring-2 transition-all"
-                          style={{ borderColor: "var(--hg-color-border)", background: "var(--hg-color-bg)" }}>
-                          <option value="hiring">Hiring Inquiry</option>
-                          <option value="advisory">Talent Advisory</option>
-                          <option value="partnership">Partnership</option>
-                          <option value="candidate">Candidate Inquiry</option>
-                          <option value="general">General Inquiry</option>
-                        </select>
-                      </div>
-
-                      <div>
-                        <label htmlFor="message" className="block text-xs font-bold uppercase tracking-[0.1em] mb-1.5" style={{ color: "#0a2f2a" }}>Message *</label>
-                        <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={4}
-                          className="w-full px-4 py-3 border rounded-lg text-sm focus:outline-none focus:ring-2 transition-all resize-none"
-                          style={{ borderColor: "var(--hg-color-border)", background: "var(--hg-color-bg)" }}
-                          placeholder="Tell us about your hiring needs, role requirements, or any questions..." />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="w-full font-bold py-3.5 rounded-xl text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hg-gradient-coral cursor-pointer"
-                        style={{ boxShadow: "0 4px 20px rgba(217,108,87,0.3)" }}
-                      >
-                        Send Message
-                      </button>
-                    </form>
-                  )}
-                </div>
+              {/* Response promise */}
+              <div className="rounded-xl p-4 text-center" style={{ background: "rgba(217,108,87,0.06)", border: "1px solid rgba(217,108,87,0.1)" }}>
+                <p className="text-2xl font-black text-[#D96C57] mb-1" style={{ fontFamily: "var(--hg-font-heading)" }}>24h</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5b6675]">Guaranteed Response</p>
               </div>
             </div>
           </div>
@@ -268,51 +194,42 @@ export default function Contact() {
       </section>
 
       {/* ═══════════════ FAQ ═══════════════ */}
-      <section className="relative py-16 md:py-24 overflow-hidden" style={{ background: "#060e18" }}>
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{ backgroundImage: "linear-gradient(rgba(217,108,87,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(217,108,87,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }}
-        />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[160px] opacity-[0.04] pointer-events-none" style={{ background: "#D96C57" }} />
-
+      <section className="relative py-16 md:py-24 overflow-hidden bg-[#061410]">
+        <div className="absolute inset-0 opacity-[0.015]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
         <div className="relative container mx-auto px-6 max-w-2xl">
-          <div className="text-center mb-12">
-            <span
-              className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full"
-              style={{ color: "#D96C57", background: "rgba(217,108,87,0.06)", border: "1px solid rgba(217,108,87,0.1)" }}
-            >
-              FAQ
-            </span>
-            <h2
-              className="text-2xl md:text-3xl font-bold text-white"
-              style={{ fontFamily: "var(--hg-font-heading)" }}
-            >
-              Frequently Asked Questions
-            </h2>
-          </div>
-
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.25em] text-[#D96C57] mb-3">FAQ</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-10" style={{ fontFamily: "var(--hg-font-heading)" }}>
+            Questions you might have
+          </h2>
           <div className="space-y-3">
             {faqs.map((faq) => (
-              <details
-                key={faq.q}
-                className="group rounded-xl p-5 transition-all duration-300 cursor-pointer"
-                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
-              >
-                <summary className="text-sm font-bold text-white list-none flex items-center justify-between" style={{ fontFamily: "var(--hg-font-heading)" }}>
+              <details key={faq.q} className="group rounded-xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] transition-colors cursor-pointer">
+                <summary className="flex items-center justify-between gap-4 p-5 text-sm font-bold text-white/80 list-none" style={{ fontFamily: "var(--hg-font-heading)" }}>
                   {faq.q}
-                  <svg
-                    className="w-4 h-4 text-[#D96C57] transition-transform duration-300 group-open:rotate-180 shrink-0 ml-2"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-                  >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
+                  <svg className="w-4 h-4 shrink-0 text-[#D96C57] transition-transform duration-300 group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9" /></svg>
                 </summary>
-                <p className="text-xs leading-relaxed text-white/50 mt-3">{faq.a}</p>
+                <p className="px-5 pb-5 text-sm leading-relaxed text-white/40">{faq.a}</p>
               </details>
             ))}
           </div>
         </div>
       </section>
     </>
+  );
+}
+
+/* ── Reusable field component ── */
+function Field({ label, name, value, onChange, placeholder, type = "text", required = false }: {
+  label: string; name: string; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string; type?: string; required?: boolean;
+}) {
+  return (
+    <div>
+      <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#0a2f2a] mb-1.5">{label}{required && " *"}</label>
+      <input
+        type={type} name={name} value={value} onChange={onChange} required={required}
+        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all"
+        placeholder={placeholder} />
+    </div>
   );
 }
