@@ -129,7 +129,7 @@ const Navigation = () => {
               background: "linear-gradient(135deg, var(--hg-color-primary), var(--hg-color-secondary))",
             }}
           />
-          <span className="hidden sm:inline">Happy Global Services</span>
+          <span className="hidden sm:inline">Happy Global Service</span>
         </Link>
 
         {/* Desktop Nav */}
