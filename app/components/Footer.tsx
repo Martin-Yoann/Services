@@ -172,10 +172,10 @@ export default function Footer() {
                 <ul className="space-y-3.5 text-sm text-white/60">
                   <li>
                     <a
-                      href="mailto:echo.yang@happyglobalservice.com"
+                      href="mailto:info@happyglobalservice.com"
                       className="hover:text-white transition-colors duration-200"
                     >
-                      echo.yang@happyglobal...
+                      info@happyglobalservice.com
                     </a>
                   </li>
                   <li>
@@ -203,7 +203,7 @@ export default function Footer() {
                     </svg>
                   </a>
                   <a
-                    href="mailto:echo.yang@happyglobalservice.com"
+                    href="mailto:info@happyglobalservice.com"
                     className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-white/12 hover:scale-110"
                     style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}
                     aria-label="Email"

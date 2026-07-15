@@ -3,8 +3,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 
-const BASE = "https://www.meetsocial.com";
-
 const solutions = [
   {
     id: "tech",
@@ -13,9 +11,7 @@ const solutions = [
     desc: "From AI startups to global tech giants — we place the engineers, data scientists, and product leaders who ship the future.",
     cta: "Explore Tech",
     ctaHref: "/industries",
-    bg: `${BASE}/templates/dist/images/i001.jpg.webp`,
-    icon: `${BASE}/templates/dist/images/i010.png`,
-    badge: `${BASE}/templates/dist/images/logos001.png`,
+    bg: "/industry-technology.jpg",
     solidBg: "#0a2f2a",
     labelColor: "#D96C57",
   },
@@ -26,9 +22,7 @@ const solutions = [
     desc: "CFOs, controllers, risk analysts, and compliance leaders — the financial minds that safeguard and scale your business.",
     cta: "Explore Finance",
     ctaHref: "/industries",
-    bg: `${BASE}/templates/dist/images/i002.jpg.webp`,
-    icon: `${BASE}/templates/dist/images/i016-1.png`,
-    badge: `${BASE}/templates/dist/images/logos002.png`,
+    bg: "/industry-finance.jpg",
     solidBg: "#1a4a3e",
     labelColor: "#5a9a8a",
   },
@@ -39,9 +33,7 @@ const solutions = [
     desc: "Clinical leaders, R&D scientists, and med-tech executives who drive innovation from bench to bedside.",
     cta: "Explore Healthcare",
     ctaHref: "/industries",
-    bg: `${BASE}/templates/dist/images/i003.jpg.webp`,
-    icon: `${BASE}/templates/dist/images/i024.png`,
-    badge: `${BASE}/templates/dist/images/logos003.png`,
+    bg: "/industry-healthcare.jpg",
     solidBg: "#FFB419",
     labelColor: "#FFE0A0",
   },
@@ -52,11 +44,9 @@ const solutions = [
     desc: "Operations directors, supply chain strategists, and plant leaders — the engine behind global production and logistics.",
     cta: "Explore Manufacturing",
     ctaHref: "/industries",
-    bg: `${BASE}/templates/dist/images/i004.jpg.webp`,
-    icon: `${BASE}/templates/dist/images/i033.png`,
-    badge: `${BASE}/templates/dist/images/logos004.png`,
-    solidBg: "#AC00FF",
-    labelColor: "#D4A0FF",
+    bg: "/industry-manufacturing.jpg",
+    solidBg: "#197EE9",
+    labelColor: "#235F78",
   },
 ];
 
@@ -146,13 +136,6 @@ export default function IndustrySolutions() {
 
         {/* Content at bottom */}
         <div className="relative z-10 flex flex-col justify-end h-full p-6 pb-10">
-          {/* Icon */}
-          <img
-            src={current.icon}
-            alt=""
-            className="w-14 h-14 object-contain mb-4"
-            style={{ filter: "brightness(0) invert(1)" }}
-          />
 
           <h2
             className="text-3xl font-bold text-white mb-1 tracking-tight"
@@ -266,12 +249,6 @@ export default function IndustrySolutions() {
               <div className="relative z-10 flex flex-col justify-end h-full p-12">
                 {isActive && (
                   <>
-                    <img
-                      src={sol.icon}
-                      alt=""
-                      className="w-16 h-16 object-contain mb-6 transition-transform duration-500"
-                      style={{ filter: "brightness(0) invert(1)" }}
-                    />
                     <h3
                       className="text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight"
                       style={{ fontFamily: "var(--hg-font-heading)" }}
@@ -303,12 +280,6 @@ export default function IndustrySolutions() {
                         <polyline points="9 18 15 12 9 6" />
                       </svg>
                     </Link>
-                    <img
-                      src={sol.badge}
-                      alt=""
-                      className="h-5 object-contain opacity-70"
-                      style={{ filter: "brightness(0) invert(1)" }}
-                    />
                   </>
                 )}
 

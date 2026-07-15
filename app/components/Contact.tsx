@@ -175,8 +175,8 @@ export default function Contact() {
               {/* Contact quick info */}
               <div className="rounded-xl bg-[#0a2f2a] p-5 text-white">
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D96C57] mb-3">Direct Contact</p>
-                <a href="mailto:echo.yang@happyglobalservice.com" className="block text-sm font-medium text-white/70 hover:text-white transition-colors mb-2">
-                  echo.yang@happyglobalservice.com
+                <a href="info@happyglobalservice.com" className="block text-sm font-medium text-white/70 hover:text-white transition-colors mb-2">
+                  info@happyglobalservice.com
                 </a>
                 <a href="tel:+16698713588" className="block text-sm font-medium text-white/70 hover:text-white transition-colors">
                   +1 669 871 3588

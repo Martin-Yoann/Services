@@ -90,7 +90,7 @@ export default function PrivacyPolicyPage() {
                 <li>Lodge a complaint with a supervisory authority</li>
               </ul>
               <p className="mt-3">
-                To exercise these rights, contact us at <strong>echo.yang@happyglobalservice.com</strong>.
+                To exercise these rights, contact us at <strong>info@happyglobalservice.com</strong>.
               </p>
             </div>
 
@@ -110,7 +110,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <p className="mt-2">
                 <strong>Happy Global</strong><br />
-                Email: echo.yang@happyglobalservice.com<br />
+                Email: info@happyglobalservice.com<br />
                 Phone: +1 669 871 3588<br />
                 Offices: Dallas, TX • San Jose, CA • Shanghai, CN
               </p>

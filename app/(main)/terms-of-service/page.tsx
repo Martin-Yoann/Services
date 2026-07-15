@@ -126,7 +126,7 @@ export default function TermsOfServicePage() {
               </p>
               <p className="mt-2">
                 <strong>Happy Global</strong><br />
-                Email: echo.yang@happyglobalservice.com<br />
+                Email: info@happyglobalservice.com<br />
                 Phone: +1 669 871 3588
               </p>
             </div>
