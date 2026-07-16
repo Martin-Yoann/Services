@@ -1,6 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import { submitContactForm } from "@/app/actions/contact";
+import { STATS } from "@/app/data/site";
+import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 
 const offices = [
   { city: "Dallas", role: "North America HQ", flag: "🇺🇸", tz: "CST", accent: "#D96C57" },
@@ -22,23 +25,10 @@ const faqs = [
   { q: "What's your placement guarantee?", a: "12 months on every placement. If a candidate departs within the first year, we run a free replacement search." },
 ];
 
-/* ── Scroll-triggered fade-up ── */
-function useScrollReveal(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
-
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", company: "", phone: "", inquiryType: "hiring", message: "" });
-  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
   const formReveal = useScrollReveal(0.1);
   const trustReveal = useScrollReveal(0.1);
 
@@ -46,13 +36,21 @@ export default function Contact() {
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      setForm({ name: "", email: "", company: "", phone: "", inquiryType: "hiring", message: "" });
-    }, 4000);
+    setSending(true);
+    setResult(null);
+    try {
+      const res = await submitContactForm(form);
+      setResult(res);
+      if (res.success) {
+        setForm({ name: "", email: "", company: "", phone: "", inquiryType: "hiring", message: "" });
+      }
+    } catch {
+      setResult({ success: false, message: "Something went wrong. Please email us directly at info@happyglobalservice.com." });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -101,7 +99,7 @@ export default function Contact() {
                 {/* Coral top accent */}
                 <div className="h-1 bg-[#D96C57]" />
 
-                {sent ? (
+                {result?.success ? (
                   <div className="text-center py-16 px-6">
                     <div className="relative inline-flex mb-6">
                       <div className="absolute inset-0 rounded-full animate-ping opacity-[0.06] bg-[#D96C57]" style={{ width: 72, height: 72 }} />
@@ -112,7 +110,7 @@ export default function Contact() {
                       </div>
                     </div>
                     <h3 className="text-2xl font-bold text-[#0a2f2a] mb-2" style={{ fontFamily: "var(--hg-font-heading)" }}>Message sent</h3>
-                    <p className="text-[#5b6675] text-sm">We&apos;ll get back to you within 24 hours.</p>
+                    <p className="text-[#5b6675] text-sm">{result.message}</p>
                   </div>
                 ) : (
                   <form onSubmit={submit} className="p-6 md:p-10 space-y-5">
@@ -127,7 +125,7 @@ export default function Contact() {
                     <div>
                       <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#0a2f2a] mb-1.5">Inquiry Type</label>
                       <select name="inquiryType" value={form.inquiryType} onChange={update}
-                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all">
+                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all duration-300 cursor-pointer">
                         <option value="hiring">Hiring Inquiry</option>
                         <option value="advisory">Talent Advisory</option>
                         <option value="partnership">Partnership</option>
@@ -138,13 +136,16 @@ export default function Contact() {
                     <div>
                       <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#0a2f2a] mb-1.5">Message</label>
                       <textarea name="message" value={form.message} onChange={update} required rows={4}
-                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all resize-none"
+                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all duration-300 resize-none"
                         placeholder="Tell us about your hiring needs, the role, and what you're looking for..." />
                     </div>
-                    <button type="submit"
-                      className="w-full sm:w-auto font-bold px-10 py-3.5 rounded-xl text-white transition-all duration-300 hover:-translate-y-0.5 hg-gradient-coral"
+                    {result && !result.success && (
+                      <p className="text-xs font-semibold text-center" style={{ color: "var(--hg-color-accent)" }}>{result.message}</p>
+                    )}
+                    <button type="submit" disabled={sending}
+                      className="w-full sm:w-auto font-bold px-10 py-3.5 rounded-xl text-white transition-all duration-300 hover:-translate-y-0.5 hg-gradient-coral disabled:opacity-60 cursor-pointer"
                       style={{ boxShadow: "0 4px 20px rgba(217,108,87,0.28)" }}>
-                      Send Message →
+                      {sending ? "Sending..." : "Send Message →"}
                     </button>
                   </form>
                 )}
@@ -228,7 +229,7 @@ function Field({ label, name, value, onChange, placeholder, type = "text", requi
       <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#0a2f2a] mb-1.5">{label}{required && " *"}</label>
       <input
         type={type} name={name} value={value} onChange={onChange} required={required}
-        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all"
+        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all duration-300"
         placeholder={placeholder} />
     </div>
   );

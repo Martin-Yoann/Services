@@ -3,37 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const ChevronDown = ({ className = "" }: { className?: string }) => (
-  <svg
-    className={className}
-    width="12"
-    height="12"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <polyline points="6 9 12 15 18 9" />
-  </svg>
-);
-
-const ChevronRight = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <polyline points="9 18 15 12 9 6" />
-  </svg>
-);
+import { ChevronDown, ChevronRight, CloseIcon } from "@/app/components/Icons";
+import { useScrollLock } from "@/app/hooks/useScrollLock";
 
 const navItems = [
   {
@@ -49,6 +20,19 @@ const navItems = [
   { label: "Industries", href: "/industries", hasDropdown: false },
   { label: "Why Us", href: "/why-us", hasDropdown: false },
   { label: "Global Coverage", href: "/global-coverage", hasDropdown: false },
+  {
+    label: "More",
+    href: "#",
+    hasDropdown: true,
+    children: [
+      { label: "Track Record", href: "/track-record", id: "track" },
+      { label: "Our Team", href: "/team", id: "team" },
+      { label: "Our Methodology", href: "/methodology", id: "method" },
+      { label: "Board Services", href: "/board-services", id: "board" },
+      { label: "For Candidates", href: "/for-candidates", id: "candidates" },
+      { label: "Insights", href: "/insights", id: "insights" },
+    ],
+  },
 ];
 
 const Navigation = () => {
@@ -56,17 +40,31 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpand, setMobileExpand] = useState<string | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const navRef = useRef<HTMLElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const cleanupClickRef = useRef<(() => void) | null>(null);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const { lock, unlock } = useScrollLock();
 
-  /* ── Scroll detection ── */
+  /* ── Scroll detection + progress ── */
   useEffect(() => {
-    if (!isHome) { setIsScrolled(true); return; }
+    if (!isHome) {
+      setIsScrolled(true);
+      return;
+    }
     setIsScrolled(false);
-    const handleScroll = () => setIsScrolled(window.scrollY > 80);
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setIsScrolled(y > 80);
+      /* Scroll progress */
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollHeight > 0) {
+        setScrollProgress(y / scrollHeight);
+      }
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHome]);
@@ -76,12 +74,16 @@ const Navigation = () => {
     if (!activeDropdown) return;
     const timer = setTimeout(() => {
       const handler = (e: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(e.target as Node)
+        ) {
           setActiveDropdown(null);
         }
       };
       document.addEventListener("click", handler);
-      cleanupClickRef.current = () => document.removeEventListener("click", handler);
+      cleanupClickRef.current = () =>
+        document.removeEventListener("click", handler);
     }, 0);
     return () => {
       clearTimeout(timer);
@@ -93,12 +95,11 @@ const Navigation = () => {
   /* ── Lock body scroll when drawer is open ── */
   useEffect(() => {
     if (drawerOpen) {
-      document.body.style.overflow = "hidden";
+      lock();
     } else {
-      document.body.style.overflow = "";
+      unlock();
     }
-    return () => { document.body.style.overflow = ""; };
-  }, [drawerOpen]);
+  }, [drawerOpen, lock, unlock]);
 
   /* ── Close drawer on route change ── */
   useEffect(() => {
@@ -126,7 +127,8 @@ const Navigation = () => {
           <span
             className="w-8 h-8 rounded-lg"
             style={{
-              background: "linear-gradient(135deg, var(--hg-color-primary), var(--hg-color-secondary))",
+              background:
+                "linear-gradient(135deg, var(--hg-color-primary), var(--hg-color-secondary))",
             }}
           />
           <span className="hidden sm:inline">Happy Global Service</span>
@@ -142,7 +144,7 @@ const Navigation = () => {
                 className={`hg-nav-dropdown${activeDropdown === item.label ? " open" : ""}`}
               >
                 <button
-                  className="hg-nav-dropdown-trigger"
+                  className="hg-nav-dropdown-trigger cursor-pointer"
                   onClick={() => handleDropdownToggle(item.label)}
                   aria-expanded={activeDropdown === item.label}
                   aria-haspopup="true"
@@ -155,7 +157,7 @@ const Navigation = () => {
                     <Link
                       key={child.id || child.label}
                       href={child.href}
-                      className="hg-nav-dropdown-item"
+                      className="hg-nav-dropdown-item cursor-pointer"
                       role="menuitem"
                       onClick={() => setActiveDropdown(null)}
                     >
@@ -168,7 +170,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-4 py-2 text-sm font-medium hg-nav-link transition-colors rounded-md"
+                className="px-4 py-2 text-sm font-medium hg-nav-link hg-link-underline transition-all duration-300 rounded-md cursor-pointer"
               >
                 {item.label}
               </Link>
@@ -192,24 +194,28 @@ const Navigation = () => {
         >
           <div className="flex flex-col gap-1.5 w-5">
             <span
-              className="block h-[2px] rounded-full transition-all duration-300"
+              className="hg-mobile-hamburger-line"
               style={{
                 background: isScrolled ? "#0a2f2a" : "#fff",
-                transform: drawerOpen ? "rotate(45deg) translate(3px, 4px)" : "none",
+                transform: drawerOpen
+                  ? "rotate(45deg) translate(3px, 4px)"
+                  : "none",
               }}
             />
             <span
-              className="block h-[2px] rounded-full transition-all duration-300"
+              className="hg-mobile-hamburger-line"
               style={{
                 background: isScrolled ? "#0a2f2a" : "#fff",
                 opacity: drawerOpen ? 0 : 1,
               }}
             />
             <span
-              className="block h-[2px] rounded-full transition-all duration-300"
+              className="hg-mobile-hamburger-line"
               style={{
                 background: isScrolled ? "#0a2f2a" : "#fff",
-                transform: drawerOpen ? "rotate(-45deg) translate(3px, -4px)" : "none",
+                transform: drawerOpen
+                  ? "rotate(-45deg) translate(3px, -4px)"
+                  : "none",
               }}
             />
           </div>
@@ -219,20 +225,25 @@ const Navigation = () => {
         {/* Backdrop */}
         <div
           className={`fixed inset-0 z-[70] bg-black/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
-            drawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            drawerOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
           }`}
           onClick={() => setDrawerOpen(false)}
         />
 
-        {/* Drawer panel — slides from right */}
+        {/* Drawer panel */}
         <div
-          className={`fixed top-0 right-0 z-[80] h-full w-[min(400px,90vw)] bg-white shadow-2xl transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden flex flex-col ${
+          className={`fixed top-0 right-0 z-[80] h-full w-[min(400px,90vw)] bg-white shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden flex flex-col ${
             drawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           {/* Drawer header */}
           <div className="flex items-center justify-between px-6 h-16 border-b border-[#d8e1ea] shrink-0">
-            <span className="text-sm font-bold text-[#0a2f2a] tracking-tight" style={{ fontFamily: "var(--hg-font-heading)" }}>
+            <span
+              className="text-sm font-bold text-[#0a2f2a] tracking-tight"
+              style={{ fontFamily: "var(--hg-font-heading)" }}
+            >
               Menu
             </span>
             <button
@@ -240,35 +251,38 @@ const Navigation = () => {
               className="w-8 h-8 rounded-lg flex items-center justify-center text-[#5b6675] hover:bg-gray-100 transition-colors cursor-pointer"
               aria-label="Close menu"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
+              <CloseIcon size={16} />
             </button>
           </div>
 
-          {/* Drawer body — scrollable */}
+          {/* Drawer body — scrollable, with staggered animation */}
           <div className="flex-1 overflow-y-auto py-4">
-            {navItems.map((item) => (
-              <div key={item.label}>
+            {navItems.map((item, idx) => (
+              <div
+                key={item.label}
+                style={{
+                  opacity: drawerOpen ? 1 : 0,
+                  transform: drawerOpen
+                    ? "translateX(0)"
+                    : "translateX(20px)",
+                  transition: `opacity 0.3s ease ${150 + idx * 50}ms, transform 0.3s ease ${150 + idx * 50}ms`,
+                }}
+              >
                 {item.hasDropdown ? (
                   <>
                     <button
-                      onClick={() => setMobileExpand(mobileExpand === item.label ? null : item.label)}
+                      onClick={() =>
+                        setMobileExpand(
+                          mobileExpand === item.label ? null : item.label,
+                        )
+                      }
                       className="w-full text-left px-6 py-4 flex items-center justify-between text-sm font-semibold text-[#0a2f2a] hover:bg-[#f7f8f6] transition-colors"
                     >
                       {item.label}
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
+                      <ChevronRight
+                        size={16}
                         className={`transition-transform duration-300 ${mobileExpand === item.label ? "rotate-90" : ""}`}
-                      >
-                        <polyline points="9 18 15 12 9 6" />
-                      </svg>
+                      />
                     </button>
                     <div
                       className={`overflow-hidden transition-all duration-300 ${
@@ -312,11 +326,17 @@ const Navigation = () => {
               onClick={() => setDrawerOpen(false)}
             >
               Get Started
-              <ChevronRight />
+              <ChevronRight size={16} />
             </Link>
           </div>
         </div>
       </div>
+
+      {/* ═══ Scroll progress bar ═══ */}
+      <div
+        className="hg-scroll-progress"
+        style={{ transform: `scaleX(${scrollProgress})` }}
+      />
     </nav>
   );
 };

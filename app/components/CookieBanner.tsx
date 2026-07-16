@@ -30,7 +30,8 @@ export default function CookieBanner() {
       <div
         className="fixed inset-0 z-[997] pointer-events-none"
         style={{
-          background: `radial-gradient(ellipse at center bottom, rgba(10,47,42,0.25) 0%, transparent 70%)`,
+          background:
+            "radial-gradient(ellipse at center bottom, rgba(10,47,42,0.25) 0%, transparent 70%)",
           opacity: exiting ? 0 : 1,
           transition: "opacity 0.4s ease",
         }}
@@ -42,17 +43,16 @@ export default function CookieBanner() {
         style={{
           opacity: exiting ? 0 : 1,
           transform: exiting ? "translateY(100%)" : "translateY(0)",
-          transition: "opacity 0.4s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1)",
-          animation: visible && !exiting ? "cookieSlideUp 0.6s cubic-bezier(0.22,1,0.36,1) both" : "none",
+          transition:
+            "opacity 0.4s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1)",
+          animation:
+            visible && !exiting
+              ? "cookieSlideUp 0.6s cubic-bezier(0.22,1,0.36,1) both"
+              : "none",
         }}
       >
         <div
-          className="w-full max-w-3xl rounded-2xl px-5 py-4 sm:px-6 sm:py-5 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 backdrop-blur-xl"
-          style={{
-            background: "rgba(10,47,42,0.92)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 -2px 40px rgba(10,47,42,0.3), 0 8px 32px rgba(0,0,0,0.15)",
-          }}
+          className="w-full max-w-3xl rounded-2xl px-5 py-4 sm:px-6 sm:py-5 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 hg-glass-card-dark"
         >
           {/* ── Icon + Text ── */}
           <div className="flex items-start gap-3 flex-1 min-w-0">
@@ -61,8 +61,14 @@ export default function CookieBanner() {
               style={{ background: "rgba(217,108,87,0.15)" }}
             >
               <svg
-                width="16" height="16" viewBox="0 0 24 24" fill="none"
-                stroke="rgba(217,108,87,0.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(217,108,87,0.9)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
                 <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
@@ -72,8 +78,13 @@ export default function CookieBanner() {
             </div>
             <div className="min-w-0">
               <p className="text-xs sm:text-sm leading-relaxed text-white/70">
-                We use cookies to understand how you engage with our content and to ensure the best experience on our site.{" "}
-                <a href="/privacy-policy" className="font-semibold whitespace-nowrap hover:underline transition-opacity" style={{ color: "var(--hg-color-accent)" }}>
+                We use cookies to understand how you engage with our content and
+                to ensure the best experience on our site.{" "}
+                <a
+                  href="/privacy-policy"
+                  className="font-semibold whitespace-nowrap hover:underline transition-opacity"
+                  style={{ color: "var(--hg-color-accent)" }}
+                >
                   Privacy Policy
                 </a>
               </p>
@@ -102,20 +113,6 @@ export default function CookieBanner() {
           </div>
         </div>
       </div>
-
-      {/* ═══ CSS keyframe injection ═══ */}
-      <style jsx>{`
-        @keyframes cookieSlideUp {
-          from {
-            opacity: 0;
-            transform: translateY(100%);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </>
   );
 }

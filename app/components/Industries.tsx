@@ -1,15 +1,5 @@
-"use client";
-
 import Link from "next/link";
-
-const industries = [
-  { id: "tech", name: "Technology & AI", description: "From Series-A startups to global platforms — engineers, data scientists, AI/ML specialists, and product leaders who build the future.", roles: ["Software Engineers", "AI/ML Specialists", "Product Managers", "CTOs & VPs of Eng", "Data Scientists", "DevOps Leaders"], stat: { v: "120+", l: "Placements/yr" }, accent: "#D96C57", accentRgb: "217,108,87" },
-  { id: "finance", name: "Financial Services", description: "CFOs, controllers, risk analysts, and compliance leaders across banking, fintech, private equity, and insurance.", roles: ["Chief Financial Officers", "Risk & Compliance", "Fintech PMs", "Investment Analysts", "Controllers", "Quant Researchers"], stat: { v: "85+", l: "Placements/yr" }, accent: "#14b8a6", accentRgb: "20,184,166" },
-  { id: "healthcare", name: "Healthcare & Biotech", description: "Clinical leaders, R&D scientists, and med-tech executives — connecting life sciences with world-class talent.", roles: ["Medical Directors", "Clinical Research", "Regulatory (FDA)", "R&D Scientists", "Healthcare IT", "Pharma Commercial"], stat: { v: "60+", l: "Placements/yr" }, accent: "#f59e0b", accentRgb: "245,158,11" },
-  { id: "manufacturing", name: "Advanced Manufacturing", description: "Operations directors, supply chain leaders, and plant managers — the engine behind global production.", roles: ["Plant GMs", "Supply Chain Dir.", "Quality Assurance", "Industrial Engineers", "Procurement Heads", "Lean/6σ Experts"], stat: { v: "45+", l: "Placements/yr" }, accent: "#2d8a7a", accentRgb: "45,138,122" },
-  { id: "consumer", name: "Consumer & Retail", description: "Brand leaders, e-commerce directors, and retail operations executives driving global consumer growth.", roles: ["Brand Directors", "E-Commerce Heads", "Category Managers", "Retail Ops VPs", "Consumer Insights", "D2C Specialists"], stat: { v: "70+", l: "Placements/yr" }, accent: "#a855f7", accentRgb: "168,85,247" },
-  { id: "logistics", name: "Logistics & Supply Chain", description: "Logistics directors, trade compliance leads, and global trade managers — the backbone of cross-border commerce.", roles: ["Logistics Directors", "Trade Compliance", "Warehouse Ops", "Fleet Management", "Customs Specialists", "Procurement Dir."], stat: { v: "35+", l: "Placements/yr" }, accent: "#f43f5e", accentRgb: "244,63,94" },
-];
+import { industries } from "@/app/data/industries";
 
 export default function Industries() {
   return (
@@ -20,7 +10,7 @@ export default function Industries() {
         <div className="relative container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {industries.map((ind) => (
-              <div key={ind.id} className="group relative rounded-2xl p-7 transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+              <div key={ind.id} className="group relative rounded-2xl p-7 cursor-default hg-card-lift"
                 style={{ background: "var(--hg-color-surface)", border: "1px solid var(--hg-color-border)", boxShadow: "0 4px 20px rgba(18,67,63,0.02)" }}>
                 {/* Top accent line */}
                 <div className="absolute top-0 left-6 right-6 h-[2px] rounded-full origin-left transition-all duration-500 group-hover:scale-x-100"
@@ -71,7 +61,7 @@ export default function Industries() {
               { t: "Cross-Border Fluency", d: "We navigate regulatory differences, visa pathways, and cultural expectations across U.S., China, UK, and EU.", i: "🌐" },
               { t: "Market Intelligence", d: "Real-time hiring trends, salary bands, and talent availability — actionable data, not generic reports.", i: "📊" },
             ].map((x) => (
-              <div key={x.t} className="group text-center p-7 rounded-2xl transition-all duration-500 hover:-translate-y-1"
+              <div key={x.t} className="group text-center p-7 rounded-2xl cursor-default hg-card-lift"
                 style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                 <span className="text-3xl block mb-4">{x.i}</span>
                 <h3 className="text-sm font-bold text-white mb-2">{x.t}</h3>

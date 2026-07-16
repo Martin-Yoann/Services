@@ -1,6 +1,5 @@
-"use client";
-
 import Link from "next/link";
+import { STATS } from "@/app/data/site";
 
 /* ── Modern Why Us — merged KeyPoints card design + deep differentiators ── */
 
@@ -237,7 +236,7 @@ export default function WhyUs() {
             {values.map((v, i) => (
               <div
                 key={v.title}
-                className="group relative bg-white rounded-2xl border border-[#d8e1ea] p-8 transition-all duration-400 hover:-translate-y-2 hover:shadow-xl hover:border-transparent"
+                className="group relative bg-white rounded-2xl border border-[#d8e1ea] p-8 cursor-default hg-card-lift hover:border-transparent"
               >
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold mb-5"

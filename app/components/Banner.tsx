@@ -7,19 +7,19 @@ const bannerSlides = [
     label: "Omnichannel Media",
     title: "Omnichannel Media Resources",
     desc: "Direct access to 50+ premium global media channels — social, search, video, DSP, OOH, and more.",
-    bg: "/harbor-human-hero.png",
+    bg: "/harbor-human-hero.webp",
   },
   {
     label: "Full-Funnel",
     title: "Full-Funnel Marketing Solutions",
     desc: "From insights, media buying, and optimization to creative, branding, and data intelligence.",
-    bg: "/harbor-human-hero.png",
+    bg: "/harbor-human-hero.webp",
   },
   {
     label: "AI-Powered",
     title: "AI-Powered Solutions",
     desc: "A leading AI-driven global marketing platform — data powers every marketing decision.",
-    bg: "/harbor-human-hero.png",
+    bg: "/harbor-human-hero.webp",
   },
 ];
 

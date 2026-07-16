@@ -1,5 +1,6 @@
 /* ── Harbor Human Brand Tokens ──
-   Harbor Green + Warm Coral palette for global talent brand */
+   Harbor Green + Warm Coral palette for global talent brand
+   v2 — expanded palette with interactive states */
 
 :root {
   /* ── Core palette ── */
@@ -10,8 +11,35 @@
   --hh-color-bg-dark: #061410;
   --hh-color-bg: #f7f8f6;
 
-  /* ── RGB tuples for rgba() usage in JSX inline styles ── */
+  /* ── Tints & shades ── */
+  --hh-color-primary-light: #1a4a3e;
+  --hh-color-primary-lighter: #dce8e4;
+  --hh-color-secondary-light: #3daea0;
+  --hh-color-secondary-lighter: #d4f0eb;
+  --hh-color-accent-light: #f0a090;
+  --hh-color-accent-lighter: #fde8e4;
+  --hh-color-action-hover: #b04a38;
+  --hh-color-accent-dark: #b85540;
+
+  /* ── RGB tuples for rgba() usage ── */
   --hh-color-primary-rgb: 10, 47, 42;
   --hh-color-secondary-rgb: 45, 138, 122;
   --hh-color-accent-rgb: 217, 108, 87;
+
+  /* ── Neutral palette ── */
+  --hh-neutral-50: #f9faf9;
+  --hh-neutral-100: #f0f2f0;
+  --hh-neutral-200: #e2e7e4;
+  --hh-neutral-300: #c8d0cb;
+  --hh-neutral-500: #6b7b74;
+  --hh-neutral-700: #3d4a43;
+  --hh-neutral-900: #1a2420;
+
+  /* ── Semantic tokens ── */
+  --hh-success: #14b8a6;
+  --hh-success-rgb: 20, 184, 166;
+  --hh-warning: #f59e0b;
+  --hh-warning-rgb: 245, 158, 11;
+  --hh-purple: #a855f7;
+  --hh-purple-rgb: 168, 85, 247;
 }

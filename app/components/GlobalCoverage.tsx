@@ -15,7 +15,7 @@ export default function GlobalCoverage() {
         <div className="relative container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {regions.map((region) => (
-              <div key={region.name} className="group relative rounded-2xl p-7 transition-all duration-500 hover:-translate-y-2"
+              <div key={region.name} className="group relative rounded-2xl p-7 cursor-default hg-card-lift"
                 style={{ background: "var(--hg-color-surface)", border: "1px solid var(--hg-color-border)", boxShadow: "0 4px 20px rgba(18,67,63,0.02)" }}>
                 <div className="absolute top-0 left-6 right-6 h-[2px] rounded-full origin-left transition-all duration-500 group-hover:scale-x-100"
                   style={{ background: `linear-gradient(90deg, ${region.accent}, transparent)`, transform: "scaleX(0.25)" }} />
@@ -58,13 +58,13 @@ export default function GlobalCoverage() {
               <p className="text-sm leading-relaxed text-white/50 mb-6">
                 We don't just search globally — we have people on the ground in every major talent market who understand local business culture, compensation norms, and regulatory environments.
               </p>
-              <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-bold text-[#D96C57] hover:gap-3 transition-all">
+              <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-bold text-[#D96C57] hover:gap-3 transition-all duration-300 cursor-pointer">
                 Discuss Your Market Needs <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
               </Link>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[{ v: "430+", l: "Placements/yr", c: "#D96C57" }, { v: "13", l: "Cities", c: "#14b8a6" }, { v: "3", l: "Continents", c: "#f59e0b" }, { v: "5+", l: "Languages", c: "#a855f7" }].map((s) => (
-                <div key={s.l} className="group rounded-2xl p-6 text-center transition-all duration-500 hover:-translate-y-1"
+                <div key={s.l} className="group rounded-2xl p-6 text-center cursor-default hg-card-lift"
                   style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
                   <p className="text-3xl md:text-4xl font-bold hg-heading group-hover:scale-110 transition-transform duration-500" style={{ color: s.c }}>{s.v}</p>
                   <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/35 mt-2">{s.l}</p>

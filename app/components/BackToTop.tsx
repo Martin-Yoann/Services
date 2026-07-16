@@ -23,12 +23,11 @@ export default function BackToTop() {
       style={{
         opacity: visible ? 1 : 0,
         pointerEvents: visible ? "auto" : "none",
-        transform: visible ? "translateY(0px)" : "translateY(16px)",
+        transform: visible ? "translateY(0px) scale(1)" : "translateY(16px) scale(0.85)",
       }}
     >
-      {/* Responsive: 56px mobile, 90px desktop */}
       <div className="relative w-14 h-14 md:w-[90px] md:h-[90px]">
-        {/* Solid bg circle so ring text is visible on any background */}
+        {/* Solid bg circle */}
         <div
           className="absolute inset-0 rounded-full"
           style={{
@@ -42,6 +41,7 @@ export default function BackToTop() {
         <svg
           className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none"
           viewBox="0 0 110 110"
+          style={{ willChange: "transform" }}
         >
           <defs>
             <path
@@ -62,12 +62,13 @@ export default function BackToTop() {
                 textTransform: "uppercase",
               }}
             >
-              HAPPY GLOBAL SERVICE · HAPPY GLOBAL SERVICE · HAPPY GLOBAL SERVICE ·
+              HAPPY GLOBAL SERVICE · HAPPY GLOBAL SERVICE · HAPPY GLOBAL
+              SERVICE ·
             </textPath>
           </text>
         </svg>
 
-        {/* Center arrow icon — responsive */}
+        {/* Center arrow icon */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 transition-transform duration-300 group-hover:scale-125">
           <svg
             className="w-4 h-4 md:w-[28px] md:h-[28px]"
