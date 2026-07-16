@@ -87,28 +87,13 @@ export default function Footer() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
             {/* ── BRAND COLUMN (5 cols) ── */}
             <div className="lg:col-span-5 flex flex-col">
-              {/* Logo group */}
-              <Link
-                href="/"
-                className="inline-flex items-center gap-3 group w-fit mb-6"
-              >
-                <span
-                  className="w-11 h-11 rounded-xl flex items-center justify-center text-sm font-black transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg"
-                  style={{
-                    background: "linear-gradient(135deg, #D96C57, #c45a47)",
-                    boxShadow: "0 0 20px rgba(217,108,87,0.25)",
-                  }}
-                >
-                  HG
-                </span>
-                <div>
-                  <span className="block text-xl font-bold text-white tracking-tight hg-heading leading-tight">
-                    Happy Global
-                  </span>
-                  <span className="block text-[10px] font-semibold uppercase tracking-[0.25em] text-white/30 mt-0.5">
-                    Talent Solutions
-                  </span>
-                </div>
+              {/* Logo */}
+              <Link href="/" className="inline-flex items-center group w-fit mb-6">
+                <img
+                  src="/HGS-white.svg"
+                  alt="Happy Global"
+                  className="h-11 w-auto transition-transform duration-300 group-hover:scale-105"
+                />
               </Link>
 
               {/* Description */}

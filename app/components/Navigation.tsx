@@ -119,19 +119,13 @@ const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-lg font-bold hg-nav-logo-text hover:opacity-80 transition-opacity z-[60]"
-        >
-          <span
-            className="w-8 h-8 rounded-lg"
-            style={{
-              background:
-                "linear-gradient(135deg, var(--hg-color-primary), var(--hg-color-secondary))",
-            }}
+        {/* Logo — white on transparent nav, dark on scrolled */}
+        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity z-[60]">
+          <img
+            src={isScrolled ? "/HGS-black.svg" : "/HGS-white.svg"}
+            alt="Happy Global"
+            className="h-9 w-auto transition-all duration-300"
           />
-          <span className="hidden sm:inline">Happy Global Service</span>
         </Link>
 
         {/* Desktop Nav */}
