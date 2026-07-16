@@ -16,7 +16,7 @@ export interface TeamMember {
 export const partners: TeamMember[] = [
   {
     id: "sarah-chen",
-    name: "Sarah Chen",
+    name: "xxxxxx",
     title: "Managing Partner — North America",
     focus: ["C-Suite", "Board Directors", "PE/VC Portfolio"],
     industries: ["Technology", "AI/ML", "Enterprise SaaS"],
@@ -29,7 +29,7 @@ export const partners: TeamMember[] = [
   },
   {
     id: "marcus-liu",
-    name: "Marcus Liu",
+    name: "xxxxxx",
     title: "Managing Partner — Asia-Pacific",
     focus: ["Cross-Border Executives", "GM/Country Head", "APAC Expansion"],
     industries: ["Manufacturing", "Automotive", "Clean Energy"],
@@ -42,7 +42,7 @@ export const partners: TeamMember[] = [
   },
   {
     id: "elena-park",
-    name: "Elena Park",
+    name: "xxxxxx",
     title: "Partner — Financial Services & Fintech",
     focus: ["CFO", "Chief Risk Officer", "Compliance Director"],
     industries: [
@@ -60,7 +60,7 @@ export const partners: TeamMember[] = [
   },
   {
     id: "david-zhang",
-    name: "David Zhang",
+    name: "xxxxxx",
     title: "Partner — Technology & AI",
     focus: ["VP Engineering", "CTO", "Chief Data Scientist"],
     industries: ["AI/ML", "Semiconductor", "Cloud Infrastructure"],
@@ -75,14 +75,14 @@ export const partners: TeamMember[] = [
 
 export const advisoryBoard = [
   {
-    name: "Dr. James Morrison",
+    name: "xxxxxx",
     role: "Board Advisor — Healthcare",
     bio: "Former Chief Medical Officer at a Fortune 500 pharmaceutical company. 30+ years in clinical development and FDA regulatory strategy.",
     affiliation: "Ex-Pfizer, Ex-J&J",
     industries: ["Healthcare", "Biotech"],
   },
   {
-    name: "Linda Park",
+    name: "xxxxxx",
     role: "Board Advisor — Industrial & Supply Chain",
     bio: "Former SVP Global Supply Chain at a leading automotive Tier-1 supplier. Expert in China-sourced manufacturing and cross-border logistics.",
     affiliation: "Ex-Continental, Ex-Bosch",

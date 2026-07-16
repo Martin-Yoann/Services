@@ -149,7 +149,7 @@ export default function TeamPage() {
       </section>
 
       {/* ═══ ADVISORY BOARD ═══ */}
-      <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "#061410" }}>
+      {/* <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "#061410" }}>
         <div className="hg-dot-grid-dark absolute inset-0 pointer-events-none opacity-[0.02]" />
         <div className="absolute bottom-0 left-1/2 w-[400px] h-[400px] rounded-full blur-[150px] pointer-events-none opacity-[0.04]"
           style={{ background: "var(--hg-color-secondary)", transform: "translate(-50%, 30%)" }} />
@@ -193,7 +193,7 @@ export default function TeamPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ═══ CTA ═══ */}
       <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "var(--hg-color-bg)" }}>
