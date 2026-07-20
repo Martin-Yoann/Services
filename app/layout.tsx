@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Happy Global — Global Talent Solutions",
   description:
     "Executive search, professional recruitment, and talent advisory for companies expanding globally. We connect your leadership and specialist talent across U.S., China, and key international markets.",
-  icons: { icon: "/favicon.ico" },
+  icons: { icon: "/happyglobalservice.ico" },
 };
 
 export const viewport: Viewport = {
