@@ -7,7 +7,7 @@ export const SITE = {
   tagline: "Global Talent Solutions",
   description:
     "Executive search, professional recruitment, and talent advisory for companies expanding globally.",
-  email: "info@happyglobalservice.com",
+  email: "echo.yang@happyglobalservice.com",
   phone: "+1 669 871 3588",
   domain: "happyglobalservice.com",
   founded: 2011,

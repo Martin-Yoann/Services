@@ -10,8 +10,8 @@ const processSteps = [
 ];
 
 const cases = [
-  { role: "VP of Engineering", company: "Series-C AI SaaS", stat: "28d", result: "Built 40-person R&D team", accent: "#D96C57", accentRgb: "217,108,87" },
-  { role: "Chief Financial Officer", company: "Cross-Border Fintech", stat: "3", result: "Finalists in 14 days", accent: "#14b8a6", accentRgb: "20,184,166" },
+  { role: "VP of Engineering", company: "Series-C AI SaaS", stat: "68d", result: "Built 40-person R&D team", accent: "#D96C57", accentRgb: "217,108,87" },
+  { role: "Chief Financial Officer", company: "Cross-Border Fintech", stat: "5", result: "Finalists in 14 days", accent: "#14b8a6", accentRgb: "20,184,166" },
   { role: "GM China Operations", company: "German Industrial Group", stat: "+40%", result: "Revenue growth YoY", accent: "#f59e0b", accentRgb: "245,158,11" },
 ];
 

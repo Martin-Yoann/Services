@@ -51,7 +51,7 @@ export default function ForCandidatesPage() {
       setResult({
         success: false,
         message:
-          "Something went wrong. Please email us directly at info@happyglobalservice.com.",
+          "Something went wrong. Please email us directly at echo.yang@happyglobalservice.com.",
       });
     } finally {
       setSubmitting(false);

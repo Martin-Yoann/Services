@@ -202,10 +202,10 @@ export default function Footer() {
                 <ul className="space-y-3.5 text-sm text-white/60">
                   <li>
                     <a
-                      href="mailto:info@happyglobalservice.com"
+                      href="mailto:echo.yang@happyglobalservice.com"
                       className="hover:text-white transition-colors duration-200"
                     >
-                      info@happyglobalservice.com
+                      echo.yang@happyglobalservice.com
                     </a>
                   </li>
                   <li>
@@ -234,7 +234,7 @@ export default function Footer() {
                     <LinkedInIcon size={14} />
                   </a>
                   <a
-                    href="mailto:info@happyglobalservice.com"
+                    href="mailto:echo.yang@happyglobalservice.com"
                     className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-white/12 hover:scale-110"
                     style={{
                       background: "rgba(255,255,255,0.04)",
