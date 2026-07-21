@@ -9,6 +9,8 @@ const SMTP_CONFIG = {
   host: "smtppro.zoho.com",
   port: 465,
   secure: true,
+  // Zoho cert chain may not be trusted by all CA bundles
+  tls: { rejectUnauthorized: false },
 } as const;
 
 const ADMIN_EMAIL = "echo.yang@happyglobalservice.com";
