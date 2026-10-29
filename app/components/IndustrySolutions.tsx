@@ -4,10 +4,10 @@ import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
 
 const solutions = [
-  { id: "tech", title: "Technology", titleZh: "Technology Sector", desc: "From AI startups to global tech giants — we place the engineers, data scientists, and product leaders who ship the future.", cta: "Explore Tech", ctaHref: "/industries", bg: "/1.webp", solidBg: "#0a2f2a", labelColor: "#D96C57" },
-  { id: "finance", title: "Financial Services", titleZh: "Financial Services", desc: "CFOs, controllers, risk analysts, and compliance leaders — the financial minds that safeguard and scale your business.", cta: "Explore Finance", ctaHref: "/industries", bg: "/2.webp", solidBg: "#1a4a3e", labelColor: "#5a9a8a" },
-  { id: "healthcare", title: "Healthcare & Biotech", titleZh: "Healthcare & Biotech", desc: "Clinical leaders, R&D scientists, and med-tech executives who drive innovation from bench to bedside.", cta: "Explore Healthcare", ctaHref: "/industries", bg: "/3.webp", solidBg: "#FFB419", labelColor: "#FFE0A0" },
-  { id: "manufacturing", title: "Manufacturing & Supply Chain", titleZh: "Advanced Manufacturing", desc: "Operations directors, supply chain strategists, and plant leaders — the engine behind global production and logistics.", cta: "Explore Manufacturing", ctaHref: "/industries", bg: "/4.webp", solidBg: "#197EE9", labelColor: "#235F78" },
+  { id: "tech", title: "Technology", titleZh: "Technology Sector", desc: "From AI startups to global tech giants — we place the engineers, data scientists, and product leaders who ship the future.", cta: "Explore Tech", ctaHref: "/industries", bg: "/images/industries/technology-pexels.webp", solidBg: "#0a2f2a", labelColor: "#D96C57" },
+  { id: "finance", title: "Financial Services", titleZh: "Financial Services", desc: "CFOs, controllers, risk analysts, and compliance leaders — the financial minds that safeguard and scale your business.", cta: "Explore Finance", ctaHref: "/industries", bg: "/images/industries/finance-pexels.webp", solidBg: "#1a4a3e", labelColor: "#5a9a8a" },
+  { id: "healthcare", title: "Healthcare & Biotech", titleZh: "Healthcare & Biotech", desc: "Clinical leaders, R&D scientists, and med-tech executives who drive innovation from bench to bedside.", cta: "Explore Healthcare", ctaHref: "/industries", bg: "/images/industries/healthcare-pexels.webp", solidBg: "#FFB419", labelColor: "#FFE0A0" },
+  { id: "manufacturing", title: "Manufacturing & Supply Chain", titleZh: "Advanced Manufacturing", desc: "Operations directors, supply chain strategists, and plant leaders — the engine behind global production and logistics.", cta: "Explore Manufacturing", ctaHref: "/industries", bg: "/images/industries/manufacturing-pexels.webp", solidBg: "#197EE9", labelColor: "#235F78" },
 ];
 
 export default function IndustrySolutions() {

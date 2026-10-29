@@ -1,0 +1,54 @@
+[
+  {
+    "industry": "technology",
+    "photoId": 17489156,
+    "photographer": "panumas nikhomkhai",
+    "sourcePage": "https://www.pexels.com/photo/computer-server-in-data-center-room-17489156/",
+    "downloadUrl": "https://images.pexels.com/photos/17489156/pexels-photo-17489156.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "localFile": "public/images/industries/technology-pexels.webp",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "checkedDate": "2026-10-29",
+    "processing": "WebP compression, maximum width 1920; no watermark removal or content retouching",
+    "sha256": "ff05df8996014d7c7d5d616f3f1805c4ea5dba9e98ef9f855e9cafeb659a2688"
+  },
+  {
+    "industry": "finance",
+    "photoId": 30624906,
+    "photographer": "AXP Photography",
+    "sourcePage": "https://www.pexels.com/photo/modern-skyscrapers-in-london-s-financial-district-30624906/",
+    "downloadUrl": "https://images.pexels.com/photos/30624906/pexels-photo-30624906.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "localFile": "public/images/industries/finance-pexels.webp",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "checkedDate": "2026-10-29",
+    "processing": "WebP compression, maximum width 1920; no watermark removal or content retouching",
+    "sha256": "e96f83dedc1f2d90f8fae12c61c5451f336b32e048add317dd3573152b9e643b"
+  },
+  {
+    "industry": "healthcare",
+    "photoId": 4033020,
+    "photographer": "Edward Jenner",
+    "sourcePage": "https://www.pexels.com/photo/man-using-a-microscope-inside-the-laboratory-4033020/",
+    "downloadUrl": "https://images.pexels.com/photos/4033020/pexels-photo-4033020.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "localFile": "public/images/industries/healthcare-pexels.webp",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "checkedDate": "2026-10-29",
+    "processing": "WebP compression, maximum width 1920; no watermark removal or content retouching",
+    "sha256": "a87924080320146b9deb822644d77aaab30baa1c28fd90a1c2deb65e278f647b"
+  },
+  {
+    "industry": "manufacturing",
+    "photoId": 34718926,
+    "photographer": "Yetkin Ağaç",
+    "sourcePage": "https://www.pexels.com/photo/industrial-factory-interior-with-conveyor-belt-34718926/",
+    "downloadUrl": "https://images.pexels.com/photos/34718926/pexels-photo-34718926.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "localFile": "public/images/industries/manufacturing-pexels.webp",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "checkedDate": "2026-10-29",
+    "processing": "WebP compression, maximum width 1920; no watermark removal or content retouching",
+    "sha256": "8dc5017ce640400859941b13bfa562b3a6e57452aef299151753dd479afa33f5"
+  }
+]
