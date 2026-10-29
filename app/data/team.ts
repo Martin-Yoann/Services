@@ -8,8 +8,6 @@ export interface TeamMember {
   industries: string[];
   location: string;
   bio: string;
-  highlight: string;
-  linkedin?: string;
 }
 
 export const partners: TeamMember[] = [
@@ -20,9 +18,7 @@ export const partners: TeamMember[] = [
     focus: ["C-Suite", "Board Directors", "PE/VC Portfolio"],
     industries: ["Technology", "AI/ML", "Enterprise SaaS"],
     location: "Dallas, TX",
-    bio: "20+ years in retained executive search. Former VP of Talent at a Fortune 100 tech company. Has personally completed 300+ C-level and VP searches across Silicon Valley, Texas, and the East Coast.",
-    highlight:
-      "Built the entire executive team for a Series-C AI company that IPO'd 18 months later.",
+    bio: "Focuses on C-suite and board searches across technology, artificial intelligence, and enterprise software markets.",
   },
   {
     id: "marcus-liu",
@@ -31,9 +27,7 @@ export const partners: TeamMember[] = [
     focus: ["Cross-Border Executives", "GM/Country Head", "APAC Expansion"],
     industries: ["Manufacturing", "Automotive", "Clean Energy"],
     location: "Shanghai, China",
-    bio: "15+ years bridging Chinese enterprises and multinational corporations. Former McKinsey engagement manager. Trilingual (ENG/中文/Deutsch). Deep expertise in Tier-1 automotive, industrial automation, and new energy sectors.",
-    highlight:
-      "Placed the first foreign GM for a $5B Chinese state-owned enterprise's European division.",
+    bio: "Focuses on cross-border leadership searches, general management, and APAC expansion across manufacturing, automotive, and clean energy.",
   },
   {
     id: "elena-park",
@@ -47,9 +41,7 @@ export const partners: TeamMember[] = [
       "Insurance",
     ],
     location: "San Jose, CA",
-    bio: "17 years in financial services executive search. Started career at a Big 4 accounting firm. Specializes in dual-jurisdiction (SEC/FCA/HKMA) compliance leaders and CFOs for cross-border fintech companies scaling internationally.",
-    highlight:
-      "Found the CFO who led a fintech unicorn's successful Series-D and international expansion into 6 new markets.",
+    bio: "Focuses on CFO, risk, and compliance leadership searches for financial services and cross-border fintech businesses.",
   },
   {
     id: "david-zhang",
@@ -58,9 +50,7 @@ export const partners: TeamMember[] = [
     focus: ["VP Engineering", "CTO", "Chief Data Scientist"],
     industries: ["AI/ML", "Semiconductor", "Cloud Infrastructure"],
     location: "San Jose, CA",
-    bio: "15+ years in tech executive search. Former software engineer turned headhunter. Deep network across FAANG alumni, Bay Area startups, and China tech giants. Has built R&D teams from 0→100 for 20+ venture-backed companies.",
-    highlight:
-      "Recruited the CTO who scaled engineering from 30 to 300 engineers in 24 months.",
+    bio: "Focuses on engineering, technology, and data science leadership searches across AI, semiconductors, and cloud infrastructure.",
   },
 ];
 
@@ -68,15 +58,13 @@ export const advisoryBoard = [
   {
     name: "xxxxxx",
     role: "Board Advisor — Healthcare",
-    bio: "Former Chief Medical Officer at a Fortune 500 pharmaceutical company. 30+ years in clinical development and FDA regulatory strategy.",
-    affiliation: "Ex-Pfizer, Ex-J&J",
+    bio: "Focuses on healthcare leadership, clinical development, and regulatory strategy.",
     industries: ["Healthcare", "Biotech"],
   },
   {
     name: "xxxxxx",
     role: "Board Advisor — Industrial & Supply Chain",
-    bio: "Former SVP Global Supply Chain at a leading automotive Tier-1 supplier. Expert in China-sourced manufacturing and cross-border logistics.",
-    affiliation: "Ex-Continental, Ex-Bosch",
+    bio: "Focuses on manufacturing, supply chain leadership, and cross-border logistics.",
     industries: ["Manufacturing", "Supply Chain"],
   },
 ];

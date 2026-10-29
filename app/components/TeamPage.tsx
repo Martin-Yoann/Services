@@ -77,7 +77,7 @@ export default function TeamPage() {
             Partners Who&apos;ve <span style={{ color: "var(--hg-color-accent)" }}>Been There</span>
           </h1>
           <p className="text-sm md:text-base leading-relaxed text-white/50 max-w-2xl mx-auto mb-8">
-            Every partner at Happy Global has 15+ years of executive search experience — and most have held operating roles in the industries they serve. You&apos;re not hiring a recruiter. You&apos;re hiring a former operator who understands your business.
+            Our partners support executive searches with sector knowledge, market research, and direct candidate engagement. We work with you to understand the role and your business needs.
           </p>
 
           {/* Stats bar */}
@@ -121,12 +121,12 @@ export default function TeamPage() {
               Guided by <span style={{ color: "var(--hg-color-accent)" }}>Industry Veterans</span>
             </h2>
             <p className="text-sm text-white/45 max-w-xl mx-auto mt-3">
-              Our advisory board brings decades of operating experience to ensure every search is calibrated to real business outcomes — not just role specifications.
+              Our advisors contribute sector perspectives to help align search priorities with business needs.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {advisoryBoard.map((advisor) => (
-              <div key={advisor.name} className="p-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.04]"
+              <div key={advisor.role} className="p-6 rounded-2xl transition-all duration-300 hover:bg-white/[0.04]"
                 style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 rounded-xl shrink-0 flex items-center justify-center text-sm font-black text-white"
@@ -136,7 +136,6 @@ export default function TeamPage() {
                   <div>
                     <h3 className="text-sm font-bold text-white hg-heading">{advisor.name}</h3>
                     <p className="text-[11px] font-semibold mt-0.5" style={{ color: "var(--hg-color-accent)" }}>{advisor.role}</p>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-white/30 mt-1">{advisor.affiliation}</p>
                     <p className="text-xs leading-relaxed text-white/50 mt-3">{advisor.bio}</p>
                     <div className="flex flex-wrap gap-1.5 mt-3">
                       {advisor.industries.map((ind) => (

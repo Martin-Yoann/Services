@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { articles, resources } from "@/app/data/insights";
-import { ChevronRight, Checkmark } from "@/app/components/Icons";
+import { ChevronRight } from "@/app/components/Icons";
 
 const categories = [
   "All",
@@ -18,12 +17,7 @@ type Cat = (typeof categories)[number];
 
 export default function InsightsPage() {
   const [activeCat, setActiveCat] = useState<Cat>("All");
-  const [downloadForm, setDownloadForm] = useState<{
-    open: boolean;
-    resourceTitle: string;
-    email: string;
-    submitted: boolean;
-  }>({ open: false, resourceTitle: "", email: "", submitted: false });
+  const [downloadForm, setDownloadForm] = useState({ open: false, resourceTitle: "" });
 
   const filtered =
     activeCat === "All"
@@ -34,20 +28,9 @@ export default function InsightsPage() {
     setDownloadForm({
       open: true,
       resourceTitle: title,
-      email: "",
-      submitted: false,
     });
   };
 
-  const submitDownload = (e: React.FormEvent) => {
-    e.preventDefault();
-    setDownloadForm((prev) => ({ ...prev, submitted: true }));
-    // In production: send email to newsletter/resource delivery endpoint
-    console.log("[Resource Download]", {
-      resource: downloadForm.resourceTitle,
-      email: downloadForm.email,
-    });
-  };
 
   return (
     <>
@@ -287,7 +270,7 @@ export default function InsightsPage() {
                 border: "1px solid rgba(255,255,255,0.06)",
               }}
             >
-              Downloadable Resources
+              Resources
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-white hg-heading tracking-tight">
               Practical Tools for{" "}
@@ -349,7 +332,7 @@ export default function InsightsPage() {
                     border: `1px solid ${r.accent}20`,
                   }}
                 >
-                  {r.requiresEmail ? "Download (Free)" : "Download"}
+                  Request Resource
                 </button>
               </div>
             ))}
@@ -357,95 +340,16 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      {/* ═══ DOWNLOAD MODAL ═══ */}
+      {/* Resource requests use the monitored contact channel; no simulated delivery. */}
       {downloadForm.open && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() =>
-              setDownloadForm((prev) => ({ ...prev, open: false }))
-            }
-          />
-          <div
-            className="relative w-full max-w-md rounded-2xl p-6 md:p-8"
-            style={{
-              background: "var(--hg-color-surface)",
-              border: "1px solid var(--hg-color-border)",
-              boxShadow:
-                "0 24px 80px rgba(10,47,42,0.14), 0 8px 20px rgba(10,47,42,0.06)",
-            }}
-          >
-            {downloadForm.submitted ? (
-              <div className="text-center py-6">
-                <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ background: "rgba(20,184,166,0.1)" }}
-                >
-                  <Checkmark size={20} strokeColor="#14b8a6" />
-                </div>
-                <h3 className="text-lg font-bold hg-heading mb-2">
-                  Check Your Inbox
-                </h3>
-                <p style={{ color: "var(--hg-color-text-secondary)" }}>
-                  We&apos;ve sent{" "}
-                  <strong>{downloadForm.resourceTitle}</strong> to{" "}
-                  {downloadForm.email}. You&apos;ll also receive our monthly
-                  insights newsletter (unsubscribe anytime).
-                </p>
-                <button
-                  onClick={() =>
-                    setDownloadForm({
-                      open: false,
-                      resourceTitle: "",
-                      email: "",
-                      submitted: false,
-                    })
-                  }
-                  className="mt-6 text-sm font-bold cursor-pointer"
-                  style={{ color: "var(--hg-color-accent)" }}
-                >
-                  Close
-                </button>
-              </div>
-            ) : (
-              <>
-                <h3 className="text-lg font-bold hg-heading mb-1">
-                  Download Resource
-                </h3>
-                <p
-                  className="text-xs mb-6"
-                  style={{ color: "var(--hg-color-text-secondary)" }}
-                >
-                  {downloadForm.resourceTitle}
-                </p>
-                <form onSubmit={submitDownload} className="space-y-4">
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-[0.1em] mb-1.5">
-                      Work Email *
-                    </label>
-                    <input
-                      type="email"
-                      value={downloadForm.email}
-                      onChange={(e) =>
-                        setDownloadForm((prev) => ({
-                          ...prev,
-                          email: e.target.value,
-                        }))
-                      }
-                      required
-                      className="hg-input w-full"
-                      placeholder="your@company.com"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="hg-btn-shine w-full font-bold py-3 rounded-lg text-white transition-all duration-300 hover:-translate-y-0.5 hg-gradient-coral cursor-pointer"
-                  >
-                    Send Me the Resource
-                  </button>
-                </form>
-              </>
-            )}
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="resource-request-title">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setDownloadForm((p) => ({ ...p, open: false }))} />
+          <div className="relative w-full max-w-md rounded-2xl p-6 md:p-8 bg-white text-[#0a2f2a]">
+            <h3 id="resource-request-title" className="text-lg font-bold mb-3">Request a Resource</h3>
+            <p className="text-sm mb-4">{downloadForm.resourceTitle}</p>
+            <p className="text-sm mb-5">To ask about this resource and its availability, please contact our support team.</p>
+            <a className="text-sm font-semibold underline" href={`mailto:Support@happyglobalservice.com?subject=${encodeURIComponent(`Resource request: ${downloadForm.resourceTitle}`)}`}>Support@happyglobalservice.com</a>
+            <button type="button" onClick={() => setDownloadForm((p) => ({ ...p, open: false }))} className="block mt-6 text-sm font-bold">Close</button>
           </div>
         </div>
       )}

@@ -26,7 +26,7 @@ const steps = [
     color: "#14b8a6",
     accentRgb: "20,184,166",
     description:
-      "We map every organization globally that employs leaders with the profile you need. This includes direct competitors, adjacent industries, academia, government, and private equity portfolios. The result is a 100-200 candidate market map — comprehensive enough that you can be confident no stone was left unturned.",
+      "We research organizations and markets that employ leaders with the profile you need. This includes direct competitors, adjacent industries, academia, government, and private equity portfolios. The result is a 100-200 candidate market map — comprehensive enough that you can be confident no stone was left unturned.",
     deliverables: [
       "Target Company Map (by region, industry, function)",
       "Longlist of 100-200 Potential Candidates",
@@ -34,7 +34,7 @@ const steps = [
       "Pipeline Diversity Analysis",
     ],
     differentiator:
-      "We don't stop at 'people we already know.' We identify every possible candidate — then approach them discretely, even if they've never applied for a job.",
+      "We don't stop at 'people we already know.' We research relevant candidates and approach them discreetly, even if they've never applied for a job.",
   },
   {
     num: "03",
@@ -51,7 +51,7 @@ const steps = [
       "Weekly Pipeline Updates",
     ],
     differentiator:
-      "In 15+ years, we've never had a confidential search leaked. Our approach protocol is a competitive advantage for sensitive mandates.",
+      "We use confidential outreach and graduated disclosure for sensitive searches. We will not disclose your search to your current employer or approach a referee there without your express permission.",
   },
   {
     num: "04",

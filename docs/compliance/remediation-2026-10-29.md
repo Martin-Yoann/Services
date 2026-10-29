@@ -1,5 +1,7 @@
 # Website compliance remediation record
 
+Historical first-round record (commit eb77cbf). For the latest second-round fixes and outstanding requirements, see [review-gap-register-2026-10-29.md](review-gap-register-2026-10-29.md). Cookie wording, robots/TDM and additional claims have since been updated.
+
 Date: 2026-10-29 (Asia/Shanghai). Target branch: dev. Production branch: main.
 
 ## Baseline and legal document history

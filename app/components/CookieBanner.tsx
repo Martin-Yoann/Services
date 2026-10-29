@@ -13,8 +13,8 @@ export default function CookieBanner() {
     return () => clearTimeout(t);
   }, []);
 
-  const dismiss = (choice: "accepted" | "declined") => {
-    localStorage.setItem("cookie-consent", choice);
+  const dismiss = () => {
+    localStorage.setItem("cookie-consent", "acknowledged");
     setExiting(true);
     setTimeout(() => {
       setVisible(false);
@@ -78,8 +78,8 @@ export default function CookieBanner() {
             </div>
             <div className="min-w-0">
               <p className="text-xs sm:text-sm leading-relaxed text-white/70">
-                We use cookies to understand how you engage with our content and
-                to ensure the best experience on our site.{" "}
+                We store your preference for dismissing this notice on your device.
+                We do not currently use analytics cookies.{" "}
                 <a
                   href="/privacy-policy"
                   className="font-semibold whitespace-nowrap hover:underline transition-opacity"
@@ -94,21 +94,14 @@ export default function CookieBanner() {
           {/* ── Buttons ── */}
           <div className="flex items-center gap-2.5 shrink-0">
             <button
-              onClick={() => dismiss("declined")}
-              className="text-xs font-semibold px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/8 cursor-pointer"
-              style={{ color: "rgba(255,255,255,0.5)" }}
-            >
-              Decline
-            </button>
-            <button
-              onClick={() => dismiss("accepted")}
+              onClick={dismiss}
               className="text-xs font-bold px-5 py-2 rounded-lg text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg cursor-pointer"
               style={{
                 background: "linear-gradient(135deg, #D96C57, #c45a47)",
                 boxShadow: "0 2px 12px rgba(217,108,87,0.3)",
               }}
             >
-              Accept
+              Got it
             </button>
           </div>
         </div>

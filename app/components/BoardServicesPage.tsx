@@ -137,10 +137,10 @@ export default function BoardServicesPage() {
               <span className="text-[10px] font-semibold text-white/40">Pre-IPO Semiconductor Company</span>
             </div>
             <h3 className="text-xl font-bold text-white hg-heading mb-4">
-              Built the Entire Board for a Pre-IPO Semiconductor Company
+              Board Search for Pre-IPO Businesses
             </h3>
             <p className="text-sm leading-relaxed text-white/55 mb-6">
-              A Shenzhen-based semiconductor company preparing for HKEX listing needed to transform from a founder-dominated board to a governance-compliant, investor-ready board with two independent directors — one with audit committee expertise, one with industry depth. We identified, approached, and placed both directors within 90 days, directly satisfying HKEX listing rule requirements for board independence and audit committee composition.
+              Pre-IPO board searches can involve independent directors with audit committee and industry expertise. We support candidate identification, assessment, and stakeholder coordination, with the search scope and timing agreed for each engagement.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {["Independent Director Search", "Board Composition Advisory", "Governance Review"].map((h) => (

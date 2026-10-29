@@ -38,7 +38,7 @@ export const articles: InsightArticle[] = [
     category: "Salary Guide",
     date: "2026-05-20",
     description:
-      "Base salary, bonus, and equity benchmarks for CTO, VP Engineering, Chief Data Scientist, and CPO roles across Series-B through public companies. Data from 120+ completed searches in the last 18 months.",
+      "Base salary, bonus, and equity benchmarks for CTO, VP Engineering, Chief Data Scientist, and CPO roles across Series-B through public companies.",
     readTime: "15 min read",
     accent: "#14b8a6",
     featured: true,
@@ -59,7 +59,7 @@ export const articles: InsightArticle[] = [
     category: "Leadership",
     date: "2026-03-28",
     description:
-      "Lessons from 15+ cross-border leadership build-outs: sequencing hires, balancing local vs. expat leaders, compensation parity across markets, and the cultural integration playbook that actually works.",
+      "Considerations for cross-border leadership build-outs: sequencing hires, balancing local vs. expat leaders, compensation parity across markets, and the cultural integration playbook that actually works.",
     readTime: "14 min read",
     accent: "#a855f7",
   },
@@ -69,7 +69,7 @@ export const articles: InsightArticle[] = [
     category: "Case Study",
     date: "2026-03-05",
     description:
-      "An anonymized deep-dive into a dual-jurisdiction (SEC + FCA) CFO search: how we mapped candidates globally, assessed regulatory competency, and closed a placement that has since led two funding rounds.",
+      "An anonymized deep-dive into a dual-jurisdiction (SEC + FCA) CFO search: considerations for mapping candidates globally and assessing regulatory competency.",
     readTime: "8 min read",
     accent: "#14b8a6",
   },
@@ -79,7 +79,7 @@ export const articles: InsightArticle[] = [
     category: "Hiring Trends",
     date: "2026-02-14",
     description:
-      "Quantifying the financial and organizational cost of executive mis-hires. Based on our data: why retained search, while more expensive upfront, produces a 3x lower failure rate than contingent or internal recruitment for C-suite roles.",
+      "Exploring the financial and organizational costs of executive mis-hires, with considerations for assessing candidates and choosing a search approach.",
     readTime: "9 min read",
     accent: "#D96C57",
   },

@@ -1,5 +1,7 @@
 # Validation results
 
+This file records the first-round validation. See review-gap-register-2026-10-29.md for the second-round state.
+
 Date: 2026-10-29. Validation runs against the dev working tree.
 
 - `npx tsc --noEmit`: passed.

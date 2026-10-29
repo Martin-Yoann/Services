@@ -133,7 +133,7 @@ export default function ForCandidatesPage() {
               },
               {
                 t: "Global Network",
-                d: "Offices in Dallas, San Jose, and Shanghai. Opportunities across U.S., China, UK, EU, and Southeast Asia.",
+                d: "Global HQ in Dallas–Fort Worth, remote client relations in San Jose, and APAC operations with a local partner in Shanghai.",
                 i: "🌏",
               },
             ].map((item) => (

@@ -1,3 +1,4 @@
+import { LEGAL_VERSION } from "@/app/data/legal";
 import PageHeader from "@/app/components/PageHeader";
 
 export default function PrivacyPolicyPage() {
@@ -15,7 +16,8 @@ export default function PrivacyPolicyPage() {
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="prose prose-slate max-w-none space-y-8 text-sm leading-relaxed" style={{ color: "var(--hg-color-text-secondary)" }}>
             <p className="text-base" style={{ color: "var(--hg-color-text-primary)" }}>
-              <strong>Effective Date:</strong> January 1, 2026<br /><strong>Website revision:</strong> October 29, 2026 (entity and contact details)
+              <strong>Effective Date:</strong> January 1, 2026<br /><strong>Website revision:</strong> October 29, 2026 (entity, contact details and browser storage notice)
+              <br /><strong>Revision ID:</strong> {LEGAL_VERSION}
             </p>
 
             <div>
@@ -55,7 +57,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul className="list-disc pl-5 space-y-1 mt-2">
                 <li><strong>With client companies</strong> — when presenting candidates for open positions, only with your prior consent</li>
-                <li><strong>With service providers</strong> — trusted third parties who assist in operating our business (hosting, email, analytics) under strict confidentiality agreements</li>
+                <li><strong>With service providers</strong> — trusted third parties who assist in operating our business (hosting and email) under strict confidentiality agreements</li>
                 <li><strong>As required by law</strong> — to comply with legal processes or protect our rights</li>
               </ul>
               <p className="mt-3">We never sell your personal information to third parties.</p>
@@ -97,9 +99,9 @@ export default function PrivacyPolicyPage() {
             <div>
               <h3 className="text-lg font-bold mb-3 hg-heading">7. Cookies</h3>
               <p>
-                Our website uses essential cookies to function properly and analytics cookies to
-                understand how visitors use our site. You can manage cookie preferences through
-                your browser settings. See our cookie banner for more details.
+                The website stores your preference for dismissing its notice in your browser
+                local storage. We do not currently use analytics cookies. You can clear this
+                preference using your browser settings.
               </p>
             </div>
 

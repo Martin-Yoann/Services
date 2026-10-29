@@ -1,3 +1,4 @@
+import { LEGAL_VERSION } from "@/app/data/legal";
 import PageHeader from "@/app/components/PageHeader";
 
 export default function TermsOfServicePage() {
@@ -16,6 +17,7 @@ export default function TermsOfServicePage() {
           <div className="prose prose-slate max-w-none space-y-8 text-sm leading-relaxed" style={{ color: "var(--hg-color-text-secondary)" }}>
             <p className="text-base" style={{ color: "var(--hg-color-text-primary)" }}>
               <strong>Effective Date:</strong> January 1, 2026<br /><strong>Website revision:</strong> October 29, 2026 (entity, contact details and removal of placement guarantees)
+              <br /><strong>Revision ID:</strong> {LEGAL_VERSION}
             </p>
 
             <div>
