@@ -15,7 +15,7 @@ export default function TermsOfServicePage() {
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="prose prose-slate max-w-none space-y-8 text-sm leading-relaxed" style={{ color: "var(--hg-color-text-secondary)" }}>
             <p className="text-base" style={{ color: "var(--hg-color-text-primary)" }}>
-              <strong>Effective Date:</strong> January 1, 2026
+              <strong>Effective Date:</strong> January 1, 2026<br /><strong>Website revision:</strong> October 29, 2026 (entity, contact details and removal of placement guarantees)
             </p>
 
             <div>
@@ -81,19 +81,8 @@ export default function TermsOfServicePage() {
               </p>
             </div>
 
-            <div>
-              <h3 className="text-lg font-bold mb-3 hg-heading">7. Placement Guarantees</h3>
-              <p>
-                Our executive search and professional recruitment engagements include placement
-                guarantee periods as specified in individual client agreements. If a placed candidate
-                voluntarily leaves or is terminated for cause within the guarantee period, we will
-                conduct a replacement search at no additional professional fee, subject to the terms
-                of the engagement agreement.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-bold mb-3 hg-heading">8. Third-Party Links</h3>
+<div>
+              <h3 className="text-lg font-bold mb-3 hg-heading">7. Third-Party Links</h3>
               <p>
                 Our website may contain links to third-party websites. We are not responsible for
                 the content, privacy practices, or terms of such external sites. Access them at
@@ -102,7 +91,7 @@ export default function TermsOfServicePage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-3 hg-heading">9. Modifications to Terms</h3>
+              <h3 className="text-lg font-bold mb-3 hg-heading">8. Modifications to Terms</h3>
               <p>
                 We reserve the right to modify these Terms at any time. Changes will be effective
                 immediately upon posting to this page. Continued use of our services after changes
@@ -111,7 +100,7 @@ export default function TermsOfServicePage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-3 hg-heading">10. Governing Law</h3>
+              <h3 className="text-lg font-bold mb-3 hg-heading">9. Governing Law</h3>
               <p>
                 These Terms shall be governed by and construed in accordance with the laws of the
                 State of Texas, without regard to its conflict of law principles. Any disputes
@@ -120,14 +109,15 @@ export default function TermsOfServicePage() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-3 hg-heading">11. Contact</h3>
+              <h3 className="text-lg font-bold mb-3 hg-heading">10. Contact</h3>
               <p>
                 For questions about these Terms of Service, please contact:
               </p>
               <p className="mt-2">
-                <strong>Happy Global</strong><br />
-                Email: echo.yang@happyglobalservice.com<br />
-                Phone: +1 669 871 3588
+                <strong>Happy Global Inc.</strong><br />
+                Email: Support@happyglobalservice.com<br />
+                Phone: +1 669 871 3588<br />
+                Registered address: 1101 E Arapaho Rd, STE 210, Richardson, TX 75081, USA
               </p>
             </div>
 

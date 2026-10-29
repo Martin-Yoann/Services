@@ -1,5 +1,6 @@
+"use client";
+import { METRICS } from "@/app/data/site";
 import Link from "next/link";
-import { STATS } from "@/app/data/site";
 
 /* ── Modern Why Us — merged KeyPoints card design + deep differentiators ── */
 
@@ -81,16 +82,11 @@ const values = [
   },
   {
     title: "Long-Term Partnership",
-    desc: "12-month placement guarantees, post-hire integration support, and ongoing market counsel. Your growth is our reputation.",
+    desc: "Results-driven search execution, proactive candidate engagement, and efficient hiring processes, backed by post-hire support and ongoing market counsel. Your growth is our reputation.",
   },
 ];
 
-const stats = [
-  { v: "500+", l: "Annual Placements", color: "#D96C57" },
-  { v: "95%", l: "Retention Rate", color: "#14b8a6" },
-  { v: "30d", l: "Avg. Time-to-Hire", color: "#f59e0b" },
-  { v: "8+", l: "Market Hubs", color: "#a855f7" },
-];
+const stats = METRICS.map((m) => ({ v: m.value, l: m.label, color: m.color }));
 
 export default function WhyUs() {
   return (
@@ -197,7 +193,7 @@ export default function WhyUs() {
                 border: "1px solid rgba(217,108,87,0.12)",
               }}
             >
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center relative z-10">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center relative z-10">
                 {stats.map((s) => (
                   <div key={s.l}>
                     <p className="text-3xl md:text-4xl font-bold mb-1" style={{ fontFamily: "var(--hg-font-heading)", color: s.color }}>

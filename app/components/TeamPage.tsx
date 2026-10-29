@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { partners, advisoryBoard, type TeamMember } from "@/app/data/team";
-import { STATS } from "@/app/data/site";
+import { partners, type TeamMember } from "@/app/data/team";
 import { ChevronRight } from "@/app/components/Icons";
 
 function PartnerCard({ member }: { member: TeamMember }) {
@@ -36,16 +35,6 @@ function PartnerCard({ member }: { member: TeamMember }) {
           {member.bio}
         </p>
 
-        {/* Highlight */}
-        <div className="rounded-xl p-4 mb-5" style={{ background: "rgba(217,108,87,0.04)", border: "1px solid rgba(217,108,87,0.1)" }}>
-          <p className="text-[10px] font-bold uppercase tracking-[0.15em] mb-1" style={{ color: "var(--hg-color-accent)" }}>
-            Notable Placement
-          </p>
-          <p className="text-xs leading-relaxed font-medium" style={{ color: "var(--hg-color-text-primary)" }}>
-            &ldquo;{member.highlight}&rdquo;
-          </p>
-        </div>
-
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-5">
           {member.focus.map((f) => (
@@ -62,27 +51,7 @@ function PartnerCard({ member }: { member: TeamMember }) {
           ))}
         </div>
 
-        {/* Stats badge */}
-        <div className="flex items-center justify-between pt-4" style={{ borderTop: "1px solid var(--hg-color-border)" }}>
-          <div>
-            <p className="text-2xl font-black" style={{ fontFamily: "var(--hg-font-heading)", color: "var(--hg-color-accent)" }}>
-              {member.stats.value}
-            </p>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ color: "var(--hg-color-text-secondary)" }}>
-              {member.stats.label}
-            </p>
-          </div>
-          {member.linkedin && (
-            <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
-              className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
-              style={{ background: "rgba(10,47,42,0.05)" }}
-              aria-label={`${member.name} LinkedIn`}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--hg-color-primary)">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-            </a>
-          )}
-        </div>
+
       </div>
     </div>
   );
@@ -112,19 +81,7 @@ export default function TeamPage() {
           </p>
 
           {/* Stats bar */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12 pt-6 border-t border-white/8">
-            {[
-              { v: "20+", l: "Avg. Years Exp." },
-              { v: STATS.executivePlacements, l: "Exec Placements" },
-              { v: STATS.avgPartnershipYears, l: "Avg. Client Partnership" },
-              { v: STATS.languages, l: "Languages Spoken" },
-            ].map((s) => (
-              <div key={s.l}>
-                <p className="text-2xl md:text-3xl font-black text-white hg-heading">{s.v}</p>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40 mt-1">{s.l}</p>
-              </div>
-            ))}
-          </div>
+
         </div>
       </section>
 

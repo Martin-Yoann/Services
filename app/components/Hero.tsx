@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight } from "@/app/components/Icons";
 
@@ -11,7 +11,6 @@ interface Theme {
   icon: string;
   accent: string;
   accentRgb: string;
-  stats: Array<{ value: string; label: string }>;
 }
 
 const themes: Theme[] = [
@@ -22,24 +21,14 @@ const themes: Theme[] = [
     icon: "🌍",
     accent: "#D96C57",
     accentRgb: "217,108,87",
-    stats: [
-      { value: "500+", label: "Placements Annually" },
-      { value: "8+", label: "Market Hubs" },
-      { value: "95%", label: "Retention Rate" },
-    ],
   },
   {
     id: 1,
     title: "Fast Results",
-    subtitle: "Average placement time of 30 days or less",
+    subtitle: "Focused search execution and proactive candidate engagement",
     icon: "⚡",
     accent: "#14b8a6",
     accentRgb: "20,184,166",
-    stats: [
-      { value: "30d", label: "Avg. Placement" },
-      { value: "98%", label: "Client Satisfaction" },
-      { value: "24h", label: "Initial Response" },
-    ],
   },
   {
     id: 2,
@@ -48,11 +37,6 @@ const themes: Theme[] = [
     icon: "✓",
     accent: "#f59e0b",
     accentRgb: "245,158,11",
-    stats: [
-      { value: "2000+", label: "Placements Total" },
-      { value: "50+", label: "Enterprise Clients" },
-      { value: "12yr", label: "Avg. Partnership" },
-    ],
   },
 ];
 
@@ -63,7 +47,7 @@ const Hero = () => {
 
   const current = themes[activeIndex];
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => { const frame = requestAnimationFrame(() => setMounted(true)); return () => cancelAnimationFrame(frame); }, []);
 
   /* Parallax scroll */
   useEffect(() => {
@@ -131,15 +115,7 @@ const Hero = () => {
             </div>
 
             {/* Stats bar */}
-            <div className="flex gap-6 md:gap-8 mt-6 md:mt-10 pt-5 md:pt-8 border-t border-white/8"
-              style={{ opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(16px)", transition: "opacity 0.6s ease 0.55s, transform 0.6s ease 0.55s" }}>
-              {current.stats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="text-2xl md:text-4xl font-bold transition-colors duration-500" style={{ color: current.accent, fontFamily: "var(--hg-font-heading)" }}>{stat.value}</p>
-                  <p className="text-[11px] md:text-sm text-white/45 md:text-white/50 mt-0.5">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+
 
             {/* Mobile: compact theme switcher */}
             <div className="lg:hidden flex items-center gap-2 mt-5">

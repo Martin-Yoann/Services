@@ -1,0 +1,136 @@
+{
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/services",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/services/executive-search",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/services/professional-recruitment",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/services/talent-advisory",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/why-us",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/global-coverage",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/track-record",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/team",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/board-services",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/privacy-policy",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/terms-of-service",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/for-candidates",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/industries",
+      "status": 200,
+      "forbidden": false,
+      "horizontal": false
+    },
+    {
+      "path": "/",
+      "mobile": true,
+      "horizontal": false
+    },
+    {
+      "path": "/contact",
+      "mobile": true,
+      "horizontal": false
+    },
+    {
+      "path": "/services/talent-advisory",
+      "mobile": true,
+      "horizontal": false
+    },
+    {
+      "path": "/track-record",
+      "mobile": true,
+      "horizontal": false
+    },
+    {
+      "path": "/team",
+      "mobile": true,
+      "horizontal": false
+    },
+    {
+      "path": "/global-coverage",
+      "mobile": true,
+      "horizontal": false
+    },
+    {
+      "path": "/for-candidates",
+      "mobile": true,
+      "horizontal": false
+    }
+  ],
+  "companyOptional": true,
+  "unchecked": true,
+  "invalidBefore": false,
+  "validAfter": true,
+  "external": [],
+  "errors": [],
+  "failures": []
+}

@@ -1,25 +1,23 @@
 import Link from "next/link";
 import { ChevronRight } from "@/app/components/Icons";
-import { STATS } from "@/app/data/site";
 
 const flagshipService = {
   id: "exec-search",
   title: "Executive Search",
   subtitle: "Retained C-Suite & VP-Level Leadership",
   description:
-    "Confidential, retained mandates for board directors, C-suite executives, and senior vice presidents. We work exclusively — one firm, one mandate, one dedicated team — with a 12-month placement guarantee and integrated onboarding support.",
+    "Confidential, retained mandates for board directors, C-suite executives, and senior vice presidents. We work exclusively with a dedicated search team and integrated onboarding support.",
   features: [
     "Board Director & C-Suite mandates",
     "Exclusive retained engagement model",
     "Confidential market mapping & passive candidate outreach",
     "Competency-based assessment + psychometric profiling",
     "360° reference verification (8-12 referees per candidate)",
-    "12-month post-placement guarantee with active support",
+    "Post-hire integration support and ongoing market counsel.",
   ],
   href: "/services/executive-search",
   accent: "#D96C57",
   accentRgb: "217,108,87",
-  stat: { value: STATS.executivePlacements, label: "Executive Placements" },
 };
 
 const otherServices = [
@@ -94,10 +92,6 @@ export default function Services() {
                     {flagshipService.description}
                   </p>
                   <div className="flex items-center gap-4">
-                    <div className="text-center rounded-xl px-5 py-3" style={{ background: `rgba(${flagshipService.accentRgb},0.08)` }}>
-                      <p className="text-3xl font-black hg-heading" style={{ color: flagshipService.accent }}>{flagshipService.stat.value}</p>
-                      <p className="text-[9px] font-bold uppercase tracking-[0.12em]" style={{ color: "var(--hg-color-text-secondary)" }}>{flagshipService.stat.label}</p>
-                    </div>
                     <span className="inline-flex items-center gap-2 text-sm font-bold transition-all duration-300 group-hover:gap-3" style={{ color: flagshipService.accent }}>
                       Explore Executive Search
                       <ChevronRight size={15} />
@@ -178,9 +172,9 @@ export default function Services() {
         <div className="relative container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-14">
             {[
-              { title: "Global Reach", desc: "13 cities, 3 continents, 5+ languages — local expertise, global scale for cross-border leadership placement.", accent: "#D96C57" },
-              { title: "Speed & Quality", desc: "30-day average time-to-close. 3-5 thoroughly vetted finalists per role, each pre-qualified against your success profile.", accent: "#14b8a6" },
-              { title: "Proven Retention", desc: "95% of placements stay beyond 12 months. Our 12-month guarantee includes active integration support — not just a replacement promise.", accent: "#f59e0b" },
+              { title: "Global Reach", desc: "Local expertise and global networks for cross-border leadership search.", accent: "#D96C57" },
+              { title: "Speed & Quality", desc: "Efficient search execution and thoroughly vetted candidates assessed against your success profile.", accent: "#14b8a6" },
+              { title: "Post-Hire Support", desc: "Post-hire integration support and ongoing market counsel.", accent: "#f59e0b" },
             ].map((item) => (
               <div key={item.title} className="group text-center p-8 rounded-2xl cursor-default hg-card-lift"
                 style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>

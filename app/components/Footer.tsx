@@ -1,5 +1,7 @@
+"use client";
+import { METRICS, OFFICES } from "@/app/data/site";
 import Link from "next/link";
-import { EmailIcon, LinkedInIcon, XIcon } from "@/app/components/Icons";
+import { EmailIcon } from "@/app/components/Icons";
 
 const footerLinks = {
   services: [
@@ -20,20 +22,11 @@ const footerLinks = {
   ],
 };
 
-const locations = [
-  { city: "Dallas", region: "North America HQ", flag: "🇺🇸" },
-  { city: "San Jose", region: "Silicon Valley", flag: "🇺🇸" },
-  { city: "Shanghai", region: "Asia-Pacific HQ", flag: "🇨🇳" },
-];
+const locations = OFFICES;
 
-const stats = [
-  { v: "500+", l: "Placements Annually", color: "#D96C57" },
-  { v: "95%", l: "Retention Rate", color: "#14b8a6" },
-  { v: "30d", l: "Avg. Time-to-Hire", color: "#f59e0b" },
-];
+const stats = METRICS.map((m) => ({ v: m.value, l: m.label, color: m.color }));
 
 export default function Footer() {
-  const year = new Date().getFullYear();
 
   return (
     <footer className="relative bg-[#061410] text-white overflow-hidden">
@@ -104,7 +97,7 @@ export default function Footer() {
               </p>
 
               {/* Animated stats row */}
-              <div className="flex gap-8 mb-10">
+              <div className="grid grid-cols-3 gap-4 mb-10">
                 {stats.map((s) => (
                   <div key={s.l} className="group/stat cursor-default">
                     <p
@@ -139,7 +132,7 @@ export default function Footer() {
                       {loc.city}
                     </p>
                     <p className="text-[10px] text-white/35 mt-1">
-                      {loc.region}
+                      {loc.region}<br />{loc.detail}
                     </p>
                   </div>
                 ))}
@@ -202,10 +195,10 @@ export default function Footer() {
                 <ul className="space-y-3.5 text-sm text-white/60">
                   <li>
                     <a
-                      href="mailto:echo.yang@happyglobalservice.com"
+                      href="mailto:Support@happyglobalservice.com"
                       className="hover:text-white transition-colors duration-200"
                     >
-                      echo.yang@happyglobalservice.com
+                      Support@happyglobalservice.com
                     </a>
                   </li>
                   <li>
@@ -221,20 +214,7 @@ export default function Footer() {
                 {/* Social icons */}
                 <div className="flex items-center gap-2 mt-5">
                   <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-white/12 hover:scale-110"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                    }}
-                    aria-label="LinkedIn"
-                  >
-                    <LinkedInIcon size={14} />
-                  </a>
-                  <a
-                    href="mailto:echo.yang@happyglobalservice.com"
+                    href="mailto:Support@happyglobalservice.com"
                     className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-white/12 hover:scale-110"
                     style={{
                       background: "rgba(255,255,255,0.04)",
@@ -243,19 +223,6 @@ export default function Footer() {
                     aria-label="Email"
                   >
                     <EmailIcon size={14} />
-                  </a>
-                  <a
-                    href="https://x.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-white/12 hover:scale-110"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                    }}
-                    aria-label="X / Twitter"
-                  >
-                    <XIcon size={13} />
                   </a>
                 </div>
               </div>
@@ -269,7 +236,7 @@ export default function Footer() {
           style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
         >
           <div className="flex items-center gap-2 text-xs text-white/30">
-            <span>&copy; {year} Happy Global. All rights reserved.</span>
+            <span>&copy; 2026 Happy Global Inc. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6 text-xs text-white/35">
             <Link

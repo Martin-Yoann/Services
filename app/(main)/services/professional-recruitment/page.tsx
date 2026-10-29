@@ -24,16 +24,9 @@ export default function ProfessionalRecruitmentPage() {
               <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full" style={{ color: "#14b8a6", background: "rgba(20,184,166,0.06)", border: "1px solid rgba(20,184,166,0.1)" }}>Specialist Talent</span>
               <h2 className="text-2xl md:text-3xl font-bold hg-heading mb-6">Building teams that execute</h2>
               <p className="text-sm leading-relaxed hg-text-secondary mb-4">Our professional recruitment practice covers specialist roles from individual contributor to senior manager. We combine deep function-specific knowledge with broad market reach to deliver quality candidates, fast.</p>
-              <p className="text-sm leading-relaxed hg-text-secondary">Every candidate is assessed for technical skill, culture fit, and long-term potential — not just resume keywords. Initial response within 24 hours, average placement in 30 days.</p>
+              <p className="text-sm leading-relaxed hg-text-secondary">Every candidate is assessed for technical skill, culture fit, and long-term potential — not just resume keywords. Typically Respond Within 24 Hrs.</p>
             </div>
-            <div className="grid grid-cols-1 gap-4">
-              {[{ v: "2000+", l: "Professional Placements", c: "#D96C57" }, { v: "24h", l: "Initial Response", c: "#14b8a6" }, { v: "98%", l: "Client Satisfaction", c: "#f59e0b" }].map((s) => (
-                <div key={s.l} className="group rounded-2xl p-6 text-center transition-all duration-500 hover:-translate-y-1" style={{ background: "var(--hg-color-bg)", border: "1px solid var(--hg-color-border)" }}>
-                  <p className="text-3xl md:text-4xl font-bold hg-heading group-hover:scale-105 transition-transform duration-500" style={{ color: s.c }}>{s.v}</p>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.15em] mt-1 hg-text-secondary">{s.l}</p>
-                </div>
-              ))}
-            </div>
+
           </div>
         </div>
       </section>
@@ -74,7 +67,7 @@ export default function ProfessionalRecruitmentPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[140px] opacity-[0.04] pointer-events-none" style={{ background: "#14b8a6" }} />
         <div className="relative container mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 hg-heading">Hiring specialist talent?</h2>
-          <p className="text-white/45 mb-8 max-w-lg mx-auto">Share your requirements and we'll connect you with pre-vetted professionals.</p>
+          <p className="text-white/45 mb-8 max-w-lg mx-auto">Share your requirements and we&apos;ll connect you with pre-vetted professionals.</p>
           <Link href="/contact" className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
             style={{ background: "linear-gradient(135deg, #14b8a6, #0d9488)", boxShadow: "0 4px 24px rgba(20,184,166,0.35)" }}>
             Hire Talent <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transition-transform duration-300 group-hover:translate-x-1"><polyline points="9 18 15 12 9 6" /></svg>

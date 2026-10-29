@@ -5,7 +5,6 @@ export interface IndustryData {
   name: string;
   description: string;
   roles: string[];
-  stat: { v: string; l: string };
   accent: string;
   accentRgb: string;
 }
@@ -24,7 +23,6 @@ export const industries: IndustryData[] = [
       "VP DevOps & Infrastructure",
       "Head of Research",
     ],
-    stat: { v: "120+", l: "Exec Placements/yr" },
     accent: "#D96C57",
     accentRgb: "217,108,87",
   },
@@ -41,7 +39,6 @@ export const industries: IndustryData[] = [
       "VP Fintech Product",
       "Director, Quantitative Research",
     ],
-    stat: { v: "85+", l: "Exec Placements/yr" },
     accent: "#14b8a6",
     accentRgb: "20,184,166",
   },
@@ -58,7 +55,6 @@ export const industries: IndustryData[] = [
       "VP Commercial (Pharma)",
       "Head of Digital Health",
     ],
-    stat: { v: "60+", l: "Exec Placements/yr" },
     accent: "#f59e0b",
     accentRgb: "245,158,11",
   },
@@ -75,7 +71,6 @@ export const industries: IndustryData[] = [
       "Chief Procurement Officer",
       "Head of Lean/Six Sigma",
     ],
-    stat: { v: "45+", l: "Exec Placements/yr" },
     accent: "#2d8a7a",
     accentRgb: "45,138,122",
   },
@@ -92,7 +87,6 @@ export const industries: IndustryData[] = [
       "Director Consumer Insights",
       "Head of D2C",
     ],
-    stat: { v: "70+", l: "Exec Placements/yr" },
     accent: "#a855f7",
     accentRgb: "168,85,247",
   },
@@ -109,7 +103,6 @@ export const industries: IndustryData[] = [
       "Customs & Tariffs Lead",
       "VP Procurement — Logistics",
     ],
-    stat: { v: "35+", l: "Exec Placements/yr" },
     accent: "#f43f5e",
     accentRgb: "244,63,94",
   },

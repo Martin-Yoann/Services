@@ -1,13 +1,13 @@
 "use client";
+import FormAssent from "@/app/components/FormAssent";
 
 import { useState } from "react";
 import Link from "next/link";
 import { opportunities } from "@/app/data/opportunities";
-import { candidateTestimonials } from "@/app/data/testimonials";
 import { submitCandidateForm } from "@/app/actions/contact";
 import { ChevronRight, Checkmark } from "@/app/components/Icons";
 
-type FormData = {
+type CandidateFields = {
   name: string;
   email: string;
   linkedin: string;
@@ -15,7 +15,7 @@ type FormData = {
   message: string;
 };
 
-const initialForm: FormData = {
+const initialForm: CandidateFields = {
   name: "",
   email: "",
   linkedin: "",
@@ -24,7 +24,7 @@ const initialForm: FormData = {
 };
 
 export default function ForCandidatesPage() {
-  const [form, setForm] = useState<FormData>(initialForm);
+  const [form, setForm] = useState<CandidateFields>(initialForm);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{
     success: boolean;
@@ -39,19 +39,19 @@ export default function ForCandidatesPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
     setResult(null);
     try {
-      const res = await submitCandidateForm(form);
+      const res = await submitCandidateForm({ ...form, termsAccepted: new FormData(e.currentTarget).get("termsAccepted") === "on" });
       setResult(res);
       if (res.success) setForm(initialForm);
     } catch {
       setResult({
         success: false,
         message:
-          "Something went wrong. Please email us directly at echo.yang@happyglobalservice.com.",
+          "Something went wrong. Please email us directly at Support@happyglobalservice.com.",
       });
     } finally {
       setSubmitting(false);
@@ -118,12 +118,12 @@ export default function ForCandidatesPage() {
             {[
               {
                 t: "Exclusive Access",
-                d: "70% of our C-suite and board mandates are never published. We reach out to you — not the other way around.",
+                d: "Explore confidential C-suite and board searches through direct conversations with our consultants.",
                 i: "🔒",
               },
               {
                 t: "Absolute Discretion",
-                d: "NDA protection at every stage. Your current employer will never know you're exploring — unless and until you decide to tell them.",
+                d: "We will not disclose your search to your current employer, and we will not approach a referee at your current employer without your express permission.",
                 i: "🤝",
               },
               {
@@ -181,7 +181,7 @@ export default function ForCandidatesPage() {
               className="text-sm mt-3"
               style={{ color: "var(--hg-color-text-secondary)" }}
             >
-              Client names are confidential until we've verified mutual fit.
+              Client names are confidential until we&apos;ve verified mutual fit.
               These represent a sample of our current portfolio.
             </p>
           </div>
@@ -321,10 +321,10 @@ export default function ForCandidatesPage() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
+                  <label htmlFor="candidate-name" className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
                     Full Name *
                   </label>
-                  <input
+                  <input id="candidate-name"
                     type="text"
                     name="name"
                     value={form.name}
@@ -335,10 +335,10 @@ export default function ForCandidatesPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
+                  <label htmlFor="candidate-email" className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
                     Email *
                   </label>
-                  <input
+                  <input id="candidate-email"
                     type="email"
                     name="email"
                     value={form.email}
@@ -350,10 +350,10 @@ export default function ForCandidatesPage() {
                 </div>
               </div>
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
+                <label htmlFor="candidate-linkedin" className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
                   LinkedIn URL
                 </label>
-                <input
+                <input id="candidate-linkedin"
                   type="url"
                   name="linkedin"
                   value={form.linkedin}
@@ -363,10 +363,10 @@ export default function ForCandidatesPage() {
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
+                <label htmlFor="candidate-function" className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
                   Target Function
                 </label>
-                <select
+                <select id="candidate-function"
                   name="function"
                   value={form.function}
                   onChange={update}
@@ -396,10 +396,10 @@ export default function ForCandidatesPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
+                <label htmlFor="candidate-message" className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">
                   Brief Career Summary *
                 </label>
-                <textarea
+                <textarea id="candidate-message"
                   name="message"
                   value={form.message}
                   onChange={update}
@@ -409,6 +409,7 @@ export default function ForCandidatesPage() {
                   placeholder="Current role, industry, years of experience, and what you're looking for next..."
                 />
               </div>
+              <div className="text-white"><FormAssent candidate /></div>
               <button
                 type="submit"
                 disabled={submitting}
@@ -421,62 +422,6 @@ export default function ForCandidatesPage() {
               </button>
             </form>
           )}
-        </div>
-      </section>
-
-      {/* ═══ CANDIDATE TESTIMONIALS ═══ */}
-      <section
-        className="relative py-16 md:py-24"
-        style={{ background: "var(--hg-color-bg)" }}
-      >
-        <div className="relative container mx-auto px-6 max-w-4xl">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold hg-heading tracking-tight">
-              What Placed{" "}
-              <span style={{ color: "var(--hg-color-accent)" }}>
-                Executives Say
-              </span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {candidateTestimonials.map((t) => (
-              <div
-                key={t.id}
-                className="p-6 rounded-2xl"
-                style={{
-                  background: "var(--hg-color-surface)",
-                  border: "1px solid var(--hg-color-border)",
-                }}
-              >
-                <svg
-                  className="w-8 h-8 mb-3 opacity-[0.06]"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  style={{ color: t.accent }}
-                >
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-                <p
-                  className="text-sm leading-relaxed italic mb-4"
-                  style={{ color: "var(--hg-color-text-secondary)" }}
-                >
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <p
-                  className="text-xs font-bold"
-                  style={{ color: "var(--hg-color-text-primary)" }}
-                >
-                  {t.name}
-                </p>
-                <p
-                  className="text-[10px]"
-                  style={{ color: "var(--hg-color-text-secondary)" }}
-                >
-                  {t.title}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -493,7 +438,7 @@ export default function ForCandidatesPage() {
             style={{ color: "var(--hg-color-text-secondary)" }}
           >
             Most of our placements start with a conversation — not a job
-            description. Submit your profile and we'll reach out when we
+            description. Submit your profile and we&apos;ll reach out when we
             have a mandate that matches your experience and ambitions.
           </p>
           <Link

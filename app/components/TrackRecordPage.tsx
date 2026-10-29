@@ -3,19 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { caseStudies, type CaseStudy } from "@/app/data/cases";
-import { STATS } from "@/app/data/site";
+import { METRICS } from "@/app/data/site";
 import { ChevronRight, Checkmark } from "@/app/components/Icons";
 
 type FilterLevel = "All" | "C-Suite" | "VP/Director" | "Cross-Border" | "Board";
 const levels: FilterLevel[] = ["All", "C-Suite", "VP/Director", "Cross-Border", "Board"];
-
-/* ── Level → gradient accent ── */
-const levelColors: Record<string, string> = {
-  "C-Suite": "#D96C57",
-  "VP/Director": "#14b8a6",
-  "Cross-Border": "#f59e0b",
-  "Board": "#a855f7",
-};
 
 /* ── Animated counter ── */
 function AnimatedNumber({ value }: { value: string }) {
@@ -58,25 +50,11 @@ function AnimatedNumber({ value }: { value: string }) {
   );
 }
 
-/* ── Mini progress bar component ── */
-function MiniBar({ pct, color }: { pct: number; color: string }) {
-  return (
-    <div className="h-1 rounded-full bg-gray-100 overflow-hidden w-full">
-      <div
-        className="h-full rounded-full transition-all duration-1000 ease-out"
-        style={{ width: `${pct}%`, background: color }}
-      />
-    </div>
-  );
-}
-
 /* ── Case card ── */
-function CaseCard({ c, index }: { c: CaseStudy; index: number }) {
+function CaseCard({ c }: { c: CaseStudy }) {
   const [hovered, setHovered] = useState(false);
 
   /* Derive extra metrics from highlights for richer display */
-  const timelineMetric = c.stat;
-  const impactMetrics = c.highlights.slice(0, 2);
 
   return (
     <div
@@ -112,16 +90,6 @@ function CaseCard({ c, index }: { c: CaseStudy; index: number }) {
           </span>
         </div>
 
-        {/* Big stat number overlay */}
-        <div className="absolute bottom-3 right-4 text-right">
-          <p className="text-3xl md:text-4xl font-black hg-heading opacity-[0.12]"
-            style={{ fontFamily: "var(--hg-font-heading)", color: c.accent }}>
-            {c.stat.value}{c.stat.suffix}
-          </p>
-          <p className="text-[9px] font-bold uppercase tracking-[0.12em] opacity-30" style={{ color: c.accent }}>
-            {c.stat.label}
-          </p>
-        </div>
       </div>
 
       {/* Card body */}
@@ -142,25 +110,6 @@ function CaseCard({ c, index }: { c: CaseStudy; index: number }) {
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
           </svg>
           <span>{c.location}</span>
-          <span className="mx-1 opacity-30">·</span>
-          <span className="font-bold" style={{ color: c.accent }}>{c.result}</span>
-        </div>
-
-        {/* Timeline bar */}
-        <div className="mb-4">
-          <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.1em] mb-1.5"
-            style={{ color: "var(--hg-color-text-secondary)" }}>
-            <span>{c.stat.label}</span>
-            <span style={{ color: c.accent }}>{c.stat.value}{c.stat.suffix}</span>
-          </div>
-          <MiniBar pct={Math.min(parseInt(c.stat.value) * 3, 100)} color={c.accent} />
-        </div>
-
-        {/* Quote excerpt */}
-        <div className="relative mb-4 pl-3 border-l-2" style={{ borderColor: `${c.accent}25` }}>
-          <p className="text-xs leading-relaxed italic line-clamp-3" style={{ color: "var(--hg-color-text-secondary)" }}>
-            &ldquo;{c.quote}&rdquo;
-          </p>
         </div>
 
         {/* Highlights as tags */}
@@ -204,12 +153,7 @@ export default function TrackRecordPage() {
   const grid = filtered.slice(2);
 
   /* Aggregate stats for dashboard */
-  const aggregateStats = [
-    { value: STATS.totalPlacements, label: "Total Placements", icon: "🏆", color: "#D96C57" },
-    { value: STATS.clientRetentionRate, label: "Placement Retention", icon: "🔁", color: "#14b8a6" },
-    { value: STATS.avgTimeToHire, label: "Avg. Time-to-Hire", icon: "⚡", color: "#f59e0b" },
-    { value: "12", label: "Month Guarantee", icon: "🛡️", color: "#a855f7" },
-  ];
+  const aggregateStats = METRICS.map((m) => ({ ...m, icon: "✓" }));
 
   /* Accumulated stats across all cases */
   const totalCases = caseStudies.length;
@@ -239,12 +183,12 @@ export default function TrackRecordPage() {
                 <span style={{ color: "var(--hg-color-accent)" }}>Real Impact</span>
               </h1>
               <p className="text-sm leading-relaxed text-white/50 max-w-lg">
-                Every case study represents a real search completed by our team. Client identities are anonymized to protect confidentiality — all metrics are independently verifiable.
+                Explore leadership search experience across industries and markets. Client identities are anonymized to protect confidentiality.
               </p>
             </div>
 
             {/* Right — key metrics */}
-            <div className="lg:col-span-6 grid grid-cols-2 gap-4">
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
               {aggregateStats.map((s) => (
                 <div key={s.label} className="p-5 rounded-2xl text-center"
                   style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -304,8 +248,8 @@ export default function TrackRecordPage() {
         <div className="relative container mx-auto px-6 max-w-6xl">
           {featured.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              {featured.map((c, i) => (
-                <CaseCard key={c.id} c={c} index={i} />
+              {featured.map((c) => (
+                <CaseCard key={c.id} c={c} />
               ))}
             </div>
           )}
@@ -313,8 +257,8 @@ export default function TrackRecordPage() {
           {/* Grid cases */}
           {grid.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {grid.map((c, i) => (
-                <CaseCard key={c.id} c={c} index={i + 2} />
+              {grid.map((c) => (
+                <CaseCard key={c.id} c={c} />
               ))}
             </div>
           )}
@@ -347,15 +291,12 @@ export default function TrackRecordPage() {
               By the Numbers
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-white hg-heading tracking-tight">
-              What <span style={{ color: "var(--hg-color-accent)" }}>8 Case Studies</span> Tell Us
+              Our <span style={{ color: "var(--hg-color-accent)" }}>Global Experience</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            <MetricCard value="30d" label="Average Time-to-Hire" icon="⏱️" color="#D96C57" />
-            <MetricCard value="95%" label="Retention Rate" icon="📈" color="#14b8a6" />
-            <MetricCard value="45" label="Average Team Built" icon="👥" color="#f59e0b" />
-            <MetricCard value="8" label="Industries Covered" icon="🏭" color="#a855f7" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+            {METRICS.map((m) => <MetricCard key={m.label} {...m} icon="✓" />)}
           </div>
         </div>
       </section>
@@ -367,7 +308,7 @@ export default function TrackRecordPage() {
             Ready to become our <span style={{ color: "var(--hg-color-accent)" }}>next success story</span>?
           </h2>
           <p className="text-sm leading-relaxed mb-8" style={{ color: "var(--hg-color-text-secondary)" }}>
-            Every search starts with a confidential conversation. We'll show you relevant case studies from your industry and how we'd approach your specific mandate.
+            Every search starts with a confidential conversation. We&apos;ll show you relevant case studies from your industry and how we&apos;d approach your specific mandate.
           </p>
           <Link href="/contact"
             className="hg-btn-shine inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hg-gradient-coral"

@@ -1,5 +1,8 @@
 "use server";
 
+import { randomUUID } from "node:crypto";
+import { headers } from "next/headers";
+import { ASSENT_TEXT, LEGAL_VERSION, CONTACT_NOTICE, CANDIDATE_NOTICE } from "@/app/data/legal";
 import nodemailer from "nodemailer";
 import { adminEmailHtml, autoReplyHtml } from "@/app/email/templates";
 import type { ContactFormData } from "@/app/email/templates";
@@ -9,11 +12,9 @@ const SMTP_CONFIG = {
   host: "smtppro.zoho.com",
   port: 465,
   secure: true,
-  // Zoho cert chain may not be trusted by all CA bundles
-  tls: { rejectUnauthorized: false },
 } as const;
 
-const ADMIN_EMAIL = "echo.yang@happyglobalservice.com";
+const ADMIN_EMAIL = "Support@happyglobalservice.com";
 
 interface ActionResult {
   success: boolean;
@@ -21,11 +22,11 @@ interface ActionResult {
 }
 
 async function sendEmails(data: ContactFormData) {
-  const user = process.env.ZOHO_EMAIL || "echo.yang@happyglobalservice.com";
+  const user = process.env.ZOHO_EMAIL;
   const pass = process.env.ZOHO_APP_PASSWORD;
 
-  if (!pass) {
-    throw new Error("SMTP password not configured. Set ZOHO_APP_PASSWORD in environment variables.");
+  if (!pass || !user) {
+    throw new Error("SMTP password not configured. Set ZOHO_EMAIL and ZOHO_APP_PASSWORD in environment variables.");
   }
 
   const transporter = nodemailer.createTransport({
@@ -38,7 +39,7 @@ async function sendEmails(data: ContactFormData) {
 
   // 1) Admin notification
   await transporter.sendMail({
-    from: user,
+    from: { name: "Happy Global Inc.", address: ADMIN_EMAIL },
     to: ADMIN_EMAIL,
     replyTo: data.email,
     subject: `New inquiry from ${data.name} — ${data.inquiryType || "General"}`,
@@ -47,8 +48,9 @@ async function sendEmails(data: ContactFormData) {
 
   // 2) Auto-reply to inquirer
   await transporter.sendMail({
-    from: user,
+    from: { name: "Happy Global Inc.", address: ADMIN_EMAIL },
     to: data.email,
+    replyTo: ADMIN_EMAIL,
     subject: "We've received your inquiry — Happy Global",
     html: autoReplyHtml(data),
   });
@@ -57,22 +59,37 @@ async function sendEmails(data: ContactFormData) {
 export async function submitContactForm(
   data: ContactFormData,
 ): Promise<ActionResult> {
-  if (!data.name || !data.email || !data.message) {
+  if (!data.name || !data.email || !data.message || (data.inquiryType !== "candidate" && !data.company)) {
     return { success: false, message: "Please fill in all required fields." };
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
     return { success: false, message: "Please provide a valid email address." };
   }
 
+  if (data.termsAccepted !== true) {
+    return { success: false, message: "Please agree to the Terms of Service and acknowledge the Privacy Policy." };
+  }
+  const requestHeaders = await headers();
+  data.assentEvidence = [
+    `Submission ID: ${randomUUID()}`,
+    `Accepted at (UTC): ${new Date().toISOString()}`,
+    `Terms version: ${LEGAL_VERSION}`,
+    `Privacy version: ${LEGAL_VERSION}`,
+    `Assent: ${ASSENT_TEXT}`,
+    `Notice: ${CONTACT_NOTICE}`,
+    "Terms accepted: true",
+    "Page: /contact",
+    `User agent: ${requestHeaders.get("user-agent") || "Unknown"}`,
+  ].join("\n");
   try {
     await sendEmails(data);
     return {
       success: true,
       message:
-        "Thank you! We've received your inquiry and will respond within 24 hours.",
+        "Thank you! We've received your inquiry. Typically Respond Within 24 Hrs.",
     };
-  } catch (error: any) {
-    const msg = error?.message || String(error);
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
     console.error("[Contact Form Error]", msg);
 
     // Surface meaningful errors for debugging
@@ -80,7 +97,7 @@ export async function submitContactForm(
       return {
         success: false,
         message:
-          "Email authentication failed. Please check ZOHO_APP_PASSWORD.",
+          "Email is temporarily unavailable. Please contact Support@happyglobalservice.com.",
       };
     }
     if (msg.includes("SMTP password not configured")) {
@@ -99,7 +116,7 @@ export async function submitContactForm(
     return {
       success: false,
       message:
-        "Something went wrong. Please email us directly at echo.yang@happyglobalservice.com.",
+        "Something went wrong. Please email us directly at Support@happyglobalservice.com.",
     };
   }
 }
@@ -107,19 +124,38 @@ export async function submitContactForm(
 export async function submitCandidateForm(
   data: ContactFormData & { linkedin?: string; resumeUrl?: string },
 ): Promise<ActionResult> {
-  if (!data.name || !data.email) {
+  data.inquiryType = "candidate";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    return { success: false, message: "Please provide a valid email address." };
+  }
+  if (!data.name || !data.email || !data.message) {
     return { success: false, message: "Please provide your name and email." };
   }
 
+  if (data.termsAccepted !== true) {
+    return { success: false, message: "Please agree to the Terms of Service and acknowledge the Privacy Policy." };
+  }
+  const requestHeaders = await headers();
+  data.assentEvidence = [
+    `Submission ID: ${randomUUID()}`,
+    `Accepted at (UTC): ${new Date().toISOString()}`,
+    `Terms version: ${LEGAL_VERSION}`,
+    `Privacy version: ${LEGAL_VERSION}`,
+    `Assent: ${ASSENT_TEXT}`,
+    `Notice: ${CANDIDATE_NOTICE}`,
+    "Terms accepted: true",
+    "Page: /for-candidates",
+    `User agent: ${requestHeaders.get("user-agent") || "Unknown"}`,
+  ].join("\n");
   try {
     await sendEmails(data);
     return {
       success: true,
       message:
-        "Thank you for your interest. A consultant will reach out to you confidentially within 48 hours.",
+        "Thank you for your interest. Typically Respond Within 24 Hrs.",
     };
-  } catch (error: any) {
-    console.error("[Candidate Form Error]", error?.message || error);
+  } catch (error: unknown) {
+    console.error("[Candidate Form Error]", error instanceof Error ? error.message : String(error));
     return {
       success: false,
       message: "Something went wrong. Please email us directly.",

@@ -7,7 +7,6 @@ export interface ServiceData {
   accent: string;
   accentRgb: string;
   description: string;
-  stats: Array<{ value: string; label: string }>;
   features: string[];
   cta: string;
   ctaHref: string;
@@ -21,12 +20,7 @@ export const services: ServiceData[] = [
     accent: "#D96C57",
     accentRgb: "217,108,87",
     description:
-      "Confidential, retained search for board directors, C-suite executives, and senior vice presidents. We work on an exclusive engagement basis with a 12-month placement guarantee.",
-    stats: [
-      { value: "500+", label: "Executive Placements" },
-      { value: "30d", label: "Avg. Time-to-Close" },
-      { value: "95%", label: "Retention Rate" },
-    ],
+      "Confidential, retained search for board directors, C-suite executives, and senior vice presidents. We work on an exclusive engagement basis with post-hire support.",
     features: [
       "Board Director & C-Suite mandates",
       "Retained, exclusive engagement model",
@@ -34,7 +28,7 @@ export const services: ServiceData[] = [
       "Deep competency assessment & psychometric profiling",
       "360° referencing & background verification",
       "Offer negotiation & onboarding integration",
-      "12-month post-placement guarantee",
+      "Post-hire integration support and ongoing market counsel.",
     ],
     cta: "Discuss an Executive Search",
     ctaHref: "/contact",
@@ -47,11 +41,6 @@ export const services: ServiceData[] = [
     accentRgb: "20,184,166",
     description:
       "Targeted recruitment for senior managers, directors, and highly specialized individual contributors. Multi-channel sourcing with 24-hour initial response commitment.",
-    stats: [
-      { value: "1500+", label: "Professional Placements" },
-      { value: "24h", label: "Initial Response" },
-      { value: "98%", label: "Client Satisfaction" },
-    ],
     features: [
       "Senior Manager to Director-level roles",
       "Functional specialists (Tech, Sales, Finance, HR, Legal, Product)",
@@ -71,11 +60,6 @@ export const services: ServiceData[] = [
     accentRgb: "245,158,11",
     description:
       "Data-driven talent strategy consulting. Compensation benchmarking, organizational design, employer brand positioning, and cross-border workforce planning.",
-    stats: [
-      { value: "100+", label: "Advisory Engagements" },
-      { value: "50+", label: "Markets Benchmarked" },
-      { value: "15+", label: "Org Design Projects" },
-    ],
     features: [
       "Compensation benchmarking & salary band design",
       "Organizational structure & role architecture",

@@ -7,6 +7,10 @@ export interface ContactFormData {
   phone?: string;
   inquiryType?: string;
   message: string;
+  termsAccepted?: boolean;
+  assentEvidence?: string;
+  linkedin?: string;
+  function?: string;
 }
 
 const inquiryLabels: Record<string, string> = {
@@ -17,7 +21,7 @@ const inquiryLabels: Record<string, string> = {
   general: "General Inquiry",
 };
 
-/** ── Admin notification: sent to echo.yang@happyglobalservice.com ── */
+/** ── Admin notification: sent to Support@happyglobalservice.com ── */
 export function adminEmailHtml(data: ContactFormData): string {
   const label = inquiryLabels[data.inquiryType || "general"] || data.inquiryType;
   return `<!DOCTYPE html>
@@ -65,6 +69,9 @@ export function adminEmailHtml(data: ContactFormData): string {
         </div>
         ${data.company ? `<div class="field"><div class="field-label">Company</div><div class="field-value">${escapeHtml(data.company)}</div></div>` : ""}
         ${data.phone ? `<div class="field"><div class="field-label">Phone</div><div class="field-value">${escapeHtml(data.phone)}</div></div>` : ""}
+        ${data.assentEvidence ? `<div class="field"><div class="field-label">Assent record</div><div class="field-value">${escapeHtml(data.assentEvidence).replace(/\n/g, "<br>")}</div></div>` : ""}
+        ${data.linkedin ? `<div class="field"><div class="field-label">Professional profile</div><div class="field-value">${escapeHtml(data.linkedin)}</div></div>` : ""}
+        ${data.function ? `<div class="field"><div class="field-label">Target function</div><div class="field-value">${escapeHtml(data.function)}</div></div>` : ""}
         <hr class="divider">
         <div class="field">
           <div class="field-label">Message</div>
@@ -117,7 +124,7 @@ export function autoReplyHtml(data: ContactFormData): string {
       </div>
       <div class="body">
         <h2>Hello ${escapeHtml(firstName)},</h2>
-        <p>Thank you for reaching out to <span class="accent">Happy Global</span>. We&rsquo;ve received your inquiry and a member of our team will review it and respond within <strong>24 hours</strong>.</p>
+        <p>Thank you for reaching out to <span class="accent">Happy Global</span>. We&rsquo;ve received your inquiry and a member of our team will review it. We <strong>Typically Respond Within 24 Hrs</strong>.</p>
         <p>In the meantime, here&rsquo;s what you can expect:</p>
         <ul style="padding-left:20px;margin:0 0 16px;font-size:14px;line-height:1.7;color:#5b6675;">
           <li>A consultant will reach out to schedule an initial discovery call</li>
@@ -126,23 +133,23 @@ export function autoReplyHtml(data: ContactFormData): string {
         </ul>
         <div class="stats">
           <div class="stat">
-            <div class="stat-value">500+</div>
-            <div class="stat-label">Placements /yr</div>
+            <div class="stat-value">20+</div>
+            <div class="stat-label">Enterprise Clients</div>
           </div>
           <div class="stat">
-            <div class="stat-value">30d</div>
-            <div class="stat-label">Avg. Time-to-Hire</div>
+            <div class="stat-value">15+</div>
+            <div class="stat-label">Years Experience</div>
           </div>
           <div class="stat">
-            <div class="stat-value">95%</div>
-            <div class="stat-label">Retention Rate</div>
+            <div class="stat-value">10+</div>
+            <div class="stat-label">Markets Covered</div>
           </div>
         </div>
-        <p style="font-size:13px;color:#9aa0ab;">If you need to reach us sooner, reply directly to this email or call <a href="tel:+16698713588" style="color:#D96C57">+1 669 871 3588</a>.</p>
+        <p style="font-size:13px;color:#9aa0ab;">If you need to reach us sooner, email Support@happyglobalservice.com or call <a href="tel:+16698713588" style="color:#D96C57">+1 669 871 3588</a>.</p>
       </div>
       <div class="footer">
-        <p><strong>Happy Global</strong> &mdash; Dallas, TX &bull; San Jose, CA &bull; Shanghai, CN</p>
-        <p style="margin-top:6px;"><a href="https://www.happyglobalservice.com">happyglobalservice.com</a> &bull; <a href="mailto:echo.yang@happyglobalservice.com">echo.yang@happyglobalservice.com</a></p>
+        <p><strong>Happy Global Inc.</strong><br>1101 E Arapaho Rd, STE 210, Richardson, TX 75081, USA</p>
+        <p style="margin-top:6px;"><a href="https://www.happyglobalservice.com">happyglobalservice.com</a> &bull; <a href="mailto:Support@happyglobalservice.com">Support@happyglobalservice.com</a></p>
       </div>
     </div>
   </div>

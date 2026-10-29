@@ -23,11 +23,6 @@ const bannerSlides = [
   },
 ];
 
-const stats = [
-  { value: "500+", label: "Annual Placements" },
-  { value: "95%", label: "Client Retention" },
-  { value: "30d", label: "Avg. Time-to-Hire" },
-];
 
 const partnerLogos = [
   "Meta", "Google", "TikTok", "Microsoft", "Amazon",
@@ -107,7 +102,7 @@ export default function Banner() {
             }}
           >
             Executive search for C-suite, VP, and Director roles across U.S., China,
-            and key global markets — average placement in 30 days.
+            and key global markets.
           </p>
 
           {/* CTA */}
@@ -131,24 +126,7 @@ export default function Banner() {
           </div>
 
           {/* Stats */}
-          <div className="flex gap-6 md:gap-10 mt-6 pt-5 border-t border-white/8">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <p
-                  className="text-2xl md:text-3xl font-bold"
-                  style={{ fontFamily: "var(--hg-font-heading)", color: "#fff" }}
-                >
-                  {s.value}
-                </p>
-                <p
-                  className="text-[11px] md:text-xs font-medium mt-0.5"
-                  style={{ color: "rgba(255,255,255,0.4)" }}
-                >
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </div>
+
 
           {/* Slide dots — mobile */}
           <div className="lg:hidden mt-4 flex items-center gap-2">

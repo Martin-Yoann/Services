@@ -6,7 +6,7 @@ export default function GlobalCoveragePage() {
     <>
       <PageHeader
         title="Global Market Coverage"
-        subtitle="Our network spans North America, China, and key international hubs — giving you access to talent wherever you need it."
+        subtitle="Our network spans America, China, and key international hubs — giving you access to talent wherever you need it."
         breadcrumb={[
           { label: "Home", href: "/" },
           { label: "Global Coverage", href: "/global-coverage" },

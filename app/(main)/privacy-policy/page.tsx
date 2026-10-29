@@ -15,13 +15,13 @@ export default function PrivacyPolicyPage() {
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="prose prose-slate max-w-none space-y-8 text-sm leading-relaxed" style={{ color: "var(--hg-color-text-secondary)" }}>
             <p className="text-base" style={{ color: "var(--hg-color-text-primary)" }}>
-              <strong>Effective Date:</strong> January 1, 2026
+              <strong>Effective Date:</strong> January 1, 2026<br /><strong>Website revision:</strong> October 29, 2026 (entity and contact details)
             </p>
 
             <div>
               <h3 className="text-lg font-bold mb-3 hg-heading">1. Information We Collect</h3>
               <p>
-                Happy Global ("we," "our," or "us") collects information you provide directly when you:
+                Happy Global Inc. (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) collects information you provide directly when you:
               </p>
               <ul className="list-disc pl-5 space-y-1 mt-2">
                 <li>Submit a contact form or inquiry through our website</li>
@@ -90,7 +90,7 @@ export default function PrivacyPolicyPage() {
                 <li>Lodge a complaint with a supervisory authority</li>
               </ul>
               <p className="mt-3">
-                To exercise these rights, contact us at <strong>echo.yang@happyglobalservice.com</strong>.
+                To exercise these rights, contact us at <strong>Support@happyglobalservice.com</strong>.
               </p>
             </div>
 
@@ -109,10 +109,10 @@ export default function PrivacyPolicyPage() {
                 If you have questions about this Privacy Policy, please contact:
               </p>
               <p className="mt-2">
-                <strong>Happy Global</strong><br />
-                Email: echo.yang@happyglobalservice.com<br />
+                <strong>Happy Global Inc.</strong><br />
+                Email: Support@happyglobalservice.com<br />
                 Phone: +1 669 871 3588<br />
-                Offices: Dallas, TX • San Jose, CA • Shanghai, CN
+                Registered address: 1101 E Arapaho Rd, STE 210, Richardson, TX 75081, USA
               </p>
             </div>
 

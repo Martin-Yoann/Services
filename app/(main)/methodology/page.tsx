@@ -4,7 +4,7 @@ import MethodologyPage from "@/app/components/MethodologyPage";
 export const metadata: Metadata = {
   title: "Our Methodology — Happy Global",
   description:
-    "The retained executive search methodology — 6 stages from engagement through post-placement guarantee. Confidential, rigorous, proven.",
+    "Our executive search methodology, from engagement through post-hire support.",
 };
 
 export default function Page() {

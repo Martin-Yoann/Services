@@ -23,7 +23,6 @@ export default function Industries() {
                     </div>
                     <div>
                       <h3 className="text-base font-bold hg-heading">{ind.name}</h3>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.15em]" style={{ color: ind.accent }}>{ind.stat.v} {ind.stat.l}</p>
                     </div>
                   </div>
                   <p className="text-xs leading-relaxed hg-text-secondary mb-5">{ind.description}</p>
@@ -68,10 +67,6 @@ export default function Industries() {
                 <p className="text-xs leading-relaxed text-white/50">{x.d}</p>
               </div>
             ))}
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-12 text-center">
-            {[{ v: "400+", l: "Active Placements" }, { v: "50+", l: "Industries Served" }, { v: "15+", l: "Years Exp." }, { v: "8+", l: "Market Hubs" }].map((s) => (
-              <div key={s.l}><p className="text-3xl md:text-4xl font-bold text-[#D96C57] hg-heading">{s.v}</p><p className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/40 mt-1">{s.l}</p></div>))}
           </div>
           <div className="text-center">
             <Link href="/contact" className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group hg-gradient-coral"

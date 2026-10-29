@@ -1,3 +1,4 @@
+import { METRICS } from "@/app/data/site";
 import PageHeader from "@/app/components/PageHeader";
 import Link from "next/link";
 
@@ -24,10 +25,10 @@ export default function TalentAdvisoryPage() {
               <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full" style={{ color: "#f59e0b", background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.1)" }}>Strategic Consulting</span>
               <h2 className="text-2xl md:text-3xl font-bold hg-heading mb-6">Talent strategy that powers growth</h2>
               <p className="text-sm leading-relaxed hg-text-secondary mb-4">Beyond recruitment, our advisory practice helps you build the infrastructure and strategy to attract, compensate, and retain world-class talent for your most critical markets.</p>
-              <p className="text-sm leading-relaxed hg-text-secondary">We deliver actionable frameworks and data — not slide decks you'll file away. From startups to enterprises, our advisors average 15+ years in global talent strategy.</p>
+              <p className="text-sm leading-relaxed hg-text-secondary">We deliver actionable frameworks and data — not slide decks you&apos;ll file away. From startups to enterprises, our advisors average 15+ years in global talent strategy.</p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[{ v: "50+", l: "Enterprise Clients", c: "#D96C57" }, { v: "15+", l: "Years Experience", c: "#14b8a6" }, { v: "12yr", l: "Avg. Partnership", c: "#f59e0b" }, { v: "8+", l: "Markets Covered", c: "#a855f7" }].map((s) => (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {METRICS.map((m) => ({ v: m.value, l: m.label, c: m.color })).map((s) => (
                 <div key={s.l} className="group rounded-2xl p-5 text-center transition-all duration-500 hover:-translate-y-1" style={{ background: "var(--hg-color-bg)", border: "1px solid var(--hg-color-border)" }}>
                   <p className="text-3xl font-bold hg-heading group-hover:scale-105 transition-transform duration-500" style={{ color: s.c }}>{s.v}</p>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.12em] mt-2 hg-text-secondary">{s.l}</p>
@@ -84,7 +85,7 @@ export default function TalentAdvisoryPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[140px] opacity-[0.04] pointer-events-none" style={{ background: "#f59e0b" }} />
         <div className="relative container mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 hg-heading">Ready for a smarter talent strategy?</h2>
-          <p className="text-white/45 mb-8 max-w-lg mx-auto">Let's discuss your talent challenges and build a data-driven path forward.</p>
+          <p className="text-white/45 mb-8 max-w-lg mx-auto">Let&apos;s discuss your talent challenges and build a data-driven path forward.</p>
           <Link href="/contact" className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
             style={{ background: "linear-gradient(135deg, #f59e0b, #d97706)", boxShadow: "0 4px 24px rgba(245,158,11,0.35)" }}>
             Book a Consultation <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transition-transform duration-300 group-hover:translate-x-1"><polyline points="9 18 15 12 9 6" /></svg>

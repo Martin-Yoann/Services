@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import Hero from "@/app/components/Hero";
-import LogoMarquee from "@/app/components/LogoMarquee";
 
 const IndustrySolutions = dynamic(
   () => import("@/app/components/IndustrySolutions"),
@@ -8,10 +7,6 @@ const IndustrySolutions = dynamic(
 );
 const ServiceProcess = dynamic(
   () => import("@/app/components/ServiceProcess"),
-  { loading: () => <SectionSkeleton height="100dvh" />, ssr: true },
-);
-const ClientCases = dynamic(
-  () => import("@/app/components/ClientCases"),
   { loading: () => <SectionSkeleton height="100dvh" />, ssr: true },
 );
 const ContactCTA = dynamic(
@@ -31,10 +26,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <LogoMarquee />
       <IndustrySolutions />
       <ServiceProcess />
-      <ClientCases />
       <ContactCTA />
     </>
   );

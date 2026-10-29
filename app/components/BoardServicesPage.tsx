@@ -80,25 +80,6 @@ export default function BoardServicesPage() {
         </div>
       </section>
 
-      {/* ═══ TRUST BAR ═══ */}
-      <section className="relative py-8" style={{ background: "var(--hg-color-bg)" }}>
-        <div className="container mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-center">
-            {[
-              { v: "20+", l: "Board Mandates Completed" },
-              { v: "4", l: "Listing Rules Covered (NYSE/NASDAQ/HKEX/LSE)" },
-              { v: "90d", l: "Average Board Search Cycle" },
-              { v: "100%", l: "Confidentiality Record" },
-            ].map((s) => (
-              <div key={s.l}>
-                <p className="text-2xl md:text-3xl font-black hg-heading" style={{ color: "var(--hg-color-accent)" }}>{s.v}</p>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: "var(--hg-color-text-secondary)" }}>{s.l}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ═══ SERVICES ═══ */}
       {boardServices.map((svc, i) => (
         <section key={svc.title}
@@ -162,7 +143,7 @@ export default function BoardServicesPage() {
               A Shenzhen-based semiconductor company preparing for HKEX listing needed to transform from a founder-dominated board to a governance-compliant, investor-ready board with two independent directors — one with audit committee expertise, one with industry depth. We identified, approached, and placed both directors within 90 days, directly satisfying HKEX listing rule requirements for board independence and audit committee composition.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {["2 Independent Directors Placed", "90-Day Search Cycle", "HKEX Governance Compliance"].map((h) => (
+              {["Independent Director Search", "Board Composition Advisory", "Governance Review"].map((h) => (
                 <div key={h} className="flex items-center gap-2 text-xs font-semibold text-white/70">
                   <Checkmark size={12} strokeColor="var(--hg-color-accent)" />
                   {h}
@@ -180,7 +161,7 @@ export default function BoardServicesPage() {
             A confidential conversation with your chair or nominating committee.
           </h2>
           <p className="text-sm leading-relaxed mb-8" style={{ color: "var(--hg-color-text-secondary)" }}>
-            We'll walk you through how we'd approach your specific board mandate — including a preliminary director map and timeline — before any engagement begins.
+            We&apos;ll walk you through how we&apos;d approach your specific board mandate — including a preliminary director map and timeline — before any engagement begins.
           </p>
           <Link href="/contact" className="hg-btn-shine inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hg-gradient-coral"
             style={{ boxShadow: "0 4px 24px rgba(217,108,87,0.35)" }}>

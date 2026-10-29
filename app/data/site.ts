@@ -1,42 +1,24 @@
-/* ── Centralized site data — single source of truth ──
-   All components should import from here instead of hardcoding.
-   Stats reconcile: 2000+ total placements, 500+ exec, 1500+ professional, 430+/yr currently. */
+/* Central site identity and approved public metrics. */
 
 export const SITE = {
   name: "Happy Global",
   tagline: "Global Talent Solutions",
   description:
     "Executive search, professional recruitment, and talent advisory for companies expanding globally.",
-  email: "echo.yang@happyglobalservice.com",
+  email: "Support@happyglobalservice.com",
   phone: "+1 669 871 3588",
   domain: "happyglobalservice.com",
   founded: 2011,
 } as const;
 
-export const STATS = {
-  totalPlacements: "2000+",
-  annualPlacements: "430+",
-  executivePlacements: "500+",
-  professionalPlacements: "1500+",
-  clientRetentionRate: "95%",
-  avgTimeToHire: "30d",
-  initialResponse: "24h",
-  clientSatisfaction: "98%",
-  marketHubs: "8+",
-  enterpriseClients: "50+",
-  avgPartnershipYears: "12yr",
-  cities: "13",
-  continents: "3",
-  languages: "5+",
-} as const;
-
-export const OFFICES = [
-  { city: "Dallas", region: "North America HQ", flag: "🇺🇸", timezone: "CST" },
-  { city: "San Jose", region: "Silicon Valley", flag: "🇺🇸", timezone: "PST" },
-  { city: "Shanghai", region: "Asia-Pacific HQ", flag: "🇨🇳", timezone: "CST" },
+export const METRICS = [
+  { value: "20+", label: "Enterprise Clients", color: "#D96C57" },
+  { value: "15+", label: "Years Experience", color: "#14b8a6" },
+  { value: "10+", label: "Markets Covered", color: "#f59e0b" },
 ] as const;
 
-export const SOCIAL_LINKS = {
-  linkedin: "https://linkedin.com",
-  x: "https://x.com",
-} as const;
+export const OFFICES = [
+  { city: "Dallas–Fort Worth, Texas", region: "Global HQ", detail: "1101 E Arapaho Rd, STE 210, Richardson, TX 75081, USA", flag: "🇺🇸", timezone: "America/Chicago" },
+  { city: "San Jose, California", region: "Silicon Valley & West Coast Hub", detail: "Remote Client Relations", flag: "🇺🇸", timezone: "America/Los_Angeles" },
+  { city: "Shanghai, China", region: "APAC Operations Hub", detail: "Operated with a Local Partner", flag: "🇨🇳", timezone: "Asia/Shanghai" },
+] as const;

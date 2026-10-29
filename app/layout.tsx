@@ -1,6 +1,13 @@
+import localFont from "next/font/local";
 import type { Metadata, Viewport } from "next";
 import "./tokens/harbor-human.css";
 import "./globals.css";
+
+const inter = localFont({ src: [
+  { path: "../public/fonts/Inter.ttf", weight: "100 900", style: "normal" },
+  { path: "../public/fonts/Inter-Italic.ttf", weight: "100 900", style: "italic" },
+], variable: "--font-inter-local", display: "swap" });
+const interTight = localFont({ src: "../public/fonts/InterTight.ttf", weight: "100 900", variable: "--font-inter-tight-local", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Happy Global — Global Talent Solutions",
@@ -21,19 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html className={`${inter.variable} ${interTight.variable}`} lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="antialiased">{children}</body>
     </html>
   );

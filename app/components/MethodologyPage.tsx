@@ -77,7 +77,7 @@ const steps = [
     color: "#a855f7",
     accentRgb: "168,85,247",
     description:
-      "The final stage is where most searches fail. We manage the offer process end-to-end: compensation benchmarking against the candidate's current package and market data, structuring earn-outs and equity, managing counter-offers, and supporting the candidate's resignation transition. Our 95% offer-acceptance rate reflects this rigor.",
+      "The final stage is where most searches fail. We manage the offer process end-to-end: compensation benchmarking against the candidate's current package and market data, structuring earn-outs and equity, managing counter-offers, and supporting the candidate's resignation transition. We support clear communication throughout the offer process.",
     deliverables: [
       "Compensation & Equity Benchmarking",
       "Offer Letter Structuring & Review",
@@ -89,20 +89,20 @@ const steps = [
   },
   {
     num: "06",
-    title: "Integration & Guarantee",
-    subtitle: "12 Months of Active Support — Not Just a Check-In",
+    title: "Integration & Support",
+    subtitle: "Post-Hire Support and Market Counsel",
     color: "#f43f5e",
     accentRgb: "244,63,94",
     description:
-      "Placement is not the finish line. We provide structured integration support: 30/60/90-day stakeholder feedback cycles, onboarding coaching, and quarterly check-ins throughout the 12-month guarantee period. If the placement doesn't work out for any reason within 12 months, we restart the search at no additional professional fee.",
+      "We support the transition after hiring with onboarding guidance, stakeholder feedback, and ongoing market counsel. Support arrangements are tailored to the engagement.",
     deliverables: [
       "30/60/90-Day Integration Plan",
       "Quarterly Stakeholder Feedback Reports",
       "Executive Coaching Referral (if needed)",
-      "12-Month Replacement Guarantee",
+      "Post-hire integration support and ongoing market counsel.",
     ],
     differentiator:
-      "Our average placement stays 3+ years. Our guarantee isn't a 'free replacement' promise — it's an active integration program that makes replacements rare.",
+      "We stay engaged after hiring to support integration and long-term partnership.",
   },
 ];
 
@@ -246,7 +246,7 @@ export default function MethodologyPage() {
                   ["Depth of Assessment", "Competency-based interviews + psychometrics + 8-12 structured references", "Resume review + basic interview + 2-3 standard references"],
                   ["Confidentiality", "NDA-protected, graduated disclosure for sensitive mandates", "Limited confidentiality controls"],
                   ["Time to Shortlist", "2-4 weeks for a thorough market map and longlist", "1-2 weeks (speed prioritized over depth)"],
-                  ["Guarantee", "12-month replacement guarantee with active integration support", "Typically 90-day replacement guarantee"],
+                  ["Post-Hire Support", "Integration support and ongoing market counsel", "Support varies by engagement"],
                   ["Fee Structure", "1/3 on engagement, 1/3 on shortlist, 1/3 on placement — aligned incentives", "100% on placement — speed-driven incentive"],
                   ["Best For", "Board, C-Suite, VP, and business-critical roles", "Mid-level and junior roles"],
                 ].map(([dim, retained, contingent]) => (
@@ -269,7 +269,7 @@ export default function MethodologyPage() {
             Ready to see our methodology in action?
           </h2>
           <p className="text-sm leading-relaxed mb-8" style={{ color: "var(--hg-color-text-secondary)" }}>
-            Every engagement begins with a confidential conversation. We'll walk you through how we'd approach your specific search — including a preliminary market map — before you commit to anything.
+            Every engagement begins with a confidential conversation. We&apos;ll walk you through how we&apos;d approach your specific search — including a preliminary market map — before you commit to anything.
           </p>
           <Link href="/contact" className="hg-btn-shine inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hg-gradient-coral"
             style={{ boxShadow: "0 4px 24px rgba(217,108,87,0.35)" }}>
