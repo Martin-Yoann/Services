@@ -6,13 +6,17 @@ export default function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
+    let frame = 0;
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(() => { frame = 0; setVisible(window.scrollY > 400); });
+    };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", onScroll); };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   };
 
   return (
@@ -41,7 +45,7 @@ export default function BackToTop() {
         <svg
           className="absolute inset-0 w-full h-full animate-spin-slow pointer-events-none"
           viewBox="0 0 110 110"
-          style={{ willChange: "transform" }}
+          style={{ animationPlayState: visible ? "running" : "paused" }}
         >
           <defs>
             <path

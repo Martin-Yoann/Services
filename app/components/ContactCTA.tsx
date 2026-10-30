@@ -1,27 +1,13 @@
-"use client";
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 export default function ContactCTA() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setVisible(true); observer.disconnect(); }
-    }, { threshold: 0.2 });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
   return (
-      <section ref={sectionRef} className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0" style={{ backgroundImage: "url(/compliance/search-network.svg)", backgroundSize: "cover", backgroundPosition: "center" }} />
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(10,47,42,0.92) 0%, rgba(10,47,42,0.7) 60%, rgba(10,47,42,0.4) 100%)" }} />
 
         <div className="relative container mx-auto px-6 overflow-hidden">
-          <div className="flex flex-col items-start max-w-2xl transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
-            style={{ opacity: visible ? 1 : 0, transform: visible ? "translate(0px, 0px)" : "translate(0px, 80px)" }}>
+          <div className="flex flex-col items-start max-w-2xl">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: "var(--hg-font-heading)" }}>Ready to find your next leader?</h2>
             <p className="text-lg md:text-xl text-white/65 mb-8">Let&apos;s discuss how we can help you build world-class teams across borders.</p>
             <Link href="/contact"

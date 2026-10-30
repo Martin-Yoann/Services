@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown, ChevronRight, CloseIcon } from "@/app/components/Icons";
 import { useScrollLock } from "@/app/hooks/useScrollLock";
 
@@ -36,38 +36,55 @@ const navItems = [
 ];
 
 const Navigation = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [drawerRoute, setDrawerRoute] = useState<string | null>(null);
+  const [pastThreshold, setPastThreshold] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpand, setMobileExpand] = useState<string | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const prefetched = useRef(new Set<string>());
+  const router = useRouter();
   const navRef = useRef<HTMLElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const cleanupClickRef = useRef<(() => void) | null>(null);
   const pathname = usePathname();
+  const drawerOpen = drawerRoute === pathname;
+  const setDrawerOpen = (open: boolean) => {
+    setDrawerRoute(open ? pathname : null);
+    setMobileExpand(null);
+  };
   const isHome = pathname === "/";
+  const isScrolled = !isHome || pastThreshold;
   const { lock, unlock } = useScrollLock();
 
-  /* ── Scroll detection + progress ── */
+  /* Update scroll visuals once per frame without re-rendering the whole menu. */
   useEffect(() => {
-    if (!isHome) {
-      setIsScrolled(true);
-      return;
-    }
-    setIsScrolled(false);
-    const handleScroll = () => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       const y = window.scrollY;
-      setIsScrolled(y > 80);
-      /* Scroll progress */
-      const scrollHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      if (scrollHeight > 0) {
-        setScrollProgress(y / scrollHeight);
-      }
+      setPastThreshold(y > 80);
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${isHome && height > 0 ? Math.min(1, y / height) : 0})`;
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, [isHome]);
+
+  const preloadIntent = (target: EventTarget | null) => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    if (connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || "")) return;
+    const href = (target as HTMLElement | null)?.closest<HTMLAnchorElement>('a[href^="/"]')?.getAttribute("href");
+    if (!href || href === pathname || prefetched.current.has(href)) return;
+    prefetched.current.add(href);
+    router.prefetch(href);
+  };
 
   /* ── Close dropdown on outside click ── */
   useEffect(() => {
@@ -101,12 +118,6 @@ const Navigation = () => {
     }
   }, [drawerOpen, lock, unlock]);
 
-  /* ── Close drawer on route change ── */
-  useEffect(() => {
-    setDrawerOpen(false);
-    setMobileExpand(null);
-  }, [pathname]);
-
   const handleDropdownToggle = (label: string) => {
     setActiveDropdown((prev) => (prev === label ? null : label));
   };
@@ -114,13 +125,15 @@ const Navigation = () => {
   return (
     <nav
       ref={navRef}
+      onPointerOver={(event) => { if (event.pointerType === "mouse") preloadIntent(event.target); }}
+      onFocus={(event) => preloadIntent(event.target)}
       className={`hg-nav-transparent fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
         isScrolled ? "scrolled bg-white shadow-md" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo — white on transparent nav, dark on scrolled */}
-        <Link href="/" className="flex items-center hover:opacity-80 transition-opacity z-[60]">
+        <Link prefetch={false} href="/" className="flex items-center hover:opacity-80 transition-opacity z-[60]">
           <img
             src={isScrolled ? "/HGS-black.svg" : "/HGS-white.svg"}
             alt="Happy Global"
@@ -148,7 +161,7 @@ const Navigation = () => {
                 </button>
                 <div className="hg-nav-dropdown-menu" role="menu">
                   {item.children?.map((child) => (
-                    <Link
+                    <Link prefetch={false}
                       key={child.id || child.label}
                       href={child.href}
                       className="hg-nav-dropdown-item cursor-pointer"
@@ -161,7 +174,7 @@ const Navigation = () => {
                 </div>
               </div>
             ) : (
-              <Link
+              <Link prefetch={false}
                 key={item.href}
                 href={item.href}
                 className="px-4 py-2 text-sm font-medium hg-nav-link hg-link-underline transition-all duration-300 rounded-md cursor-pointer"
@@ -174,7 +187,7 @@ const Navigation = () => {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link href="/contact" className="hg-nav-cta">
+          <Link prefetch={false} href="/contact" className="hg-nav-cta">
             <span className="hg-nav-cta-label">Get Started</span>
             <span className="hg-nav-cta-ripple" />
           </Link>
@@ -184,7 +197,11 @@ const Navigation = () => {
         <button
           className="lg:hidden relative z-[60] w-10 h-10 flex items-center justify-center cursor-pointer"
           onClick={() => setDrawerOpen(!drawerOpen)}
-          aria-label={drawerOpen ? "Close menu" : "Open menu"}
+          aria-label="Open menu"
+          aria-expanded={drawerOpen}
+          aria-controls="mobile-navigation"
+          aria-hidden={drawerOpen}
+          tabIndex={drawerOpen ? -1 : 0}
         >
           <div className="flex flex-col gap-1.5 w-5">
             <span
@@ -228,6 +245,9 @@ const Navigation = () => {
 
         {/* Drawer panel */}
         <div
+          id="mobile-navigation"
+          inert={!drawerOpen}
+          aria-hidden={!drawerOpen}
           className={`fixed top-0 right-0 z-[80] h-full w-[min(400px,90vw)] bg-white shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden flex flex-col ${
             drawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
@@ -242,7 +262,7 @@ const Navigation = () => {
             </span>
             <button
               onClick={() => setDrawerOpen(false)}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-[#5b6675] hover:bg-gray-100 transition-colors cursor-pointer"
+              className="w-11 h-11 rounded-lg flex items-center justify-center text-[#5b6675] hover:bg-gray-100 transition-colors cursor-pointer"
               aria-label="Close menu"
             >
               <CloseIcon size={16} />
@@ -285,7 +305,7 @@ const Navigation = () => {
                     >
                       <div className="bg-[#f7f8f6] py-1 mx-4 rounded-lg mb-1">
                         {item.children?.map((child) => (
-                          <Link
+                          <Link prefetch={false}
                             key={child.id || child.label}
                             href={child.href}
                             className="block px-5 py-2.5 text-sm text-[#5b6675] hover:text-[#D96C57] transition-colors"
@@ -298,7 +318,7 @@ const Navigation = () => {
                     </div>
                   </>
                 ) : (
-                  <Link
+                  <Link prefetch={false}
                     href={item.href}
                     className="block px-6 py-4 text-sm font-semibold text-[#0a2f2a] hover:bg-[#f7f8f6] transition-colors"
                     onClick={() => setDrawerOpen(false)}
@@ -313,7 +333,7 @@ const Navigation = () => {
 
           {/* Drawer footer — CTA */}
           <div className="px-6 py-5 border-t border-[#d8e1ea] shrink-0">
-            <Link
+            <Link prefetch={false}
               href="/contact"
               className="flex items-center justify-center gap-2 font-bold py-3.5 rounded-xl text-white text-sm transition-all duration-300 hover:-translate-y-0.5 hg-gradient-coral"
               style={{ boxShadow: "0 4px 16px rgba(217,108,87,0.3)" }}
@@ -328,8 +348,9 @@ const Navigation = () => {
 
       {/* ═══ Scroll progress bar ═══ */}
       <div
+        ref={progressRef}
         className="hg-scroll-progress"
-        style={{ transform: `scaleX(${scrollProgress})` }}
+        style={{ transform: "scaleX(0)" }}
       />
     </nav>
   );

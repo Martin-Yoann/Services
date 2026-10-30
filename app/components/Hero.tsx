@@ -52,14 +52,17 @@ const Hero = () => {
     const bg = document.getElementById("hero-bg-layer");
     const dot = document.getElementById("hero-dot-layer");
     if (!bg) return;
-    const handleScroll = () => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       if (window.scrollY > window.innerHeight * 1.5) return;
       const offset = window.scrollY * 0.4;
       bg.style.transform = `translateY(${offset}px)`;
       if (dot) dot.style.transform = `translateY(${offset * 0.5}px)`;
     };
+    const handleScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", handleScroll); };
   }, []);
 
   return (

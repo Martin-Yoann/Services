@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import ContactCTA from "@/app/components/ContactCTA";
 import Hero from "@/app/components/Hero";
 import TrustedPartners from "@/app/components/TrustedPartners";
 
@@ -10,10 +11,7 @@ const ServiceProcess = dynamic(
   () => import("@/app/components/ServiceProcess"),
   { loading: () => <SectionSkeleton height="100dvh" />, ssr: true },
 );
-const ContactCTA = dynamic(
-  () => import("@/app/components/ContactCTA"),
-  { loading: () => <SectionSkeleton height="24rem" />, ssr: true },
-);
+
 
 function SectionSkeleton({ height }: { height: string }) {
   return (

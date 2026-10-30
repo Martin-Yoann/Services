@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 /**
  * Manages body scroll locking to prevent background scrolling.
@@ -12,17 +12,17 @@ import { useEffect, useRef } from "react";
 export function useScrollLock() {
   const lockCount = useRef(0);
 
-  const lock = () => {
+  const lock = useCallback(() => {
     lockCount.current++;
     document.body.style.overflow = "hidden";
-  };
+  }, []);
 
-  const unlock = () => {
+  const unlock = useCallback(() => {
     lockCount.current = Math.max(0, lockCount.current - 1);
     if (lockCount.current === 0) {
       document.body.style.overflow = "";
     }
-  };
+  }, []);
 
   // Cleanup on unmount
   useEffect(() => {

@@ -80,7 +80,7 @@ export default function Footer() {
             {/* ── BRAND COLUMN (5 cols) ── */}
             <div className="lg:col-span-5 flex flex-col">
               {/* Logo */}
-              <Link href="/" className="inline-flex items-center group w-fit mb-6">
+              <Link prefetch={false} href="/" className="inline-flex items-center group w-fit mb-6">
                 <img
                   loading="lazy"
                   decoding="async"
@@ -150,7 +150,7 @@ export default function Footer() {
                 <ul className="space-y-3.5">
                   {footerLinks.services.map((l) => (
                     <li key={l.href}>
-                      <Link
+                      <Link prefetch={false}
                         href={l.href}
                         className="hg-link-underline group/link inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-all duration-300"
                       >
@@ -173,7 +173,7 @@ export default function Footer() {
                 <ul className="space-y-3.5">
                   {footerLinks.company.map((l) => (
                     <li key={l.href}>
-                      <Link
+                      <Link prefetch={false}
                         href={l.href}
                         className="hg-link-underline group/link inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-all duration-300"
                       >
@@ -213,7 +213,7 @@ export default function Footer() {
                     </span>
                   </a>
                 </div>
-                <Link href="/contact" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-sm font-semibold text-white/80 transition-colors hover:border-[#D96C57]/50 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D96C57]">Send an inquiry <span aria-hidden="true">→</span></Link>
+                <Link prefetch={false} href="/contact" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-sm font-semibold text-white/80 transition-colors hover:border-[#D96C57]/50 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D96C57]">Send an inquiry <span aria-hidden="true">→</span></Link>
               </div>
             </div>
           </div>
@@ -228,13 +228,13 @@ export default function Footer() {
             <span>&copy; 2026 Happy Global Inc. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6 text-xs text-white/35">
-            <Link
+            <Link prefetch={false}
               href="/privacy-policy"
               className="hover:text-white/60 transition-colors"
             >
               Privacy Policy
             </Link>
-            <Link
+            <Link prefetch={false}
               href="/terms-of-service"
               className="hover:text-white/60 transition-colors"
             >
