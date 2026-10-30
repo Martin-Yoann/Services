@@ -29,8 +29,8 @@ export default function HomePage() {
       <Hero />
       <TrustedPartners />
       <IndustrySolutions />
-      <ServiceProcess />
-      <ContactCTA />
+      <div style={{ contentVisibility: "auto", containIntrinsicSize: "auto 900px" }}><ServiceProcess /></div>
+      <div style={{ contentVisibility: "auto", containIntrinsicSize: "auto 400px" }}><ContactCTA /></div>
     </>
   );
 }

@@ -43,18 +43,17 @@ const themes: Theme[] = [
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(false);
 
   const current = themes[activeIndex];
 
-  useEffect(() => { const frame = requestAnimationFrame(() => setMounted(true)); return () => cancelAnimationFrame(frame); }, []);
-
   /* Parallax scroll */
   useEffect(() => {
+    if (window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)").matches) return;
     const bg = document.getElementById("hero-bg-layer");
     const dot = document.getElementById("hero-dot-layer");
     if (!bg) return;
     const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 1.5) return;
       const offset = window.scrollY * 0.4;
       bg.style.transform = `translateY(${offset}px)`;
       if (dot) dot.style.transform = `translateY(${offset * 0.5}px)`;
@@ -80,14 +79,14 @@ const Hero = () => {
           <div className="lg:col-span-7 xl:col-span-8 flex flex-col justify-center">
             {/* Tagline badge */}
             <div className="inline-flex items-center gap-2.5 w-fit bg-white/10 backdrop-blur-md px-4 py-2 md:px-5 md:py-2.5 rounded-full border border-white/15 mb-4 md:mb-6"
-              style={{ opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(16px)", transition: "opacity 0.6s ease, transform 0.6s ease", transitionDelay: "100ms" }}>
+              style={{ opacity: 1, transform: "translateY(0)", transition: "opacity 0.6s ease, transform 0.6s ease", transitionDelay: "100ms" }}>
               <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: current.accent }} />
               <span className="text-xs md:text-sm font-semibold text-white/90 tracking-wide">Global Talent Solutions</span>
             </div>
 
             {/* Headline */}
             <h1 style={{ fontFamily: "var(--hg-font-heading)", fontSize: "clamp(32px, 6vw, 64px)", fontWeight: "var(--hg-weight-h1)", lineHeight: 1.05,
-              opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(20px)", transition: "opacity 0.7s ease, transform 0.7s ease", transitionDelay: "200ms" }}>
+              opacity: 1, transform: "translateY(0)", transition: "opacity 0.7s ease, transform 0.7s ease", transitionDelay: "200ms" }}>
               <span className="block text-white">Build Local Teams</span>
               <span className="block" style={{ backgroundImage: `linear-gradient(135deg, ${current.accent} 0%, #ffffff 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Drive Global</span>
               <span className="block text-white">Ambition</span>
@@ -95,13 +94,13 @@ const Hero = () => {
 
             {/* Subtitle */}
             <p className="mt-4 md:mt-6 max-w-lg text-sm md:text-lg leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.72)", opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(16px)", transition: "opacity 0.6s ease 0.35s, transform 0.6s ease 0.35s" }}>
+              style={{ color: "rgba(255,255,255,0.72)", opacity: 1, transform: "translateY(0)", transition: "opacity 0.6s ease 0.35s, transform 0.6s ease 0.35s" }}>
               We connect leadership and specialist talent across U.S., China, and international markets — helping companies find, hire, and retain the people who drive growth.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-5 md:mt-8"
-              style={{ opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(16px)", transition: "opacity 0.6s ease 0.45s, transform 0.6s ease 0.45s" }}>
+              style={{ opacity: 1, transform: "translateY(0)", transition: "opacity 0.6s ease 0.45s, transform 0.6s ease 0.45s" }}>
               <Link href="/contact"
                 className="group relative inline-flex items-center justify-center font-bold py-3 px-7 md:py-4 md:px-9 rounded-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden hg-gradient-coral text-sm md:text-base text-white"
                 style={{ boxShadow: "0 4px 20px rgba(217,108,87,0.3)" }}>

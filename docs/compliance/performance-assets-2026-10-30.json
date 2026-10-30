@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-30",
+  "imageSources": "industry-image-sources-2026-10-29.json",
+  "processing": "Industry images: widths 800 mobile / 1400 desktop, no upscale, WebP quality 76. FontTools WOFF2 subset: Latin, extended Latin and common punctuation/symbols; full original fonts and OFL retained. Browser fallback covers other scripts.",
+  "baselineMobile": {
+    "viewport": "390x844",
+    "page": "https://happyglobalservice.com/",
+    "resourceTransferBytes": 1588511,
+    "requests": 44,
+    "fontTransferBytes": 1261165,
+    "method": "Chromium new page, no scroll, 4s after navigation. Lab observation, not a field metric."
+  },
+  "files": [
+    {
+      "path": "public/images/industries/finance-mobile.webp",
+      "bytes": 103438,
+      "sha256": "903253916cab3253aba5cbab08c2e47912f1813a0c0ab6d80cec699fd9c04196"
+    },
+    {
+      "path": "public/images/industries/healthcare-mobile.webp",
+      "bytes": 19858,
+      "sha256": "f60f8122d461fea05b7bbb824d9bc7cb0cdfa10b74db9b230607c218ec4f602b"
+    },
+    {
+      "path": "public/images/industries/manufacturing-mobile.webp",
+      "bytes": 50224,
+      "sha256": "3b50a0967aee1f65ca81742e87858280790352b97d1b01529ff107f0f6296481"
+    },
+    {
+      "path": "public/images/industries/technology-mobile.webp",
+      "bytes": 23492,
+      "sha256": "cb2e4997b124f0f956309ca296bd8d106dd2f5474c59829f49b7037a84ede66a"
+    },
+    {
+      "path": "public/images/industries/finance-desktop.webp",
+      "bytes": 206720,
+      "sha256": "76e5b9ae4473b5a22d720c779efdf4c022209035457621eb69c4185d1aa8185a"
+    },
+    {
+      "path": "public/images/industries/healthcare-desktop.webp",
+      "bytes": 39208,
+      "sha256": "391b7589c750563c49f25ffb52965f1da58e8d7b26205d2c4e34343c738dd1a4"
+    },
+    {
+      "path": "public/images/industries/manufacturing-desktop.webp",
+      "bytes": 108418,
+      "sha256": "7e26bcd9d50c071c1a44651be3bbbfd4ad7d03bbe37cc6243eedb4b4ed18f046"
+    },
+    {
+      "path": "public/images/industries/technology-desktop.webp",
+      "bytes": 44176,
+      "sha256": "0dd27b11878aeb747551444ee54826158e0d3ed4c454b5594cb05cb3c07a16de"
+    },
+    {
+      "path": "public/fonts/Inter-latin.woff2",
+      "bytes": 141740,
+      "sha256": "e59693a355d43bb70e65aabb682803bf34765c56adf062c4d93b6f6fe1921978"
+    },
+    {
+      "path": "public/fonts/InterTight-latin.woff2",
+      "bytes": 100604,
+      "sha256": "89993493145a0f9931382f118d2bdfadf9fe0aee4ff769d18096ab57ca3171f8"
+    }
+  ]
+}

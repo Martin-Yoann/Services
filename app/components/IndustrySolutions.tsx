@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
+import { useNearViewport } from "@/app/hooks/useNearViewport";
 
 const solutions = [
   { id: "tech", title: "Technology", titleZh: "Technology Sector", desc: "From AI startups to global tech giants — we place the engineers, data scientists, and product leaders who ship the future.", cta: "Explore Tech", ctaHref: "/industries", bg: "/images/industries/technology-pexels.webp", solidBg: "#0a2f2a", labelColor: "#D96C57" },
@@ -11,6 +12,7 @@ const solutions = [
 ];
 
 export default function IndustrySolutions() {
+  const { ref: mediaRef, ready: mediaReady } = useNearViewport();
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileIndex, setMobileIndex] = useState(0);
   const touchStartX = useRef(0);
@@ -32,10 +34,10 @@ export default function IndustrySolutions() {
   const current = solutions[mobileIndex];
 
   return (
-    <>
+    <div ref={mediaRef}>
       {/* MOBILE */}
-      <section className="relative w-full overflow-hidden block md:hidden" style={{ height: "100dvh" }} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-        <div className="absolute inset-0 transition-all duration-500" style={{ backgroundImage: `url("${current.bg}")`, backgroundSize: "cover", backgroundPosition: "center" }} />
+      <section className="relative w-full overflow-hidden touch-pan-y block md:hidden" style={{ height: "100dvh" }} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+        <div className="absolute inset-0 transition-all duration-500" style={{ backgroundImage: mediaReady ? `url("${current.bg.replace("-pexels.webp", "-mobile.webp")}")` : "none", backgroundSize: "cover", backgroundPosition: "center" }} />
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.8) 100%)" }} />
         <div className="relative z-10 flex flex-col justify-end h-full p-6 pb-10">
           <h2 className="text-3xl font-bold text-white mb-1 tracking-tight" style={{ fontFamily: "var(--hg-font-heading)" }}>{current.title}</h2>
@@ -47,7 +49,7 @@ export default function IndustrySolutions() {
           <div className="mt-8 pt-6 border-t border-white/10">
             <div className="flex items-center justify-between">
               {solutions.map((sol, i) => (
-                <button key={sol.id} onClick={() => goTo(i)} className="flex flex-col items-center gap-2 transition-all duration-300" style={{ opacity: i === mobileIndex ? 1 : 0.35 }}>
+                <button type="button" aria-label={sol.title} aria-pressed={i === mobileIndex} key={sol.id} onClick={() => goTo(i)} className="flex flex-col items-center gap-2 transition-all duration-300" style={{ opacity: i === mobileIndex ? 1 : 0.35 }}>
                   <span className="text-[11px] font-bold uppercase tracking-[0.1em]" style={{ color: i === mobileIndex ? current.labelColor : "rgba(255,255,255,0.5)" }}>{sol.title.length > 12 ? sol.title.slice(0, 12) + "…" : sol.title}</span>
                   <span className="block rounded-full transition-all duration-300" style={{ width: i === mobileIndex ? "24px" : "6px", height: "6px", background: i === mobileIndex ? current.labelColor : "rgba(255,255,255,0.3)" }} />
                 </button>
@@ -65,7 +67,7 @@ export default function IndustrySolutions() {
             return (
               <div key={sol.id} onMouseEnter={() => setActiveIndex(i)} onClick={() => setActiveIndex(i)}
                 className="group relative cursor-pointer"
-                style={{ flex: isActive ? "0 0 min(685px, 85vw)" : "1 1 0%", minWidth: isActive ? "min(685px, 85vw)" : "80px", transition: "flex 0.65s cubic-bezier(0.25,0.1,0.25,1), min-width 0.65s cubic-bezier(0.25,0.1,0.25,1)", background: isActive ? `url("${sol.bg}") center / cover no-repeat` : collapsedBg }}>
+                style={{ flex: isActive ? "0 0 min(685px, calc(100vw - 240px))" : "1 1 0%", minWidth: isActive ? "min(685px, calc(100vw - 240px))" : "80px", transition: "flex 0.65s cubic-bezier(0.25,0.1,0.25,1), min-width 0.65s cubic-bezier(0.25,0.1,0.25,1)", background: isActive && mediaReady ? `url("${sol.bg.replace("-pexels.webp", "-desktop.webp")}") center / cover no-repeat` : collapsedBg }}>
                 {i > 0 && <div className="absolute top-0 bottom-0 pointer-events-none" style={{ left: 0, width: "1px", background: "rgba(255,255,255,0.12)", zIndex: 5 }} />}
                 {isActive && <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.75) 100%)" }} />}
                 <div className="relative z-10 flex flex-col justify-end h-full p-12">
@@ -101,6 +103,6 @@ export default function IndustrySolutions() {
           );
         })}
       </section>
-    </>
+    </div>
   );
 }

@@ -1,4 +1,3 @@
-"use client";
 import { METRICS, OFFICES } from "@/app/data/site";
 import Link from "next/link";
 import { EmailIcon } from "@/app/components/Icons";
@@ -83,6 +82,8 @@ export default function Footer() {
               {/* Logo */}
               <Link href="/" className="inline-flex items-center group w-fit mb-6">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src="/HGS-white.svg"
                   alt="Happy Global"
                   className="h-11 w-auto transition-transform duration-300 group-hover:scale-105"
