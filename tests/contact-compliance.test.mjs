@@ -21,7 +21,7 @@ function loadAction(env = { ZOHO_EMAIL: "smtp-account@example.com", ZOHO_APP_PAS
       if (name.startsWith('@/')) return load(name.replace('@/', '') + '.ts');
       return loadBuiltin(name);
     };
-    const context = { module: compiledModule, exports: compiledModule.exports, require: imports, console, process: { env } };
+    const context = { module: compiledModule, exports: compiledModule.exports, require: imports, console, process: { env, cwd: () => process.cwd() } };
     vm.runInNewContext(js, context, { filename: file });
     cache.set(file, compiledModule.exports);
     return compiledModule.exports;
@@ -106,4 +106,26 @@ test('receipts provide safe email actions, legal links and plain text with candi
   assert.match(messages[1].html, /https:\/\/happyglobalservice.com\/privacy-policy/);
   assert.match(messages[1].text, /We never charge candidates any fee/);
   assert.doesNotMatch(messages[1].html, /tailored proposal|<img src=x|onerror=alert/);
+});
+
+
+test('receipt embeds local JPEG as matching CID MIME part without remote image requests', async () => {
+  const { action, messages } = loadAction();
+  assert.equal((await action.submitContactForm({ ...valid })).success, true);
+  const receipt = messages[1];
+  const image = receipt.attachments[0];
+  assert.match(receipt.html, new RegExp('src="cid:' + image.cid + '"'));
+  assert.doesNotMatch(receipt.html, /src="https?:/);
+  assert.equal(image.contentDisposition, 'inline');
+  assert.equal(image.contentType, 'image/jpeg');
+  assert.equal(image.content[0], 0xff);
+  assert.equal(image.content[1], 0xd8);
+  const nodemailer = loadBuiltin('nodemailer');
+  const transport = nodemailer.createTransport({ streamTransport: true, buffer: true });
+  const result = await transport.sendMail(receipt);
+  const mime = result.message.toString();
+  assert.match(mime, /multipart\/related/);
+  assert.ok(mime.includes('Content-ID: <' + image.cid + '>'));
+  assert.match(mime, /Content-Disposition: inline/);
+  assert.match(mime, /Content-Type: image\/jpeg/);
 });

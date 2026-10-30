@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  outputFileTracingIncludes: {
+    "/*": ["./public/images/email/business-architecture.jpg"],
+  },
   /* ── Image Optimization ── */
   images: {
     formats: ["image/avif", "image/webp"],

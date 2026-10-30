@@ -13,6 +13,8 @@ export interface ContactFormData {
   function?: string;
 }
 
+export const RECEIPT_IMAGE_CID = "receipt-architecture@happyglobalservice.com";
+
 const baseUrl = `https://${SITE.domain}`;
 const inquiryLabels: Record<string, string> = {
   hiring: "Hiring Inquiry", advisory: "Talent Advisory", partnership: "Partnership",
@@ -32,7 +34,7 @@ function frame(title: string, preview: string, body: string, hero = false): stri
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#f2f5f3"><tr><td align="center" style="padding:28px 12px;">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#ffffff;border:1px solid #dfe7e2;">
 <tr><td bgcolor="#0a2f2a" style="padding:28px 24px;border-bottom:4px solid #d96c57;"><a href="${baseUrl}" style="font-size:23px;font-weight:bold;color:#ffffff;text-decoration:none;">HAPPY GLOBAL</a><p style="margin:8px 0 0;color:#c6d8d0;font-size:11px;letter-spacing:2px;">GLOBAL TALENT SOLUTIONS</p></td></tr>
-${hero ? `<tr><td style="padding:0;background:#0a2f2a;"><img src="${baseUrl}/images/email/business-architecture.jpg" width="600" height="240" alt="Modern glass buildings against a blue sky" style="display:block;width:100%;max-width:600px;height:auto;border:0;"></td></tr>` : ""}
+${hero ? `<tr><td style="padding:0;background:#0a2f2a;"><img src="cid:${RECEIPT_IMAGE_CID}" width="600" height="240" alt="Modern glass buildings against a blue sky" style="display:block;width:100%;max-width:600px;height:auto;border:0;"></td></tr>` : ""}
 <tr><td style="padding:28px 24px;font-size:14px;line-height:1.75;word-break:break-word;"><h1 style="margin:0 0 22px;font-size:26px;line-height:1.25;color:#0a2f2a;">${escapeHtml(title)}</h1>${body}</td></tr>
 <tr><td bgcolor="#f6f8f6" style="padding:22px 24px;font-size:12px;line-height:1.8;color:#52635e;"><strong>Happy Global Inc.</strong><br>${escapeHtml(OFFICES[0].detail)}<br>${link(`mailto:${SITE.email}`, SITE.email)} · ${link("tel:+16698713588", SITE.phone)}<br>${link(`${baseUrl}/contact`, "Contact us")} · ${link(`${baseUrl}/privacy-policy`, "Privacy Policy")} · ${link(`${baseUrl}/terms-of-service`, "Terms of Service")}</td></tr>
 </table></td></tr></table></body></html>`;
