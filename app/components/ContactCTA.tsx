@@ -10,7 +10,7 @@ export default function ContactCTA() {
           <div className="flex flex-col items-start max-w-2xl">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: "var(--hg-font-heading)" }}>Ready to find your next leader?</h2>
             <p className="text-lg md:text-xl text-white/65 mb-8">Let&apos;s discuss how we can help you build world-class teams across borders.</p>
-            <Link href="/contact"
+            <Link prefetch={false} href="/contact"
               className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-lg text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hg-gradient-coral cursor-pointer"
               style={{ boxShadow: "0 4px 20px rgba(217,108,87,0.35)" }}>
               Get in Touch

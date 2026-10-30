@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ChevronRight } from "@/app/components/Icons";
 
 interface Theme {
@@ -41,6 +42,12 @@ const themes: Theme[] = [
 ];
 
 const Hero = () => {
+  const router = useRouter();
+  const preload = (href: string) => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    if (connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || "")) return;
+    router.prefetch(href);
+  };
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
@@ -104,13 +111,13 @@ const Hero = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-5 md:mt-8"
               style={{ opacity: 1, transform: "translateY(0)", transition: "opacity 0.6s ease 0.45s, transform 0.6s ease 0.45s" }}>
-              <Link href="/contact"
+              <Link prefetch={false} onMouseEnter={() => preload("/contact")} onFocus={() => preload("/contact")} href="/contact"
                 className="group relative inline-flex items-center justify-center font-bold py-3 px-7 md:py-4 md:px-9 rounded-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden hg-gradient-coral text-sm md:text-base text-white"
                 style={{ boxShadow: "0 4px 20px rgba(217,108,87,0.3)" }}>
                 <span className="relative z-10 flex items-center gap-2">Start Hiring <ChevronRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" /></span>
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
               </Link>
-              <Link href="/services"
+              <Link prefetch={false} onMouseEnter={() => preload("/services")} onFocus={() => preload("/services")} href="/services"
                 className="inline-flex items-center justify-center border-2 border-white/25 hover:border-white/55 text-white font-bold py-3 px-7 md:py-4 md:px-9 rounded-lg transition-all duration-300 hover:bg-white/8 backdrop-blur-sm hover:-translate-y-1 text-sm md:text-base">
                 Explore Services
               </Link>

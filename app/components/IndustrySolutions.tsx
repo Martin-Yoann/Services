@@ -43,7 +43,7 @@ export default function IndustrySolutions() {
           <h2 className="text-3xl font-bold text-white mb-1 tracking-tight" style={{ fontFamily: "var(--hg-font-heading)" }}>{current.title}</h2>
           <p className="text-xs text-white/40 font-semibold mb-3 tracking-[0.15em] uppercase">{current.titleZh}</p>
           <p className="text-sm leading-relaxed text-white/65 mb-6 max-w-md">{current.desc}</p>
-          <Link href={current.ctaHref} className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white transition-all">
+          <Link prefetch={false} href={current.ctaHref} className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white transition-all">
             {current.cta} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
           </Link>
           <div className="mt-8 pt-6 border-t border-white/10">
@@ -76,7 +76,7 @@ export default function IndustrySolutions() {
                       <h3 className="text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight" style={{ fontFamily: "var(--hg-font-heading)" }}>{sol.title}</h3>
                       <p className="text-xs text-white/40 font-semibold mb-4 tracking-[0.15em] uppercase">{sol.titleZh}</p>
                       <p className="text-sm leading-relaxed text-white/65 mb-8 max-w-[420px]">{sol.desc}</p>
-                      <Link href={sol.ctaHref} className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white group/link transition-all duration-400 hover:gap-3 mb-8">
+                      <Link prefetch={false} href={sol.ctaHref} className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white group/link transition-all duration-400 hover:gap-3 mb-8">
                         {sol.cta} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-400 group-hover/link:translate-x-1"><polyline points="9 18 15 12 9 6" /></svg>
                       </Link>
                     </>

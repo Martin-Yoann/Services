@@ -99,7 +99,7 @@ export default function ServiceProcess() {
         <h3 className="text-xl md:text-2xl font-bold text-white mb-1" style={{ fontFamily: "var(--hg-font-heading)" }}>{step.title}</h3>
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] mb-3" style={{ color: step.color }}>{step.subtitle}</p>
         <p className="text-sm leading-relaxed text-white/50 mb-5">{step.desc}</p>
-        <Link href={step.ctaHref} className="pointer-events-auto inline-flex items-center gap-2 text-sm font-semibold hover:gap-3 transition-all" style={{ color: step.color }}>
+        <Link prefetch={false} href={step.ctaHref} className="pointer-events-auto inline-flex items-center gap-2 text-sm font-semibold hover:gap-3 transition-all" style={{ color: step.color }}>
           {step.cta} <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
         </Link>
       </div>
@@ -124,7 +124,7 @@ export default function ServiceProcess() {
       </div>
 
       {/* Bottom CTA */}
-      <Link href="/contact" className="absolute bottom-[4%] right-[5%] md:right-[6%] z-30 inline-flex items-center gap-2 text-xs font-bold text-white/35 hover:text-white/60 transition-colors uppercase tracking-[0.15em]">
+      <Link prefetch={false} href="/contact" className="absolute bottom-[4%] right-[5%] md:right-[6%] z-30 inline-flex items-center gap-2 text-xs font-bold text-white/35 hover:text-white/60 transition-colors uppercase tracking-[0.15em]">
         Get Started <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
       </Link>
     </section>
