@@ -140,7 +140,7 @@ export default function Footer() {
             </div>
 
             {/* ── LINKS COLUMNS (7 cols) ── */}
-            <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 lg:gap-12">
+            <div className="lg:col-span-7 grid grid-cols-2 gap-8 lg:gap-12">
               {/* Services */}
               <div>
                 <h4 className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/30 mb-6">
@@ -187,42 +187,29 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Contact + Social */}
-              <div>
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/30 mb-6">
+              {/* Connect: icons on the left, contact details on the right */}
+              <div className="col-span-2 border-t border-white/10 pt-6" aria-labelledby="footer-connect-title">
+                <h4 id="footer-connect-title" className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40 mb-5">
                   Connect
                 </h4>
-                <ul className="space-y-3.5 text-sm text-white/60">
-                  <li>
-                    <a
-                      href="mailto:Support@happyglobalservice.com"
-                      className="hover:text-white transition-colors duration-200"
-                    >
-                      Support@happyglobalservice.com
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="tel:+16698713588"
-                      className="hover:text-white transition-colors duration-200"
-                    >
-                      +1 669 871 3588
-                    </a>
-                  </li>
-                </ul>
-
-                {/* Social icons */}
-                <div className="flex items-center gap-2 mt-5">
-                  <a
-                    href="mailto:Support@happyglobalservice.com"
-                    className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-white/12 hover:scale-110"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.06)",
-                    }}
-                    aria-label="Email"
-                  >
-                    <EmailIcon size={14} />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                  <a href="mailto:Support@happyglobalservice.com" className="group flex min-w-0 items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D96C57]">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/70 transition-colors group-hover:border-[#D96C57]/40 group-hover:bg-[#D96C57]/10 group-hover:text-[#D96C57]" aria-hidden="true">
+                      <EmailIcon size={19} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[10px] uppercase tracking-[0.16em] text-white/40 mb-1">Email us</span>
+                      <span className="block break-words text-sm text-white/75 transition-colors group-hover:text-white">Support@happyglobalservice.com</span>
+                    </span>
+                  </a>
+                  <a href="tel:+16698713588" className="group flex min-w-0 items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D96C57]">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/70 transition-colors group-hover:border-[#D96C57]/40 group-hover:bg-[#D96C57]/10 group-hover:text-[#D96C57]" aria-hidden="true">
+                      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.35 1.9.69 2.79a2 2 0 0 1-.45 2.11L8.09 9.89a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.57 2.79.69A2 2 0 0 1 22 16.92z" /></svg>
+                    </span>
+                    <span>
+                      <span className="block text-[10px] uppercase tracking-[0.16em] text-white/40 mb-1">Call us</span>
+                      <span className="block text-sm text-white/75 transition-colors group-hover:text-white">+1 669 871 3588</span>
+                    </span>
                   </a>
                 </div>
               </div>
