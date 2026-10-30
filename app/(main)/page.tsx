@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Hero from "@/app/components/Hero";
+import TrustedPartners from "@/app/components/TrustedPartners";
 
 const IndustrySolutions = dynamic(
   () => import("@/app/components/IndustrySolutions"),
@@ -26,6 +27,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <TrustedPartners />
       <IndustrySolutions />
       <ServiceProcess />
       <ContactCTA />
