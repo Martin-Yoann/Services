@@ -7,13 +7,6 @@ import nodemailer from "nodemailer";
 import { adminEmailHtml, autoReplyHtml } from "@/app/email/templates";
 import type { ContactFormData } from "@/app/email/templates";
 
-/* ── Zoho SMTP config ── */
-const SMTP_CONFIG = {
-  host: "smtppro.zoho.com",
-  port: 465,
-  secure: true,
-} as const;
-
 const ADMIN_EMAIL = "Support@happyglobalservice.com";
 
 interface ActionResult {
@@ -22,15 +15,27 @@ interface ActionResult {
 }
 
 async function sendEmails(data: ContactFormData) {
-  const user = process.env.ZOHO_EMAIL;
-  const pass = process.env.ZOHO_APP_PASSWORD;
+  const user = process.env.SMTP_USER || process.env.ZOHO_EMAIL;
+  const pass = process.env.SMTP_PASSWORD || process.env.ZOHO_APP_PASSWORD;
+  const host = process.env.SMTP_HOST || "smtppro.zoho.com";
+  const port = Number(process.env.SMTP_PORT || "465");
+  const secure = process.env.SMTP_SECURE === undefined ? port === 465 : process.env.SMTP_SECURE === "true";
 
   if (!pass || !user) {
-    throw new Error("SMTP password not configured. Set ZOHO_EMAIL and ZOHO_APP_PASSWORD in environment variables.");
+    throw new Error("SMTP password not configured.");
   }
 
+  if (!Number.isInteger(port) || port < 1 || port > 65535 || (process.env.SMTP_SECURE !== undefined && !["true", "false"].includes(process.env.SMTP_SECURE))) {
+    throw new Error("Invalid SMTP configuration.");
+  }
   const transporter = nodemailer.createTransport({
-    ...SMTP_CONFIG,
+    host,
+    port,
+    secure,
+    requireTLS: !secure,
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 20000,
     auth: { user, pass },
   });
 
@@ -103,7 +108,7 @@ export async function submitContactForm(
     if (msg.includes("SMTP password not configured")) {
       return {
         success: false,
-        message: "Email system not configured. Please contact the administrator.",
+        message: "Email is temporarily unavailable. Please contact Support@happyglobalservice.com.",
       };
     }
     if (msg.includes("connect") || msg.includes("ETIMEDOUT") || msg.includes("ENOTFOUND")) {
