@@ -1,3 +1,5 @@
+import { METRICS } from "@/app/data/site";
+
 /* ── Email templates for Happy Global contact form ── */
 
 export interface ContactFormData {
@@ -129,21 +131,10 @@ export function autoReplyHtml(data: ContactFormData): string {
         <ul style="padding-left:20px;margin:0 0 16px;font-size:14px;line-height:1.7;color:#5b6675;">
           <li>A consultant will reach out to schedule an initial discovery call</li>
           <li>We&rsquo;ll discuss your specific talent needs and market landscape</li>
-          <li>You&rsquo;ll receive a tailored proposal within 2-3 business days</li>
+          <li>We will discuss next steps and an appropriate proposal timeline based on your needs</li>
         </ul>
         <div class="stats">
-          <div class="stat">
-            <div class="stat-value">20+</div>
-            <div class="stat-label">Enterprise Clients</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">15+</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">10+</div>
-            <div class="stat-label">Markets Covered</div>
-          </div>
+          ${METRICS.map((metric) => `<div class="stat"><div class="stat-value">${escapeHtml(metric.value)}</div><div class="stat-label">${escapeHtml(metric.label)}</div></div>`).join("")}
         </div>
         <p style="font-size:13px;color:#9aa0ab;">If you need to reach us sooner, email Support@happyglobalservice.com or call <a href="tel:+16698713588" style="color:#D96C57">+1 669 871 3588</a>.</p>
       </div>

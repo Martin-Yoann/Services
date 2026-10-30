@@ -55,7 +55,7 @@ test('contact records server assent snapshot and routes notification/replies to 
   assert.match(messages[0].html, /Submission ID:/);
   assert.match(messages[0].html, /Accepted at \(UTC\):/);
   assert.match(messages[0].html, /I have read and agree to the Terms of Service/);
-  assert.match(messages[0].html, /2026-01-01-site-update-2026-10-29-r2/);
+  assert.match(messages[0].html, /2026-01-01-site-update-2026-10-30-r3/);
   assert.match(messages[0].html, /Page: \/contact/);
   assert.match(messages[0].html, /QA &lt;script&gt;/);
   assert.doesNotMatch(messages[0].html, /FORGED/);

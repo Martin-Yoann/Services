@@ -1,3 +1,4 @@
+import LegalLocations from "@/app/components/LegalLocations";
 import { LEGAL_VERSION } from "@/app/data/legal";
 import PageHeader from "@/app/components/PageHeader";
 
@@ -16,7 +17,7 @@ export default function TermsOfServicePage() {
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="prose prose-slate max-w-none space-y-8 text-sm leading-relaxed" style={{ color: "var(--hg-color-text-secondary)" }}>
             <p className="text-base" style={{ color: "var(--hg-color-text-primary)" }}>
-              <strong>Effective Date:</strong> January 1, 2026<br /><strong>Website revision:</strong> October 29, 2026 (entity, contact details and removal of placement guarantees)
+              <strong>Effective Date:</strong> January 1, 2026<br /><strong>Website revision:</strong> October 30, 2026 (contact details, operating locations and removal of placement guarantees)
               <br /><strong>Revision ID:</strong> {LEGAL_VERSION}
             </p>
 
@@ -121,6 +122,7 @@ export default function TermsOfServicePage() {
                 Phone: +1 669 871 3588<br />
                 Registered address: 1101 E Arapaho Rd, STE 210, Richardson, TX 75081, USA
               </p>
+              <LegalLocations />
             </div>
 
             <p className="text-xs opacity-50 pt-8">
