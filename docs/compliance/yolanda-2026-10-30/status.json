@@ -1,0 +1,28 @@
+{
+  "status": "ready-for-publication",
+  "sourceLastUpdated": "September 4, 2026",
+  "importedOn": "2026-10-30",
+  "version": "yolanda-2026-09-04-import-2026-10-30-v1",
+  "textPolicy": "Preserve source wording, tables, numbered sections and appendices. No legal redrafting.",
+  "pending": [
+    {
+      "location": "TOS 16.1",
+      "source": "LINXBOT INC",
+      "otherSections": "Happy Global INC",
+      "resolution": "User approved correcting LINXBOT INC to Happy Global INC on October 30, 2026."
+    },
+    {
+      "location": "Both source documents registered address",
+      "source": "STE 2420",
+      "previousWebsite": "STE 210",
+      "resolution": "User approved STE 2420 for the full website on October 30, 2026."
+    },
+    {
+      "location": "Privacy section 7 and Appendix A",
+      "section7": "Accept and Decline notice",
+      "appendixA": "No cookie banner is shown",
+      "website": "Got it notice",
+      "resolution": "Source text preserved; author clarification required."
+    }
+  ]
+}

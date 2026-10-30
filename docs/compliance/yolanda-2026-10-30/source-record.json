@@ -1,0 +1,14 @@
+{
+  "received": "2026-10-30",
+  "sourceLastUpdated": "2026-09-04",
+  "sources": [
+    {
+      "file": "Happy Global_Terms of Service.docx",
+      "sha256": "37fc9f7e86fcb99b4e5af2f64e0d0fa2864d02d17e38f93c1186c70508bce121"
+    },
+    {
+      "file": "Happy Global_Privacy Policy.docx",
+      "sha256": "cb46e9bf411a89a9a87af6e670971595b4f0421c6e44acc6889e92a9c31f3781"
+    }
+  ]
+}

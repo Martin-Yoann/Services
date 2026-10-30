@@ -18,7 +18,7 @@ export const METRICS = [
 ] as const;
 
 export const OFFICES = [
-  { city: "Dallas–Fort Worth, Texas", region: "Global HQ", detail: "1101 E Arapaho Rd, STE 210, Richardson, TX 75081, USA", flag: "🇺🇸", timezone: "America/Chicago" },
+  { city: "Dallas–Fort Worth, Texas", region: "Global HQ", detail: "1101 E Arapaho Rd, STE 2420, Richardson, TX 75081, USA", flag: "🇺🇸", timezone: "America/Chicago" },
   { city: "San Jose, California", region: "Silicon Valley & West Coast Hub", detail: "Remote Client Relations", flag: "🇺🇸", timezone: "America/Los_Angeles" },
   { city: "Shanghai, China", region: "APAC Operations Hub", detail: "Operated with a Local Partner", flag: "🇨🇳", timezone: "Asia/Shanghai" },
 ] as const;

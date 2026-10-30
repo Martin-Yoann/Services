@@ -139,7 +139,7 @@ export function autoReplyHtml(data: ContactFormData): string {
         <p style="font-size:13px;color:#9aa0ab;">If you need to reach us sooner, email Support@happyglobalservice.com or call <a href="tel:+16698713588" style="color:#D96C57">+1 669 871 3588</a>.</p>
       </div>
       <div class="footer">
-        <p><strong>Happy Global Inc.</strong><br>1101 E Arapaho Rd, STE 210, Richardson, TX 75081, USA</p>
+        <p><strong>Happy Global Inc.</strong><br>1101 E Arapaho Rd, STE 2420, Richardson, TX 75081, USA</p>
         <p style="margin-top:6px;"><a href="https://www.happyglobalservice.com">happyglobalservice.com</a> &bull; <a href="mailto:Support@happyglobalservice.com">Support@happyglobalservice.com</a></p>
       </div>
     </div>
