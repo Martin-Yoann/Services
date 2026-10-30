@@ -48,14 +48,15 @@ export default function Contact() {
   return (
     <>
       {/* ═══════════════ HERO STRIP ═══════════════ */}
-      <section className="relative py-16 md:py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-6">
+      <section className="relative py-16 md:py-24 bg-[#061410] overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,rgba(45,138,122,0.18),transparent_65%)]" />
+        <div className="relative container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-10 md:mb-14">
             <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#D96C57] mb-3">Start a Conversation</p>
-            <h1 className="text-3xl md:text-5xl font-bold text-[#0a2f2a] mb-4" style={{ fontFamily: "var(--hg-font-heading)", lineHeight: 1.12 }}>
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "var(--hg-font-heading)", lineHeight: 1.12 }}>
               Tell us about the role.<br className="sm:hidden" /> We&apos;ll find the leader.
             </h1>
-            <p className="text-base md:text-lg text-[#5b6675] max-w-lg mx-auto">
+            <p className="text-base md:text-lg text-white/70 max-w-lg mx-auto">
               Every great hire starts with a conversation. Share your needs and we&apos;ll connect you with the right expertise — Typically Respond Within 24 Hrs.
             </p>
           </div>
@@ -65,7 +66,7 @@ export default function Contact() {
             {trustPoints.map((t) => (
               <div key={t.l} className="text-center">
                 <p className="text-2xl md:text-3xl font-black text-[#D96C57]" style={{ fontFamily: "var(--hg-font-heading)" }}>{t.v}</p>
-                <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.12em] text-[#5b6675] mt-0.5">{t.l}</p>
+                <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.12em] text-white/65 mt-0.5">{t.l}</p>
               </div>
             ))}
           </div>
@@ -73,7 +74,7 @@ export default function Contact() {
       </section>
 
       {/* ═══════════════ FORM + SIDEBAR ═══════════════ */}
-      <section className="relative py-16 md:py-24" style={{ background: "var(--hg-color-bg)" }}>
+      <section className="relative py-16 md:py-24 bg-white">
         <div className="absolute inset-0 pointer-events-none opacity-[0.012]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "28px 28px" }} />
 
         <div className="container mx-auto px-6 max-w-5xl relative">
@@ -117,7 +118,7 @@ export default function Contact() {
                     <div>
                       <label htmlFor="inquiryType" className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#0a2f2a] mb-1.5">Inquiry Type</label>
                       <select id="inquiryType" name="inquiryType" value={form.inquiryType} onChange={update}
-                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all duration-300 cursor-pointer">
+                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-white focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all duration-300 cursor-pointer">
                         <option value="hiring">Hiring Inquiry</option>
                         <option value="advisory">Talent Advisory</option>
                         <option value="partnership">Partnership</option>
@@ -128,7 +129,7 @@ export default function Contact() {
                     <div>
                       <label htmlFor="message" className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#0a2f2a] mb-1.5">Message</label>
                       <textarea id="message" name="message" value={form.message} onChange={update} required rows={4}
-                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all duration-300 resize-none"
+                        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-white focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all duration-300 resize-none"
                         placeholder="Tell us about your hiring needs, the role, and what you're looking for..." />
                     </div>
                     {result && !result.success && (
@@ -222,7 +223,7 @@ function Field({ label, name, value, onChange, placeholder, type = "text", requi
       <label className="block text-[11px] font-bold uppercase tracking-[0.15em] text-[#0a2f2a] mb-1.5" htmlFor={name}>{label}{required && " *"}</label>
       <input
         id={name} type={type} name={name} value={value} onChange={onChange} required={required}
-        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-[var(--hg-color-bg)] focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all duration-300"
+        className="w-full px-4 py-3 border border-[#d8e1ea] rounded-xl text-sm bg-white focus:outline-none focus:border-[#D96C57] focus:ring-2 focus:ring-[#D96C57]/10 transition-all duration-300"
         placeholder={placeholder} />
     </div>
   );
