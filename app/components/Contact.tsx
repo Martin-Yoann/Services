@@ -1,4 +1,5 @@
 "use client";
+import ContactActions from "@/app/components/ContactActions";
 import FormAssent from "@/app/components/FormAssent";
 import { METRICS, OFFICES } from "@/app/data/site";
 
@@ -101,7 +102,7 @@ export default function Contact() {
                       </div>
                     </div>
                     <h3 className="text-2xl font-bold text-[#0a2f2a] mb-2" style={{ fontFamily: "var(--hg-font-heading)" }}>Message sent</h3>
-                    <p className="text-[#5b6675] text-sm">{result.message}</p>
+                    <p className="text-[#5b6675] text-sm">{result.message}</p><div className="flex justify-center"><ContactActions showContact={false} /></div>
                   </div>
                 ) : (
                   <form onSubmit={submit} className="p-6 md:p-10 space-y-5">
@@ -131,7 +132,7 @@ export default function Contact() {
                         placeholder="Tell us about your hiring needs, the role, and what you're looking for..." />
                     </div>
                     {result && !result.success && (
-                      <p className="text-xs font-semibold text-center" style={{ color: "var(--hg-color-accent)" }}>{result.message}</p>
+                      <div role="alert"><p className="text-xs font-semibold" style={{ color: "var(--hg-color-accent)" }}>{result.message}</p><ContactActions showContact={false} /></div>
                     )}
                     <div className="text-[#354c48]"><FormAssent /></div>
                     <button type="submit" disabled={sending}
@@ -167,8 +168,8 @@ export default function Contact() {
 
               {/* Contact quick info */}
               <div className="rounded-xl bg-[#0a2f2a] p-5 text-white">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D96C57] mb-3">Direct Contact</p>
-                <a href="mailto:Support@happyglobalservice.com" className="block text-sm font-medium text-white/70 hover:text-white transition-colors mb-2">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D96C57] mb-3">Contact our team</p>
+                <a href="mailto:Support@happyglobalservice.com" className="block break-words text-sm font-medium text-white/80 underline underline-offset-4 hover:text-white transition-colors mb-3">
                   Support@happyglobalservice.com
                 </a>
                 <a href="tel:+16698713588" className="block text-sm font-medium text-white/70 hover:text-white transition-colors">
@@ -176,7 +177,7 @@ export default function Contact() {
                 </a>
               </div>
 
-              {/* Response promise */}
+              {/* Response time */}
               <div className="rounded-xl p-4 text-center" style={{ background: "rgba(217,108,87,0.06)", border: "1px solid rgba(217,108,87,0.1)" }}>
                 <p className="text-2xl font-black text-[#D96C57] mb-1" style={{ fontFamily: "var(--hg-font-heading)" }}>Typically Respond Within 24 Hrs</p>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5b6675]">Response Time</p>

@@ -212,6 +212,7 @@ export default function Footer() {
                     </span>
                   </a>
                 </div>
+                <Link href="/contact" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-sm font-semibold text-white/80 transition-colors hover:border-[#D96C57]/50 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D96C57]">Send an inquiry <span aria-hidden="true">→</span></Link>
               </div>
             </div>
           </div>

@@ -93,3 +93,17 @@ test('missing credentials or invalid SMTP settings never report successful deliv
     assert.equal(transports.length, 0);
   }
 });
+
+
+test('receipts provide safe email actions, legal links and plain text with candidate-specific guidance', async () => {
+  const { action, messages } = loadAction();
+  await action.submitCandidateForm({ ...valid, message: '<img src=x onerror=alert(1)>' });
+  assert.match(messages[0].html, /&lt;img src=x onerror=alert\(1\)&gt;/);
+  assert.match(messages[0].html, /Reply to sender/);
+  assert.match(messages[0].text, /Assent record:/);
+  assert.match(messages[1].html, /href="mailto:Support@happyglobalservice.com/);
+  assert.match(messages[1].html, /https:\/\/happyglobalservice.com\/contact/);
+  assert.match(messages[1].html, /https:\/\/happyglobalservice.com\/privacy-policy/);
+  assert.match(messages[1].text, /We never charge candidates any fee/);
+  assert.doesNotMatch(messages[1].html, /tailored proposal|<img src=x|onerror=alert/);
+});

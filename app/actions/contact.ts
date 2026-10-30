@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { headers } from "next/headers";
 import { ASSENT_TEXT, LEGAL_VERSION, CONTACT_NOTICE, CANDIDATE_NOTICE } from "@/app/data/legal";
 import nodemailer from "nodemailer";
-import { adminEmailHtml, autoReplyHtml } from "@/app/email/templates";
+import { adminEmailHtml, autoReplyHtml, adminEmailText, autoReplyText } from "@/app/email/templates";
 import type { ContactFormData } from "@/app/email/templates";
 
 const ADMIN_EMAIL = "Support@happyglobalservice.com";
@@ -49,6 +49,7 @@ async function sendEmails(data: ContactFormData) {
     replyTo: data.email,
     subject: `New inquiry from ${data.name} — ${data.inquiryType || "General"}`,
     html: adminEmailHtml(data),
+    text: adminEmailText(data),
   });
 
   // 2) Auto-reply to inquirer
@@ -58,6 +59,7 @@ async function sendEmails(data: ContactFormData) {
     replyTo: ADMIN_EMAIL,
     subject: "We've received your inquiry — Happy Global",
     html: autoReplyHtml(data),
+    text: autoReplyText(data),
   });
 }
 

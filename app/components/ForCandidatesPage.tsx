@@ -1,4 +1,5 @@
 "use client";
+import ContactActions from "@/app/components/ContactActions";
 import FormAssent from "@/app/components/FormAssent";
 
 import { useState } from "react";
@@ -306,7 +307,7 @@ export default function ForCandidatesPage() {
               <h3 className="text-xl font-bold text-white hg-heading mb-2">
                 {result.success ? "Profile Received" : "Something Went Wrong"}
               </h3>
-              <p className="text-sm text-white/50">{result.message}</p>
+              <p className="text-sm text-white/70" role="status">{result.message}</p><div className="flex justify-center"><ContactActions dark /></div>
               {!result.success && (
                 <button
                   onClick={() => setResult(null)}
