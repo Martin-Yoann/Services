@@ -11,12 +11,11 @@ const solutions = [
 ];
 
 export default function IndustrySolutions() {
-  const [hovered, setHovered] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [mobileIndex, setMobileIndex] = useState(0);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
-  const activeIndex = hovered !== null ? hovered : 0;
   const activeSol = solutions[activeIndex];
   const collapsedBg = activeSol.solidBg;
   const labelTint = activeSol.labelColor;
@@ -64,7 +63,7 @@ export default function IndustrySolutions() {
           {solutions.map((sol, i) => {
             const isActive = i === activeIndex;
             return (
-              <div key={sol.id} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)}
+              <div key={sol.id} onMouseEnter={() => setActiveIndex(i)} onClick={() => setActiveIndex(i)}
                 className="group relative cursor-pointer"
                 style={{ flex: isActive ? "0 0 min(685px, 85vw)" : "1 1 0%", minWidth: isActive ? "min(685px, 85vw)" : "80px", transition: "flex 0.65s cubic-bezier(0.25,0.1,0.25,1), min-width 0.65s cubic-bezier(0.25,0.1,0.25,1)", background: isActive ? `url("${sol.bg}") center / cover no-repeat` : collapsedBg }}>
                 {i > 0 && <div className="absolute top-0 bottom-0 pointer-events-none" style={{ left: 0, width: "1px", background: "rgba(255,255,255,0.12)", zIndex: 5 }} />}
