@@ -58,6 +58,7 @@ function PartnerCard({ member }: { member: TeamMember }) {
 }
 
 export default function TeamPage() {
+  const visiblePartners = partners.filter((member) => member.name.trim() && !/^x+$/i.test(member.name.trim()));
   return (
     <>
       {/* ═══ HERO ═══ */}
@@ -86,7 +87,7 @@ export default function TeamPage() {
       </section>
 
       {/* ═══ PARTNER CARDS ═══ */}
-      <section className="relative py-20 md:py-28" style={{ background: "var(--hg-color-bg)" }}>
+      {visiblePartners.length > 0 && <section className="relative py-20 md:py-28" style={{ background: "var(--hg-color-bg)" }}>
         <div className="hg-dot-grid absolute inset-0 pointer-events-none opacity-[0.015]" />
         <div className="relative container mx-auto px-6">
           <div className="text-center mb-14">
@@ -98,12 +99,12 @@ export default function TeamPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {partners.map((p) => (
+            {visiblePartners.map((p) => (
               <PartnerCard key={p.id} member={p} />
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* ═══ ADVISORY BOARD ═══ */}
       {/* <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "#061410" }}>

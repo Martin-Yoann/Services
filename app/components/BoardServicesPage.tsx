@@ -7,7 +7,7 @@ const boardServices = [
     accent: "#D96C57",
     accentRgb: "217,108,87",
     description:
-      "Multi-year succession planning frameworks for boards and nominating committees. We identify internal candidates, benchmark against external market, and manage the confidential externak scout process when the best leader isn't internal.",
+      "Multi-year succession planning frameworks for boards and nominating committees. We identify internal candidates, benchmark against external market, and manage the confidential external scout process when the best leader isn't internal.",
     deliverables: [
       "CEO Succession Readiness Assessment",
       "Internal Candidate Benchmarking vs. External Market",
