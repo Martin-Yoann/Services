@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-02",
+  "sources": [
+    {
+      "file": "Happy Global_Privacy Policy.docx",
+      "sha256": "aadaf059ea5c4217eace87f18b120d192ba353793e49bfc406e4166c163fe628"
+    },
+    {
+      "file": "Happy Global_Terms of Service.docx",
+      "sha256": "fd9e38260b6e75472ca8a75aef03ea293402881341db5cf9d2a9b41f950d4ba0"
+    }
+  ],
+  "editorialResolutions": [
+    "Fill source Last Updated date placeholders with actual update date November 2, 2026.",
+    "Retain previously user-confirmed correction: LINXBOT INC to Happy Global INC.",
+    "Preserve consecutive (a)-(d) list labels."
+  ],
+  "contentChanges": [
+    "China representative Joan Hu and contact address in Privacy sections 1, 11, 17 and Appendix C.",
+    "TOS sections 24.2 and 25.4 align China representative scope and notices."
+  ],
+  "unchangedOpenIssue": "Privacy section 7 and Appendix A still conflict regarding cookie notice. Source wording retained.",
+  "boundary": "Representative designation and reporting statements are supplied document text; independent verification is not part of this content update."
+}

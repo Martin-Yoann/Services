@@ -1,0 +1,109 @@
+--- previous-website
+
++++ updated-website
+
+@@ -13,7 +13,7 @@
+
+     {
+       "type": "paragraph",
+       "level": null,
+-      "text": "Last Updated: September 4, 2026"
++      "text": "Last Updated: November 2, 2026"
+     },
+     {
+       "type": "paragraph",
+@@ -775,7 +775,7 @@
+
+     {
+       "type": "paragraph",
+       "level": null,
+-      "text": "24.2 Mainland China. Where you are in Mainland China, we obtain your separate consent before transferring your personal information out of Mainland China, before collecting sensitive personal information, and before providing your profile to a prospective employer. See Appendix C of our Privacy Policy."
++      "text": "24.2 Mainland China. Where you are in Mainland China, we obtain your separate consent before transferring your personal information out of Mainland China, before collecting sensitive personal information, and before providing your profile to a prospective employer. See Appendix C of our Privacy Policy. We have designated a representative in Mainland China in accordance with Article 53 of the PIPL; the representative’s details are published in our Privacy Policy. The designation is made for personal information protection purposes only. It does not create a branch, establishment or place of business in Mainland China, does not make the representative a party to these Terms, and does not alter the governing law and dispute resolution provisions in Sections 19 and 20."
+     },
+     {
+       "type": "paragraph",
+@@ -805,7 +805,7 @@
+
+     {
+       "type": "paragraph",
+       "level": null,
+-      "text": "25.4 Notices. Notices to us go to Support@happyglobalservice.com and, for formal legal notices, also by courier to Happy Global INC, 1101 E Arapaho Rd, STE 2420, Richardson, TX 75081, USA. Notices to you may be sent to the email address you gave us or posted on the Site."
++      "text": "25.4 Notices. Notices to us go to Support@happyglobalservice.com and, for formal legal notices, also by courier to Happy Global INC, 1101 E Arapaho Rd, STE 2420, Richardson, TX 75081, USA. Notices to you may be sent to the email address you gave us or posted on the Site. Nothing in this Section affects any notice that applicable law requires or permits to be given to our designated representative in Mainland China, whose details appear in our Privacy Policy."
+     },
+     {
+       "type": "paragraph",
+@@ -887,7 +887,7 @@
+
+     {
+       "type": "paragraph",
+       "level": null,
+-      "text": "Last Updated: September 4, 2026"
++      "text": "Last Updated: November 2, 2026"
+     },
+     {
+       "type": "heading",
+@@ -932,7 +932,7 @@
+
+     {
+       "type": "paragraph",
+       "level": null,
+-      "text": "Happy Global INC is the company responsible for the personal information described in this Policy. Happy Global INC owns and operates this Site. Happy Global INC is registered in Texas and its registered office is the address above; that is the address for any formal notice under this Policy. We present ourselves publicly as operating from three locations: our global headquarters in the Dallas–Fort Worth area of Texas, a Silicon Valley and West Coast presence in San Jose, California serving clients remotely, and an Asia-Pacific operations hub in Shanghai, China run with a local partner. Personal information is stored on servers in the United States regardless of which location you deal with; see Section 10. Depending on where you are, the region-specific appendices at the end of this Policy also apply to you, and where an appendix conflicts with the main body, the appendix controls for people in that region."
++      "text": "Happy Global INC has designated a representative in Mainland China in accordance with Article 53 of the Personal Information Protection Law. The representative is: Joan Hu (胡乔), Email: Joan.hu@rjfresh.com. The representative's name and contact details have been reported to the competent authority. The representative is a contact point for matters concerning the personal information of individuals in Mainland China; it does not operate this Site, does not deliver our services, and is not a branch, establishment or place of business of Happy Global INC.  Happy Global INC is the company responsible for the personal information described in this Policy.Happy Global INC owns and operates this Site. Happy Global INC is registered in Texas and its registered office is the address above; that is the address for any formal notice under this Policy. We present ourselves publicly as operating from three locations: our global headquarters in the Dallas–Fort Worth area of Texas, a Silicon Valley and West Coast presence in San Jose, California serving clients remotely, and an Asia-Pacific operations hub in Shanghai, China run with a local partner. Personal information is stored on servers in the United States regardless of which location you deal with; see Section 10. Depending on where you are, the region-specific appendices at the end of this Policy also apply to you, and where an appendix conflicts with the main body, the appendix controls for people in that region."
+     },
+     {
+       "type": "paragraph",
+@@ -1531,7 +1531,7 @@
+
+     {
+       "type": "paragraph",
+       "level": null,
+-      "text": "Email Support@happyglobalservice.com with a clear subject line — for example “Privacy Request — Access,” “Privacy Request — Deletion,” “Remove Me From Talent Network,” “Opt-Out Request,” or “Privacy Rights Appeal.” You can also write to us at the address in Section 1, marked “Attn: Privacy Request,” call +1 669 871 3588, or use the Contact Us page on the Site."
++      "text": "If you are in Mainland China you may also contact our representative there, whose details appear in Section 1 and Appendix C. Otherwise, email Support@happyglobalservice.com with a clear subject line — for example “Privacy Request — Access,” “Privacy Request — Deletion,” “Remove Me From Talent Network,” “Opt-Out Request,” or “Privacy Rights Appeal.” You can also write to us at the address in Section 1, marked “Attn: Privacy Request,” call +1 669 871 3588, or use the Contact Us page on the Site."
+     },
+     {
+       "type": "paragraph",
+@@ -1676,7 +1676,7 @@
+
+     {
+       "type": "paragraph",
+       "level": null,
+-      "text": "We may update this Policy to reflect changes in our practices, technology or the law. When we do, we’ll update the version number and “Last Updated” date above and post the revised Notice on the Site. For material changes we’ll post a prominent notice on the Site before the change takes effect and, where the law requires it and we hold your email address, tell you directly. Where a change requires your consent, we’ll ask before applying it to information we already hold. We encourage you to review this Policy periodically, and previous versions are available on request."
++      "text": "We may update this Policy to reflect changes in our practices, technology or the law. Where the identity or contact details of our Mainland China representative change, we will update this Policy and re-report the details to the competent authority. When we do, we’ll update the version number and “Last Updated” date above and post the revised Notice on the Site. For material changes we’ll post a prominent notice on the Site before the change takes effect and, where the law requires it and we hold your email address, tell you directly. Where a change requires your consent, we’ll ask before applying it to information we already hold. We encourage you to review this Policy periodically, and previous versions are available on request."
+     },
+     {
+       "type": "heading",
+@@ -1881,7 +1881,12 @@
+
+     {
+       "type": "bullet",
+       "level": null,
+-      "text": "Personal information handler: Happy Global INC, at the address in Section 1; Support@happyglobalservice.com; +1 669 871 3588."
++      "text": "Personal information handler: Happy Global INC, at the address in Section 1; Support@happyglobalservice.com; +1 669 871 3588. "
++    },
++    {
++      "type": "bullet",
++      "level": null,
++      "text": "Representative in Mainland China: In accordance with Article 53 of the PIPL, we have designated Joan Hu of Shanghai as our representative in Mainland China. You may contact the representative at Joan.hu@rjfresh.com about any matter concerning your personal information, and you may write in Chinese. Contacting the representative has the same effect as contacting us directly: we handle your request ourselves and respond within 15 business days. The representative acts as a contact point for personal information matters only and is not a branch, establishment or place of business of Happy Global INC."
+     },
+     {
+       "type": "bullet",
+@@ -1945,7 +1950,7 @@
+
+     {
+       "type": "bullet",
+       "level": null,
+-      "text": "Your rights. You may know about and decide on processing; restrict or refuse processing; access and obtain a copy; request portability, correction, supplementation or deletion; ask us to explain our processing rules; and withdraw any consent. Close relatives of a deceased person may exercise these rights in respect of that person’s information. You may withdraw consent at any time at Support@happyglobalservice.com; withdrawal doesn’t affect processing already carried out. We’ll respond within 15 business days."
++      "text": "Your rights. You may know about and decide on processing; restrict or refuse processing; access and obtain a copy; request portability, correction, supplementation or deletion; ask us to explain our processing rules; and withdraw any consent. Close relatives of a deceased person may exercise these rights in respect of that person’s information. You may withdraw consent at any time at Support@happyglobalservice.com or by contacting our Mainland China representative at the details given above. Either route reaches us, and you may write in Chinese.  Withdrawal doesn’t affect processing already carried out. We’ll respond within 15 business days."
+     },
+     {
+       "type": "bullet",
+@@ -1955,7 +1960,7 @@
+
+     {
+       "type": "bullet",
+       "level": null,
+-      "text": "Complaints. Please contact us at Support@happyglobalservice.com, or the Cyberspace Administration of China or another competent authority."
++      "text": "Complaints. Please contact us at Support@happyglobalservice.com, or our Mainland China representative, or the Cyberspace Administration of China or another competent authority."
+     },
+     {
+       "type": "heading",

@@ -1,12 +1,12 @@
 import Link from "next/link";
 import PageHeader from "@/app/components/PageHeader";
-import { LEGAL_VERSION } from "@/app/data/legal";
+import { LEGAL_VERSION, LEGAL_PUBLICATION_DATE } from "@/app/data/legal";
 
 type Block = { type: string; level?: string | null; text?: string; rows?: string[][] };
 
 function LinkedText({ text }: { text: string }) {
-  return text.split(/(https?:\/\/[^\s;)]+|Support@happyglobalservice\.com)/g).map((part, index) => {
-    const href = part === "Support@happyglobalservice.com" ? `mailto:${part}` : part.startsWith("https://") || part.startsWith("http://") ? part : null;
+  return text.split(/(https?:\/\/[^\s;)]+|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/g).map((part, index) => {
+    const href = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(part) ? `mailto:${part}` : part.startsWith("https://") || part.startsWith("http://") ? part : null;
     return href ? <a key={index} href={href} className="underline underline-offset-2 break-words hover:text-[#D96C57]">{part}</a> : part;
   });
 }
@@ -16,7 +16,7 @@ export default function LegalDocument({ title, path, blocks }: { title: string; 
     <PageHeader title={title} breadcrumb={[{ label: "Home", href: "/" }, { label: title, href: path }]} />
     <section className="bg-white py-12 md:py-20">
       <article className="container mx-auto max-w-4xl px-6 text-sm leading-7 text-slate-700">
-        <p className="mb-8 text-xs text-slate-500">Website publication: October 30, 2026 · Version: {LEGAL_VERSION}</p>
+        <p className="mb-8 text-xs text-slate-500">Website publication: {LEGAL_PUBLICATION_DATE} · Version: {LEGAL_VERSION}</p>
         <nav aria-label={`${title} contents`} className="mb-10 border-y border-slate-200 py-6">
           <p className="mb-3 font-semibold text-slate-900">Contents</p>
           <ul className="grid gap-x-8 gap-y-2 md:grid-cols-2">
