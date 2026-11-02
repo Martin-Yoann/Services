@@ -1,6 +1,5 @@
 import Link from "next/link";
 import PageHeader from "@/app/components/PageHeader";
-import { LEGAL_VERSION, LEGAL_PUBLICATION_DATE } from "@/app/data/legal";
 
 type Block = { type: string; level?: string | null; text?: string; rows?: string[][] };
 
@@ -16,7 +15,6 @@ export default function LegalDocument({ title, path, blocks }: { title: string; 
     <PageHeader title={title} breadcrumb={[{ label: "Home", href: "/" }, { label: title, href: path }]} />
     <section className="bg-white py-12 md:py-20">
       <article className="container mx-auto max-w-4xl px-6 text-sm leading-7 text-slate-700">
-        <p className="mb-8 text-xs text-slate-500">Website publication: {LEGAL_PUBLICATION_DATE} · Version: {LEGAL_VERSION}</p>
         <nav aria-label={`${title} contents`} className="mb-10 border-y border-slate-200 py-6">
           <p className="mb-3 font-semibold text-slate-900">Contents</p>
           <ul className="grid gap-x-8 gap-y-2 md:grid-cols-2">
