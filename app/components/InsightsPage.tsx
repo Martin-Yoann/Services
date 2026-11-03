@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { readableAccent } from "@/app/data/contrast";
+import { useState, useEffect } from "react";
 import { articles, resources } from "@/app/data/insights";
 import { ChevronRight } from "@/app/components/Icons";
 
@@ -18,6 +19,23 @@ type Cat = (typeof categories)[number];
 export default function InsightsPage() {
   const [activeCat, setActiveCat] = useState<Cat>("All");
   const [downloadForm, setDownloadForm] = useState({ open: false, resourceTitle: "" });
+
+  useEffect(() => {
+    if (!downloadForm.open) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const dialog = document.querySelector<HTMLElement>('[aria-labelledby="resource-request-title"]');
+    const items = () => Array.from(dialog?.querySelectorAll<HTMLElement>('a[href], button') || []);
+    const frame = requestAnimationFrame(() => items()[0]?.focus());
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setDownloadForm(value => ({ ...value, open: false }));
+      if (event.key !== "Tab") return;
+      const nodes = items(), first = nodes[0], last = nodes[nodes.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    dialog?.addEventListener("keydown", handleKey);
+    return () => { cancelAnimationFrame(frame); dialog?.removeEventListener("keydown", handleKey); previous?.focus(); };
+  }, [downloadForm.open]);
 
   const filtered =
     activeCat === "All"
@@ -74,7 +92,7 @@ export default function InsightsPage() {
 
       {/* ═══ FILTER BAR ═══ */}
       <section
-        className="relative py-8"
+        className="hg-readable-light relative py-8"
         style={{ background: "var(--hg-color-bg)" }}
       >
         <div className="container mx-auto px-6">
@@ -82,6 +100,7 @@ export default function InsightsPage() {
             {categories.map((cat) => (
               <button
                 key={cat}
+                aria-pressed={activeCat === cat}
                 onClick={() => setActiveCat(cat)}
                 className="text-[11px] font-bold px-4 py-2 rounded-full transition-all duration-300 cursor-pointer whitespace-nowrap"
                 style={{
@@ -108,11 +127,12 @@ export default function InsightsPage() {
 
       {/* ═══ ARTICLE GRID ═══ */}
       <section
-        className="relative py-8 md:py-12"
+        className="hg-readable-light relative py-8 md:py-12"
         style={{ background: "var(--hg-color-bg)" }}
       >
         <div className="hg-dot-grid absolute inset-0 pointer-events-none opacity-[0.012]" />
         <div className="relative container mx-auto px-6 max-w-5xl">
+          <h2 className="sr-only">Articles and market insights</h2>
           {/* Featured articles */}
           {activeCat === "All" && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -135,7 +155,7 @@ export default function InsightsPage() {
                       <span
                         className="text-[9px] font-bold uppercase tracking-[0.15em] px-2.5 py-1 rounded-md"
                         style={{
-                          color: a.accent,
+                          color: readableAccent(a.accent),
                           background: `${a.accent}10`,
                           border: `1px solid ${a.accent}1A`,
                         }}
@@ -167,7 +187,7 @@ export default function InsightsPage() {
                       </span>
                       <span
                         className="inline-flex items-center gap-1.5 text-xs font-bold group-hover:gap-2.5 transition-all duration-300"
-                        style={{ color: a.accent }}
+                        style={{ color: readableAccent(a.accent) }}
                       >
                         Read Article <ChevronRight size={13} />
                       </span>
@@ -199,7 +219,7 @@ export default function InsightsPage() {
                   <span
                     className="inline-block text-[9px] font-bold uppercase tracking-[0.15em] px-2.5 py-1 rounded-md mb-3"
                     style={{
-                      color: a.accent,
+                      color: readableAccent(a.accent),
                       background: `${a.accent}08`,
                       border: `1px solid ${a.accent}14`,
                     }}
@@ -224,7 +244,7 @@ export default function InsightsPage() {
                     </span>
                     <span
                       className="inline-flex items-center gap-1 text-[10px] font-bold group-hover:gap-2 transition-all duration-300"
-                      style={{ color: a.accent }}
+                      style={{ color: readableAccent(a.accent) }}
                     >
                       Read <ChevronRight size={11} />
                     </span>
@@ -310,7 +330,7 @@ export default function InsightsPage() {
                   <span
                     className="text-[9px] font-bold uppercase tracking-[0.15em] px-2 py-0.5 rounded"
                     style={{
-                      color: r.accent,
+                      color: readableAccent(r.accent),
                       background: `${r.accent}15`,
                     }}
                   >
@@ -327,7 +347,7 @@ export default function InsightsPage() {
                   onClick={() => openDownload(r.title)}
                   className="w-full text-xs font-bold py-2.5 rounded-lg transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
                   style={{
-                    color: r.accent,
+                    color: readableAccent(r.accent),
                     background: `${r.accent}12`,
                     border: `1px solid ${r.accent}20`,
                   }}

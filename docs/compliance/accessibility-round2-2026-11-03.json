@@ -1,0 +1,106 @@
+{
+  "date": "2026-11-03",
+  "environment": "Production-mode local Next.js build, Lighthouse CLI / Chromium, default mobile accessibility configuration. No browser accessibility extension.",
+  "results": [
+    {
+      "route": "/",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/board-services",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/contact",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/for-candidates",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/global-coverage",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/industries",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/insights",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/methodology",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/privacy-policy",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/services",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/services/executive-search",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/services/professional-recruitment",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/services/talent-advisory",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/terms-of-service",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/track-record",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/why-us",
+      "score": 100,
+      "failures": []
+    }
+  ],
+  "manualChecks": [
+    "Skip link is the first keyboard stop and moves focus to main.",
+    "Mobile menu focuses close button, traps Tab and Shift+Tab, closes on Escape, returns focus and unlocks scrolling.",
+    "Mobile submenu announces expanded state and excludes collapsed links from focus.",
+    "Desktop dropdown closes on Escape and returns focus to trigger.",
+    "Industry cards activate on keyboard focus and retain selected industry.",
+    "Resource dialog cycles focus, closes on Escape, and returns focus to trigger.",
+    "No horizontal overflow in Insights at 320, 375, 768, 1440px.",
+    "Methodology decorative numerals remain pale, now rendered as aria-hidden SVG."
+  ],
+  "limits": [
+    "Automated scores do not establish full WCAG conformance.",
+    "No dedicated screen-reader, real iOS/Android or full desktop state matrix certification in this round.",
+    "Form tests use mocked SMTP; no additional live email sent for this accessibility change."
+  ]
+}

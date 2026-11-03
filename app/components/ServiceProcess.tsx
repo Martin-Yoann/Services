@@ -80,7 +80,7 @@ export default function ServiceProcess() {
           const isTop = i === active;
           const pos = posOnRing(i);
           return (
-            <button key={s.num} onClick={() => jumpTo(i)} aria-label={`Step ${s.num}: ${s.title}`} aria-pressed={isTop} className="absolute cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+            <button key={s.num} onClick={() => jumpTo(i)} aria-label={`${s.num} ${s.title}`} aria-pressed={isTop} className="absolute cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
               style={{ left: pos.left, top: pos.top, transform: "translate(-50%, -50%)", width: "78px", height: "78px", opacity: isTop ? 1 : 0.55, zIndex: isTop ? 30 : 20 }}>
               <div className="absolute inset-0 rounded-full transition-all duration-700"
                 style={{ border: isTop ? `2px solid ${s.color}` : "1px solid rgba(255,255,255,0.12)", boxShadow: isTop ? `0 0 28px ${s.color}40` : "none", background: isTop ? `${s.color}15` : "rgba(255,255,255,0.03)" }} />
@@ -115,7 +115,7 @@ export default function ServiceProcess() {
           const isActive = i === active;
           return (
             <button key={s.num} onClick={() => jumpTo(i)} className="transition-all duration-300 rounded-full flex items-center gap-1 px-2.5 py-1.5"
-              style={{ background: isActive ? `${s.color}15` : "transparent", border: isActive ? `1px solid ${s.color}30` : "1px solid transparent" }} aria-label={`Step ${s.num}: ${s.title}`} aria-pressed={isActive}>
+              style={{ background: isActive ? `${s.color}15` : "transparent", border: isActive ? `1px solid ${s.color}30` : "1px solid transparent" }} aria-label={isActive ? undefined : `${s.num} ${s.title}`} aria-pressed={isActive}>
               <span className="text-[11px] font-bold" style={{ fontFamily: "var(--hg-font-heading)", color: isActive ? s.color : "rgba(255,255,255,0.3)" }}>{s.num}</span>
               {isActive && <span className="text-[10px] font-semibold" style={{ color: s.color }}>{s.title}</span>}
             </button>

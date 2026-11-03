@@ -882,3 +882,6 @@ html {
   --hg-color-accent: #c0432b;
   --hg-color-secondary: #0f766e;
 }
+
+/* Explicit light headings must override the default heading ink on dark sections. */
+.hg-heading.text-white { color: #ffffff; }

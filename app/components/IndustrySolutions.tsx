@@ -50,7 +50,7 @@ export default function IndustrySolutions() {
             <div className="flex items-center justify-between">
               {solutions.map((sol, i) => (
                 <button type="button" aria-label={sol.title} aria-pressed={i === mobileIndex} key={sol.id} onClick={() => goTo(i)} className="flex flex-col items-center gap-2 transition-all duration-300" style={{ opacity: i === mobileIndex ? 1 : 0.35 }}>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.1em]" style={{ color: i === mobileIndex ? current.labelColor : "rgba(255,255,255,0.5)" }}>{sol.title.length > 12 ? sol.title.slice(0, 12) + "…" : sol.title}</span>
+                  <span className="block max-w-[76px] truncate text-[11px] font-bold uppercase tracking-[0.1em]" style={{ color: i === mobileIndex ? current.labelColor : "rgba(255,255,255,0.5)" }}>{sol.title}</span>
                   <span className="block rounded-full transition-all duration-300" style={{ width: i === mobileIndex ? "24px" : "6px", height: "6px", background: i === mobileIndex ? current.labelColor : "rgba(255,255,255,0.3)" }} />
                 </button>
               ))}
@@ -65,8 +65,8 @@ export default function IndustrySolutions() {
           {solutions.map((sol, i) => {
             const isActive = i === activeIndex;
             return (
-              <div key={sol.id} onMouseEnter={() => setActiveIndex(i)} onClick={() => setActiveIndex(i)}
-                className="group relative cursor-pointer"
+              <div key={sol.id} role="group" aria-label={sol.title} tabIndex={0} onFocus={() => setActiveIndex(i)} onMouseEnter={() => setActiveIndex(i)} onClick={() => setActiveIndex(i)}
+                className="group relative cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
                 style={{ flex: isActive ? "0 0 min(685px, calc(100vw - 240px))" : "1 1 0%", minWidth: isActive ? "min(685px, calc(100vw - 240px))" : "80px", transition: "flex 0.65s cubic-bezier(0.25,0.1,0.25,1), min-width 0.65s cubic-bezier(0.25,0.1,0.25,1)", background: isActive && mediaReady ? `url("${sol.bg.replace("-pexels.webp", "-desktop.webp")}") center / cover no-repeat` : collapsedBg }}>
                 {i > 0 && <div className="absolute top-0 bottom-0 pointer-events-none" style={{ left: 0, width: "1px", background: "rgba(255,255,255,0.12)", zIndex: 5 }} />}
                 {isActive && <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.75) 100%)" }} />}

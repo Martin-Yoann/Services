@@ -169,7 +169,7 @@ export default function Contact() {
 
               {/* Contact quick info */}
               <div className="rounded-xl bg-[#0a2f2a] p-5 text-white">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D96C57] mb-3">Contact our team</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/80 mb-3">Contact our team</p>
                 <a href="mailto:Support@happyglobalservice.com" className="block break-words text-sm font-medium text-white/80 underline underline-offset-4 hover:text-white transition-colors mb-3">
                   Support@happyglobalservice.com
                 </a>

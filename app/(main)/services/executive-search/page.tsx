@@ -21,7 +21,7 @@ export default function ExecutiveSearchPage() {
         <div className="relative container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full" style={{ color: "#D96C57", background: "rgba(217,108,87,0.06)", border: "1px solid rgba(217,108,87,0.1)" }}>C-Suite & Leadership</span>
+              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full" style={{ color: "#c0432b", background: "rgba(217,108,87,0.06)", border: "1px solid rgba(217,108,87,0.1)" }}>C-Suite & Leadership</span>
               <h2 className="text-2xl md:text-3xl font-bold hg-heading mb-6">Finding leaders who shape organizations</h2>
               <p className="text-sm leading-relaxed hg-text-secondary mb-4">Our executive search practice identifies and places senior leaders who drive strategic growth. We work with boards, CEOs, and HR leaders across industries — each search led by a partner averaging 12+ years in your sector.</p>
               <p className="text-sm leading-relaxed hg-text-secondary">We specialize in multi-market searches, bringing deep networks in both the U.S. and China to every engagement.</p>
@@ -58,7 +58,7 @@ export default function ExecutiveSearchPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[160px] opacity-[0.05] pointer-events-none" style={{ background: "#D96C57" }} />
         <div className="relative container mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 hg-heading">Need a strategic leader?</h2>
-          <p className="text-white/45 mb-8 max-w-lg mx-auto">Tell us about the role and we&apos;ll connect you with exceptional candidates.</p>
+          <p className="text-white/65 mb-8 max-w-lg mx-auto">Tell us about the role and we&apos;ll connect you with exceptional candidates.</p>
           <Link href="/contact" className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
             style={{ background: "linear-gradient(135deg, #D96C57, #2d8a7a)", boxShadow: "0 4px 24px rgba(45,138,122,0.35)" }}>
             Start a Search <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transition-transform duration-300 group-hover:translate-x-1"><polyline points="9 18 15 12 9 6" /></svg>

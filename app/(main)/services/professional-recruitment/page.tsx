@@ -21,7 +21,7 @@ export default function ProfessionalRecruitmentPage() {
         <div className="relative container mx-auto px-6 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full" style={{ color: "#14b8a6", background: "rgba(20,184,166,0.06)", border: "1px solid rgba(20,184,166,0.1)" }}>Specialist Talent</span>
+              <span className="inline-block text-[11px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full" style={{ color: "#0f766e", background: "rgba(20,184,166,0.06)", border: "1px solid rgba(20,184,166,0.1)" }}>Specialist Talent</span>
               <h2 className="text-2xl md:text-3xl font-bold hg-heading mb-6">Building teams that execute</h2>
               <p className="text-sm leading-relaxed hg-text-secondary mb-4">Our professional recruitment practice covers specialist roles from individual contributor to senior manager. We combine deep function-specific knowledge with broad market reach to deliver quality candidates, fast.</p>
               <p className="text-sm leading-relaxed hg-text-secondary">Every candidate is assessed for technical skill, culture fit, and long-term potential — not just resume keywords. Typically Respond Within 24 Hrs.</p>
@@ -67,7 +67,7 @@ export default function ProfessionalRecruitmentPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[140px] opacity-[0.04] pointer-events-none" style={{ background: "#14b8a6" }} />
         <div className="relative container mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 hg-heading">Hiring specialist talent?</h2>
-          <p className="text-white/45 mb-8 max-w-lg mx-auto">Share your requirements and we&apos;ll connect you with pre-vetted professionals.</p>
+          <p className="text-white/65 mb-8 max-w-lg mx-auto">Share your requirements and we&apos;ll connect you with pre-vetted professionals.</p>
           <Link href="/contact" className="inline-flex items-center gap-2 font-bold px-10 py-4 rounded-xl text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
             style={{ background: "linear-gradient(135deg, #14b8a6, #0d9488)", boxShadow: "0 4px 24px rgba(20,184,166,0.35)" }}>
             Hire Talent <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transition-transform duration-300 group-hover:translate-x-1"><polyline points="9 18 15 12 9 6" /></svg>

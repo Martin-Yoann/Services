@@ -118,6 +118,24 @@ const Navigation = () => {
     }
   }, [drawerOpen, lock, unlock]);
 
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const panel = document.getElementById("mobile-navigation");
+    const trigger = navRef.current?.querySelector<HTMLButtonElement>('[aria-controls="mobile-navigation"]');
+    const targets = () => Array.from(panel?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex="0"]') || []).filter(el => !el.closest('[inert]') && el.getClientRects().length > 0);
+    const frame = requestAnimationFrame(() => targets()[0]?.focus());
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { event.preventDefault(); setDrawerRoute(null); setMobileExpand(null); }
+      if (event.key !== "Tab") return;
+      const items = targets();
+      const first = items[0], last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    panel?.addEventListener("keydown", handleKey);
+    return () => { cancelAnimationFrame(frame); panel?.removeEventListener("keydown", handleKey); trigger?.focus(); };
+  }, [drawerOpen]);
+
   const handleDropdownToggle = (label: string) => {
     setActiveDropdown((prev) => (prev === label ? null : label));
   };
@@ -125,6 +143,14 @@ const Navigation = () => {
   return (
     <nav
       ref={navRef}
+      aria-label="Main navigation"
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && activeDropdown) {
+          const button = (event.target as HTMLElement).closest(".hg-nav-dropdown")?.querySelector<HTMLButtonElement>("button");
+          setActiveDropdown(null);
+          button?.focus();
+        }
+      }}
       onPointerOver={(event) => { if (event.pointerType === "mouse") preloadIntent(event.target); }}
       onFocus={(event) => preloadIntent(event.target)}
       className={`hg-nav-transparent fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
@@ -245,6 +271,9 @@ const Navigation = () => {
 
         {/* Drawer panel */}
         <div
+          role="dialog"
+          aria-label="Main menu"
+          aria-modal={drawerOpen ? true : undefined}
           id="mobile-navigation"
           inert={!drawerOpen}
           aria-hidden={!drawerOpen}
@@ -285,6 +314,8 @@ const Navigation = () => {
                 {item.hasDropdown ? (
                   <>
                     <button
+                      aria-expanded={mobileExpand === item.label}
+                      aria-controls={`mobile-submenu-${idx}`}
                       onClick={() =>
                         setMobileExpand(
                           mobileExpand === item.label ? null : item.label,
@@ -299,6 +330,8 @@ const Navigation = () => {
                       />
                     </button>
                     <div
+                      id={`mobile-submenu-${idx}`}
+                      inert={mobileExpand !== item.label}
                       className={`overflow-hidden transition-all duration-300 ${
                         mobileExpand === item.label ? "max-h-60" : "max-h-0"
                       }`}

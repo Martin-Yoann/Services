@@ -149,10 +149,10 @@ export default function MethodologyPage() {
               {/* Step number + title */}
               <div className="lg:col-span-4">
                 <div className="lg:sticky lg:top-24">
-                  <p aria-hidden="true" className="text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none"
-                    style={{ fontFamily: "var(--hg-font-heading)", color: step.color, opacity: 0.12 }}>
-                    {step.num}
-                  </p>
+                  <svg aria-hidden="true" focusable="false" className="text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none h-[1em] w-full"
+                    style={{ fontFamily: "var(--hg-font-heading)", fill: step.color, opacity: 0.12 }}>
+                    <text x="0" y="0.82em">{step.num}</text>
+                  </svg>
                   <h2 className="text-2xl md:text-3xl font-bold hg-heading tracking-tight mb-1">
                     {step.title}
                   </h2>

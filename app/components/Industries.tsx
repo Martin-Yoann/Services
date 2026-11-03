@@ -1,3 +1,4 @@
+import { readableAccent } from "@/app/data/contrast";
 import Link from "next/link";
 import { industries } from "@/app/data/industries";
 
@@ -8,6 +9,7 @@ export default function Industries() {
       <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(180deg, #fff 0%, var(--hg-color-bg) 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative container mx-auto px-6">
+          <h2 className="sr-only">Industry specializations</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {industries.map((ind) => (
               <div key={ind.id} className="group relative rounded-2xl p-7 cursor-default hg-card-lift"
@@ -18,8 +20,8 @@ export default function Industries() {
                 <div className="pt-2">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg"
-                      style={{ background: `rgba(${ind.accentRgb},0.1)`, color: ind.accent, boxShadow: "0 0 0 0 transparent" }}>
-                      <span className="text-lg font-black hg-heading" style={{ color: ind.accent }}>{ind.name.charAt(0)}</span>
+                      style={{ background: `rgba(${ind.accentRgb},0.1)`, color: readableAccent(ind.accent), boxShadow: "0 0 0 0 transparent" }}>
+                      <span className="text-lg font-black hg-heading" style={{ color: readableAccent(ind.accent) }}>{ind.name.charAt(0)}</span>
                     </div>
                     <div>
                       <h3 className="text-base font-bold hg-heading">{ind.name}</h3>
@@ -29,10 +31,10 @@ export default function Industries() {
                   <div className="flex flex-wrap gap-1.5">
                     {ind.roles.map((role) => (
                       <span key={role} className="text-[9px] font-semibold px-2 py-1 rounded-md transition-all duration-300 group-hover:scale-[1.02]"
-                        style={{ background: `rgba(${ind.accentRgb},0.06)`, color: ind.accent }}>{role}</span>
+                        style={{ background: `rgba(${ind.accentRgb},0.06)`, color: readableAccent(ind.accent) }}>{role}</span>
                     ))}
                   </div>
-                  <div className="mt-5 flex items-center gap-2 text-[11px] font-bold transition-all duration-500 group-hover:gap-3" style={{ color: ind.accent }}>
+                  <div className="mt-5 flex items-center gap-2 text-[11px] font-bold transition-all duration-500 group-hover:gap-3" style={{ color: readableAccent(ind.accent) }}>
                     Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
                   </div>
                 </div>

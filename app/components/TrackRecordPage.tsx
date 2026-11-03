@@ -247,6 +247,7 @@ export default function TrackRecordPage() {
       <section className="hg-readable-light relative pt-4 pb-8" style={{ background: "var(--hg-color-bg)" }}>
         <div className="hg-dot-grid absolute inset-0 pointer-events-none opacity-[0.01]" />
         <div className="relative container mx-auto px-6 max-w-6xl">
+          <h2 className="sr-only">Search case studies</h2>
           {featured.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {featured.map((c) => (

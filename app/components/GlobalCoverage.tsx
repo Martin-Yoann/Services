@@ -1,3 +1,4 @@
+import { readableAccent } from "@/app/data/contrast";
 import Link from "next/link";
 
 const regions = [
@@ -13,6 +14,7 @@ export default function GlobalCoverage() {
       <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(180deg, #fff 0%, var(--hg-color-bg) 100%)" }}>
         <div className="absolute inset-0 pointer-events-none opacity-[0.015]" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, #0a2f2a 1px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative container mx-auto px-6">
+          <h2 className="sr-only">Regions we serve</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {regions.map((region) => (
               <div key={region.name} className="group relative rounded-2xl p-7 cursor-default hg-card-lift"
@@ -31,7 +33,7 @@ export default function GlobalCoverage() {
                   {region.cities.map((city) => (
                     <li key={city.n} className="flex items-center gap-2.5 text-xs">
                       <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: region.accent }} />
-                      <span className="text-[9px] font-bold uppercase tracking-[0.1em] px-2 py-0.5 rounded-md" style={{ background: `rgba(${region.accentRgb},0.06)`, color: region.accent }}>{city.t}</span>
+                      <span className="text-[9px] font-bold uppercase tracking-[0.1em] px-2 py-0.5 rounded-md" style={{ background: `rgba(${region.accentRgb},0.06)`, color: readableAccent(region.accent) }}>{city.t}</span>
                       <span className="font-semibold" style={{ color: "var(--hg-color-text-primary)" }}>{city.n}</span>
                     </li>
                   ))}

@@ -1,3 +1,4 @@
+import { readableAccent } from "@/app/data/contrast";
 import Link from "next/link";
 import { ChevronRight } from "@/app/components/Icons";
 
@@ -59,7 +60,7 @@ export default function Services() {
   return (
     <>
       {/* ═══ FLAGSHIP: Executive Search (hero-tier) ═══ */}
-      <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, var(--hg-color-bg) 100%)" }}>
+      <section className="hg-readable-light relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(180deg, #ffffff 0%, var(--hg-color-bg) 100%)" }}>
         <div className="hg-dot-grid absolute inset-0 pointer-events-none opacity-[0.015]" />
         <div className="relative container mx-auto px-6 max-w-5xl">
           <div className="text-center mb-12">
@@ -81,18 +82,18 @@ export default function Services() {
                 <div className="lg:col-span-2 p-10 md:p-12 flex flex-col justify-center"
                   style={{ background: `linear-gradient(135deg, rgba(${flagshipService.accentRgb},0.06), rgba(10,47,42,0.02))` }}>
                   <span className="text-[11px] font-bold uppercase tracking-[0.2em] mb-3 px-3 py-1.5 rounded-full w-fit"
-                    style={{ color: flagshipService.accent, background: `rgba(${flagshipService.accentRgb},0.1)`, border: `1px solid rgba(${flagshipService.accentRgb},0.15)` }}>
+                    style={{ color: readableAccent(flagshipService.accent), background: `rgba(${flagshipService.accentRgb},0.1)`, border: `1px solid rgba(${flagshipService.accentRgb},0.15)` }}>
                     Flagship Service
                   </span>
                   <h3 className="text-2xl md:text-3xl font-bold hg-heading mb-2">{flagshipService.title}</h3>
-                  <p className="text-xs font-bold uppercase tracking-[0.15em] mb-4" style={{ color: flagshipService.accent }}>
+                  <p className="text-xs font-bold uppercase tracking-[0.15em] mb-4" style={{ color: readableAccent(flagshipService.accent) }}>
                     {flagshipService.subtitle}
                   </p>
                   <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--hg-color-text-secondary)" }}>
                     {flagshipService.description}
                   </p>
                   <div className="flex items-center gap-4">
-                    <span className="inline-flex items-center gap-2 text-sm font-bold transition-all duration-300 group-hover:gap-3" style={{ color: flagshipService.accent }}>
+                    <span className="inline-flex items-center gap-2 text-sm font-bold transition-all duration-300 group-hover:gap-3" style={{ color: readableAccent(flagshipService.accent) }}>
                       Explore Executive Search
                       <ChevronRight size={15} />
                     </span>
@@ -130,7 +131,7 @@ export default function Services() {
                   <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl origin-left transition-all duration-500 group-hover:scale-x-100"
                     style={{ background: `linear-gradient(90deg, ${svc.accent}, transparent)`, transform: "scaleX(0.25)" }} />
 
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-3 mt-1" style={{ color: svc.accent }}>{svc.subtitle}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-3 mt-1" style={{ color: readableAccent(svc.accent) }}>{svc.subtitle}</p>
                   <h3 className="text-xl font-bold hg-heading mb-3">{svc.title}</h3>
                   <p className="text-sm leading-relaxed hg-text-secondary mb-6 flex-1">{svc.description}</p>
 
@@ -143,7 +144,7 @@ export default function Services() {
                     ))}
                   </ul>
 
-                  <div className="inline-flex items-center gap-2 text-sm font-bold transition-all duration-300 group-hover:gap-3" style={{ color: svc.accent }}>
+                  <div className="inline-flex items-center gap-2 text-sm font-bold transition-all duration-300 group-hover:gap-3" style={{ color: readableAccent(svc.accent) }}>
                     Explore {svc.title}
                     <ChevronRight size={14} />
                   </div>
