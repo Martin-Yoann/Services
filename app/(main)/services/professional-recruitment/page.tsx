@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Professional Recruitment | Happy Global" };
+
 import PageHeader from "@/app/components/PageHeader";
 import Link from "next/link";
 

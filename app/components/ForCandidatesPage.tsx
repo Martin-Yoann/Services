@@ -3,7 +3,7 @@ import { readableAccent } from "@/app/data/contrast";
 import ContactActions from "@/app/components/ContactActions";
 import FormAssent from "@/app/components/FormAssent";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { opportunities } from "@/app/data/opportunities";
 import { submitCandidateForm } from "@/app/actions/contact";
@@ -28,6 +28,7 @@ const initialForm: CandidateFields = {
 export default function ForCandidatesPage() {
   const [form, setForm] = useState<CandidateFields>(initialForm);
   const [submitting, setSubmitting] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
   const [result, setResult] = useState<{
     success: boolean;
     message: string;
@@ -40,6 +41,8 @@ export default function ForCandidatesPage() {
   ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  useEffect(() => { if (result) resultRef.current?.focus(); }, [result]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -290,7 +293,7 @@ export default function ForCandidatesPage() {
           </div>
 
           {result ? (
-            <div className="text-center py-12">
+            <div ref={resultRef} tabIndex={-1} className="text-center py-12">
               <div
                 className={`w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 ${result.success ? "" : ""}`}
                 style={{
@@ -308,7 +311,7 @@ export default function ForCandidatesPage() {
               <h3 className="text-xl font-bold text-white hg-heading mb-2">
                 {result.success ? "Profile Received" : "Something Went Wrong"}
               </h3>
-              <p className="text-sm text-white/70" role="status">{result.message}</p><div className="flex justify-center"><ContactActions dark /></div>
+              <p className="text-sm text-white/70" role={result.success ? "status" : "alert"}>{result.message}</p><div className="flex justify-center"><ContactActions dark /></div>
               {!result.success && (
                 <button
                   onClick={() => setResult(null)}
@@ -320,7 +323,7 @@ export default function ForCandidatesPage() {
               )}
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form aria-label="Candidate inquiry" aria-busy={submitting} onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="candidate-name" className="block text-[11px] font-bold uppercase tracking-[0.15em] text-white/60 mb-1.5">

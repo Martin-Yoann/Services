@@ -130,7 +130,7 @@ const Hero = () => {
             <div className="lg:hidden flex items-center gap-2 mt-5">
               {themes.map((theme, index) => (
                 <button key={`dot-${index}`} onClick={() => setActiveIndex(index)}
-                  className="transition-all duration-300 rounded-full flex items-center gap-1.5" style={{ opacity: index === activeIndex ? 1 : 0.5 }}
+                  className="min-h-11 transition-all duration-300 rounded-full flex items-center gap-1.5" style={{ opacity: index === activeIndex ? 1 : 0.5 }}
                   aria-label={`Switch to ${theme.title}`}>
                   <span className="text-base">{theme.icon}</span>
                   <span className="text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ color: index === activeIndex ? theme.accent : "rgba(255,255,255,0.4)" }}>{theme.title}</span>
@@ -164,7 +164,7 @@ const Hero = () => {
                       <span className="transition-transform duration-300 group-hover:scale-110">{theme.icon}</span>
                     </div>
                     <div className="flex-1 min-w-0 pt-0.5">
-                      <h3 className="font-bold text-base lg:text-lg mb-1 transition-colors duration-300" style={{ color: isActive ? theme.accent : "rgba(255,255,255,0.9)", fontFamily: "var(--hg-font-heading)" }}>{theme.title}</h3>
+                      <h2 className="font-bold text-base lg:text-lg mb-1 transition-colors duration-300" style={{ color: isActive ? theme.accent : "rgba(255,255,255,0.9)", fontFamily: "var(--hg-font-heading)" }}>{theme.title}</h2>
                       <p className="text-xs lg:text-sm leading-relaxed transition-colors duration-300" style={{ color: isActive ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.5)" }}>{theme.subtitle}</p>
                     </div>
                     <div className={`flex-shrink-0 self-center transition-all duration-300 ${isActive ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-70 group-hover:translate-x-0"}`}>
@@ -178,9 +178,11 @@ const Hero = () => {
             <div className="flex items-center justify-center gap-3 mt-3">
               {themes.map((theme, index) => (
                 <button key={`desk-dot-${index}`} onClick={() => setActiveIndex(index)}
-                  className="transition-all duration-300 rounded-full"
-                  style={{ width: index === activeIndex ? "28px" : "8px", height: "8px", background: index === activeIndex ? theme.accent : "rgba(255,255,255,0.25)", boxShadow: index === activeIndex ? `0 0 10px ${theme.accent}80` : "none" }}
-                  aria-label={`Switch to ${theme.title}`} />
+                  className="h-11 w-11 flex items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-white"
+                  aria-pressed={index === activeIndex}
+                  aria-label={`Switch to ${theme.title}`}>
+                  <span aria-hidden="true" className="block rounded-full transition-all duration-300" style={{ width: index === activeIndex ? "28px" : "8px", height: "8px", background: index === activeIndex ? theme.accent : "rgba(255,255,255,0.25)", boxShadow: index === activeIndex ? `0 0 10px ${theme.accent}80` : "none" }} />
+                </button>
               ))}
             </div>
           </div>

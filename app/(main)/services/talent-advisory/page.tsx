@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Talent Advisory | Happy Global" };
+
 import { readableAccent } from "@/app/data/contrast";
 import { METRICS } from "@/app/data/site";
 import PageHeader from "@/app/components/PageHeader";

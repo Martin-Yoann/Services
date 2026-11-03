@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Why Us | Happy Global" };
+
 import PageHeader from "@/app/components/PageHeader";
 import WhyUs from "@/app/components/WhyUs";
 

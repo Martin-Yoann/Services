@@ -3,7 +3,7 @@ import ContactActions from "@/app/components/ContactActions";
 import FormAssent from "@/app/components/FormAssent";
 import { METRICS, OFFICES } from "@/app/data/site";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { submitContactForm } from "@/app/actions/contact";
 import { useScrollReveal } from "@/app/hooks/useScrollReveal";
 
@@ -19,10 +19,13 @@ const faqs = [
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", company: "", phone: "", inquiryType: "hiring", message: "" });
+  const resultRef = useRef<HTMLDivElement>(null);
   const [sending, setSending] = useState(false);
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null);
   const { ref: formRef, visible: formVisible } = useScrollReveal(0.1);
   const { ref: trustRef, visible: trustVisible } = useScrollReveal(0.1);
+
+  useEffect(() => { if (result?.success) resultRef.current?.focus(); }, [result]);
 
   const update = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -93,7 +96,7 @@ export default function Contact() {
                 <div className="h-1 bg-[#D96C57]" />
 
                 {result?.success ? (
-                  <div className="text-center py-16 px-6">
+                  <div ref={resultRef} tabIndex={-1} role="status" className="text-center py-16 px-6">
                     <div className="relative inline-flex mb-6">
                       <div className="absolute inset-0 rounded-full animate-ping opacity-[0.06] bg-[#D96C57]" style={{ width: 72, height: 72 }} />
                       <div className="relative w-[72px] h-[72px] rounded-full flex items-center justify-center" style={{ background: "rgba(217,108,87,0.08)" }}>
@@ -102,11 +105,11 @@ export default function Contact() {
                         </svg>
                       </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#0a2f2a] mb-2" style={{ fontFamily: "var(--hg-font-heading)" }}>Message sent</h3>
+                    <h2 className="text-2xl font-bold text-[#0a2f2a] mb-2" style={{ fontFamily: "var(--hg-font-heading)" }}>Message sent</h2>
                     <p className="text-[#5b6675] text-sm">{result.message}</p><div className="flex justify-center"><ContactActions showContact={false} /></div>
                   </div>
                 ) : (
-                  <form onSubmit={submit} className="p-6 md:p-10 space-y-5">
+                  <form aria-label="Contact inquiry" aria-busy={sending} onSubmit={submit} className="p-6 md:p-10 space-y-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <Field label="Full Name" name="name" value={form.name} onChange={update} placeholder="Your name" required />
                       <Field label="Work Email" name="email" type="email" value={form.email} onChange={update} placeholder="you@company.com" required />

@@ -210,6 +210,7 @@ export default function TrackRecordPage() {
             {levels.map((lvl) => (
               <button
                 key={lvl}
+                aria-pressed={filter === lvl}
                 onClick={() => setFilter(lvl)}
                 className="text-[11px] font-bold px-4 py-2 rounded-full transition-all duration-300 cursor-pointer whitespace-nowrap"
                 style={{

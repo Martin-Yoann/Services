@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Global Coverage | Happy Global" };
+
 import PageHeader from "@/app/components/PageHeader";
 import GlobalCoverage from "@/app/components/GlobalCoverage";
 

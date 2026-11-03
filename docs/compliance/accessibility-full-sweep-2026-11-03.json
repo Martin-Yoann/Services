@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-03",
+  "desktopLighthouse": [
+    {
+      "route": "/methodology",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/contact",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/services",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/services/executive-search",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/services/professional-recruitment",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/services/talent-advisory",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/global-coverage",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/industries",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/insights",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/track-record",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/board-services",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/for-candidates",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/why-us",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/team",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/privacy-policy",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/terms-of-service",
+      "score": 100,
+      "failures": []
+    }
+  ],
+  "targetedMobileLighthouse": [
+    {
+      "route": "/",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/contact",
+      "score": 100,
+      "failures": []
+    },
+    {
+      "route": "/for-candidates",
+      "score": 100,
+      "failures": []
+    }
+  ],
+  "mobileCoverage": "Previous full 17-route mobile audit was retained; pages affected by this follow-up were rechecked.",
+  "browserSweep": {
+    "routes": 17,
+    "additional404": true,
+    "viewports": [
+      320,
+      375,
+      768,
+      1440
+    ],
+    "internalLinkTargets": 17,
+    "normalPageFindings": [],
+    "initial404Finding": "Missing main landmark",
+    "404Fix": "Custom page with main landmark, unique h1 and title, home/contact links; HTTP 404 preserved."
+  },
+  "fixed": [
+    "Homepage desktop h1-to-h3 heading jump; card headings now h2.",
+    "Desktop theme dots retain small visual marks but expose 44x44 targets.",
+    "Missing route-specific page titles added on ten routes.",
+    "Contact/candidate forms announce busy/error states and focus submission result.",
+    "Track Record filters announce pressed state."
+  ],
+  "manualChecks": [
+    "Blank forms and unchecked assent prevent submission.",
+    "Network failure is announced; POST was intercepted locally and no mail sent.",
+    "404 returns 404, main count 1, h1 Page not found, unique page title.",
+    "Desktop theme dots measure 44x44."
+  ],
+  "regression": "Production build, targeted ESLint and nine mocked contact/SMTP tests passed.",
+  "limitations": [
+    "Lighthouse is not a complete WCAG certification.",
+    "No dedicated screen-reader or real iOS/Android test in this pass.",
+    "No changes to approved legal wording or Cookie policy conflict."
+  ]
+}

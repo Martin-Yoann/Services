@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Terms of Service | Happy Global" };
+
 import LegalDocument from "@/app/components/LegalDocument";
 import documents from "@/app/data/legal-documents.json";
 
