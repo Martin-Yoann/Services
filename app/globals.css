@@ -117,7 +117,7 @@ html {
 }
 
 .hg-gradient-coral {
-  background: linear-gradient(135deg, var(--hh-color-accent), var(--hh-color-action));
+  background: linear-gradient(135deg, #c0432b, #a73522);
 }
 
 .hg-gradient-text {
@@ -491,7 +491,7 @@ html {
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
-  background: var(--hh-color-accent);
+  background: #c0432b;
   color: #ffffff;
   border: none;
   transition: color 0.35s ease;
@@ -875,4 +875,10 @@ html {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Readable text accents on light backgrounds, without recoloring dark heroes. */
+.hg-readable-light {
+  --hg-color-accent: #c0432b;
+  --hg-color-secondary: #0f766e;
 }

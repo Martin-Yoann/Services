@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-03",
+  "tool": "Lighthouse accessibility CLI with Chromium; no browser accessibility extension installed",
+  "scope": "User-specified contrast fixes; homepage headline and logo preserved",
+  "audits": [
+    {
+      "page": "board-services",
+      "accessibilityScore": 98,
+      "colorContrastPassed": true,
+      "contrastFindings": []
+    },
+    {
+      "page": "for-candidates",
+      "accessibilityScore": 99,
+      "colorContrastPassed": true,
+      "contrastFindings": []
+    },
+    {
+      "page": "methodology",
+      "accessibilityScore": 95,
+      "colorContrastPassed": false,
+      "contrastFindings": [
+        "<p aria-hidden=\"true\" class=\"text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none\" style=\"font-family:var(--hg-font-heading);color:#D96C57;opacity:0.12\">",
+        "<p aria-hidden=\"true\" class=\"text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none\" style=\"font-family:var(--hg-font-heading);color:#14b8a6;opacity:0.12\">",
+        "<p aria-hidden=\"true\" class=\"text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none\" style=\"font-family:var(--hg-font-heading);color:#f59e0b;opacity:0.12\">",
+        "<p aria-hidden=\"true\" class=\"text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none\" style=\"font-family:var(--hg-font-heading);color:#2d8a7a;opacity:0.12\">",
+        "<p aria-hidden=\"true\" class=\"text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none\" style=\"font-family:var(--hg-font-heading);color:#a855f7;opacity:0.12\">",
+        "<p aria-hidden=\"true\" class=\"text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none\" style=\"font-family:var(--hg-font-heading);color:#f43f5e;opacity:0.12\">"
+      ]
+    },
+    {
+      "page": "why-us",
+      "accessibilityScore": 98,
+      "colorContrastPassed": true,
+      "contrastFindings": []
+    },
+    {
+      "page": "track-record",
+      "accessibilityScore": 98,
+      "colorContrastPassed": true,
+      "contrastFindings": []
+    }
+  ],
+  "manualException": "Methodology 01–06 are decorative, retain original low-opacity styling and aria-hidden=true as explicitly requested. Lighthouse still flags these visual text nodes. Scores do not establish full WCAG conformance."
+}

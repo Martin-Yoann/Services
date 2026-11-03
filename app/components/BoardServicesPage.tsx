@@ -1,3 +1,4 @@
+import { readableAccent } from "@/app/data/contrast";
 import Link from "next/link";
 import { ChevronRight, Checkmark } from "@/app/components/Icons";
 
@@ -66,7 +67,7 @@ export default function BoardServicesPage() {
           style={{ background: "var(--hg-color-accent)", transform: "translate(30%, -30%)" }} />
 
         <div className="relative container mx-auto px-6 text-center">
-          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] mb-4 px-4 py-1.5 rounded-full text-white/40"
+          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] mb-4 px-4 py-1.5 rounded-full text-white/60"
             style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
             For Chairs, Investors & Nominating Committees
           </span>
@@ -83,7 +84,7 @@ export default function BoardServicesPage() {
       {/* ═══ SERVICES ═══ */}
       {boardServices.map((svc, i) => (
         <section key={svc.title}
-          className="relative py-16 md:py-24"
+          className="hg-readable-light relative py-16 md:py-24"
           style={{ background: i % 2 === 0 ? "var(--hg-color-bg)" : "#ffffff" }}>
           <div className="relative container mx-auto px-6 max-w-4xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
@@ -99,7 +100,7 @@ export default function BoardServicesPage() {
               <div className="lg:col-span-7">
                 <div className="rounded-2xl p-6 md:p-8"
                   style={{ background: `rgba(${svc.accentRgb},0.04)`, border: `1px solid rgba(${svc.accentRgb},0.12)` }}>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-4" style={{ color: svc.accent }}>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-4" style={{ color: readableAccent(svc.accent) }}>
                     What We Deliver
                   </p>
                   <ul className="space-y-3">
@@ -123,7 +124,7 @@ export default function BoardServicesPage() {
           style={{ background: "var(--hg-color-accent)", transform: "translate(30%, -30%)" }} />
         <div className="relative container mx-auto px-6 max-w-3xl">
           <div className="text-center mb-10">
-            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full text-white/40"
+            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.2em] mb-4 px-4 py-1.5 rounded-full text-white/60"
               style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
               Recent Board Mandate
             </span>
@@ -134,9 +135,9 @@ export default function BoardServicesPage() {
                 style={{ color: "var(--hg-color-accent)", background: "rgba(217,108,87,0.12)", border: "1px solid rgba(217,108,87,0.18)" }}>
                 Board Mandate
               </span>
-              <span className="text-[10px] font-semibold text-white/40">Pre-IPO Semiconductor Company</span>
+              <span className="text-[10px] font-semibold text-white/60">Pre-IPO Semiconductor Company</span>
             </div>
-            <h3 className="text-xl font-bold text-white hg-heading mb-4">
+            <h3 className="text-xl font-bold text-white hg-heading mb-4" style={{ color: "#ffffff" }}>
               Board Search for Pre-IPO Businesses
             </h3>
             <p className="text-sm leading-relaxed text-white/55 mb-6">
@@ -155,7 +156,7 @@ export default function BoardServicesPage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="relative py-16 md:py-24" style={{ background: "var(--hg-color-bg)" }}>
+      <section className="hg-readable-light relative py-16 md:py-24" style={{ background: "var(--hg-color-bg)" }}>
         <div className="relative container mx-auto px-6 text-center max-w-2xl">
           <h2 className="text-2xl md:text-3xl font-bold hg-heading mb-4">
             A confidential conversation with your chair or nominating committee.

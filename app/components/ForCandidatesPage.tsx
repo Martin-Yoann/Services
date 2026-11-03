@@ -1,4 +1,5 @@
 "use client";
+import { readableAccent } from "@/app/data/contrast";
 import ContactActions from "@/app/components/ContactActions";
 import FormAssent from "@/app/components/FormAssent";
 
@@ -102,7 +103,7 @@ export default function ForCandidatesPage() {
 
       {/* ═══ WHY WORK WITH US ═══ */}
       <section
-        className="relative py-16 md:py-24"
+        className="hg-readable-light relative py-16 md:py-24"
         style={{ background: "var(--hg-color-bg)" }}
       >
         <div className="hg-dot-grid absolute inset-0 pointer-events-none opacity-[0.012]" />
@@ -163,7 +164,7 @@ export default function ForCandidatesPage() {
       </section>
 
       {/* ═══ CURRENT OPPORTUNITIES ═══ */}
-      <section className="relative py-16 md:py-24 bg-white">
+      <section className="hg-readable-light relative py-16 md:py-24 bg-white">
         <div className="relative container mx-auto px-6 max-w-4xl">
           <div className="text-center mb-12">
             <p
@@ -203,7 +204,7 @@ export default function ForCandidatesPage() {
                     <span
                       className="text-[10px] font-bold uppercase tracking-[0.15em] px-2.5 py-1 rounded-md"
                       style={{
-                        color: opp.accent,
+                        color: readableAccent(opp.accent),
                         background: `${opp.accent}10`,
                         border: `1px solid ${opp.accent}1A`,
                       }}
@@ -428,7 +429,7 @@ export default function ForCandidatesPage() {
 
       {/* ═══ CTA ═══ */}
       <section
-        className="relative py-16 md:py-24 bg-white"
+        className="hg-readable-light relative py-16 md:py-24 bg-white"
       >
         <div className="relative container mx-auto px-6 text-center max-w-2xl">
           <h2 className="text-2xl md:text-3xl font-bold hg-heading mb-4">

@@ -1,4 +1,5 @@
 "use client";
+import { readableAccent } from "@/app/data/contrast";
 import { METRICS } from "@/app/data/site";
 import Link from "next/link";
 
@@ -92,7 +93,7 @@ export default function WhyUs() {
   return (
     <>
       {/* ── Section A: Core Differentiators ── */}
-      <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "var(--hg-color-bg)" }}>
+      <section className="hg-readable-light relative py-20 md:py-28 overflow-hidden" style={{ background: "var(--hg-color-bg)" }}>
         {/* Dot pattern background */}
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.025]"
@@ -141,12 +142,12 @@ export default function WhyUs() {
                 <div className="relative z-10 p-7 pt-8">
                   {/* Label + Number */}
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-[11px] font-bold uppercase tracking-[0.15em]" style={{ color: "var(--hg-color-text-secondary)", opacity: 0.5 }}>
+                    <span className="text-[11px] font-bold uppercase tracking-[0.15em]" style={{ color: "var(--hg-color-text-secondary)" }}>
                       {adv.subtitle}
                     </span>
                     <span
-                      className="text-3xl font-bold opacity-15 transition-opacity duration-500 group-hover:opacity-25"
-                      style={{ fontFamily: "var(--hg-font-heading)", color: adv.accent }}
+                      className="text-3xl font-bold"
+                      style={{ fontFamily: "var(--hg-font-heading)", color: readableAccent(adv.accent) }}
                     >
                       {adv.id}
                     </span>
@@ -155,7 +156,7 @@ export default function WhyUs() {
                   {/* Icon */}
                   <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-500 group-hover:scale-110"
-                    style={{ background: `rgba(${adv.accentRgb},0.1)`, color: adv.accent }}
+                    style={{ background: `rgba(${adv.accentRgb},0.1)`, color: readableAccent(adv.accent) }}
                   >
                     {adv.icon}
                   </div>
@@ -183,7 +184,7 @@ export default function WhyUs() {
       </section>
 
       {/* ── Section B: Stats Bar ── */}
-      <section className="py-16 bg-white">
+      <section className="hg-readable-light py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div
@@ -211,7 +212,7 @@ export default function WhyUs() {
       </section>
 
       {/* ── Section C: Our Values ── */}
-      <section className="py-20 md:py-28" style={{ background: "var(--hg-color-bg)" }}>
+      <section className="hg-readable-light py-20 md:py-28" style={{ background: "var(--hg-color-bg)" }}>
         <div className="container mx-auto px-6">
           <div className="text-center mb-14">
             <span
@@ -236,7 +237,7 @@ export default function WhyUs() {
               >
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold mb-5"
-                  style={{ fontFamily: "var(--hg-font-heading)", background: `rgba(${["217,108,87","20,184,166","245,158,11"][i]},0.1)`, color: ["#D96C57","#14b8a6","#f59e0b"][i] }}
+                  style={{ fontFamily: "var(--hg-font-heading)", background: `rgba(${["217,108,87","20,184,166","245,158,11"][i]},0.1)`, color: readableAccent(["#D96C57","#14b8a6","#f59e0b"][i]) }}
                 >
                   {i + 1}
                 </div>

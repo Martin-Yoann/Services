@@ -1,5 +1,6 @@
 "use client";
 
+import { readableAccent } from "@/app/data/contrast";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { caseStudies, type CaseStudy } from "@/app/data/cases";
@@ -85,7 +86,7 @@ function CaseCard({ c }: { c: CaseStudy }) {
         {/* Level badge */}
         <div className="absolute top-4 left-4">
           <span className="inline-block text-[10px] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-lg"
-            style={{ color: c.accent, background: `${c.accent}14`, border: `1px solid ${c.accent}20` }}>
+            style={{ color: "#ffffff", background: readableAccent(c.level === "VP/Director" ? "#14b8a6" : c.level === "C-Suite" ? "#D96C57" : c.accent) }}>
             {c.level}
           </span>
         </div>
@@ -99,7 +100,7 @@ function CaseCard({ c }: { c: CaseStudy }) {
           <h3 className="text-lg md:text-xl font-bold hg-heading tracking-tight mb-1 group-hover:text-[var(--hg-color-accent)] transition-colors">
             {c.role}
           </h3>
-          <p className="text-[11px] font-semibold" style={{ color: c.accent }}>
+          <p className="text-[11px] font-semibold" style={{ color: readableAccent(c.accent) }}>
             {c.company} · {c.industry}
           </p>
         </div>
@@ -133,7 +134,7 @@ function MetricCard({ value, label, icon, color }: { value: string; label: strin
     <div className="text-center p-5 rounded-2xl hg-card-lift cursor-default"
       style={{ background: "var(--hg-color-surface)", border: "1px solid var(--hg-color-border)" }}>
       <span className="text-2xl block mb-2">{icon}</span>
-      <p className="text-2xl md:text-3xl font-black hg-heading" style={{ color }}>
+      <p className="text-2xl md:text-3xl font-black hg-heading" style={{ color: readableAccent(color) }}>
         <AnimatedNumber value={value} />
       </p>
       <p className="text-[10px] font-bold uppercase tracking-[0.12em] mt-1" style={{ color: "var(--hg-color-text-secondary)" }}>
@@ -203,7 +204,7 @@ export default function TrackRecordPage() {
       </section>
 
       {/* ═══ FILTER + CASE DISTRIBUTION ═══ */}
-      <section className="relative py-8" style={{ background: "var(--hg-color-bg)" }}>
+      <section className="hg-readable-light relative py-8" style={{ background: "var(--hg-color-bg)" }}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-center gap-2 flex-wrap mb-8">
             {levels.map((lvl) => (
@@ -231,9 +232,9 @@ export default function TrackRecordPage() {
                 { label: "Board", count: boardCount, color: "#a855f7" },
               ].map((seg) => (
                 <div key={seg.label} className="h-full transition-all duration-500 flex items-center justify-center"
-                  style={{ width: `${(seg.count / totalCases) * 100}%`, background: seg.color, minWidth: seg.count > 0 ? "2rem" : "0" }}>
+                  style={{ width: `${(seg.count / totalCases) * 100}%`, background: readableAccent(seg.color), minWidth: seg.count > 0 ? "2rem" : "0" }}>
                   {seg.count > 1 && (
-                    <span className="text-[9px] font-bold text-white/90">{seg.label}</span>
+                    <span className="text-[9px] font-bold text-white">{seg.label}</span>
                   )}
                 </div>
               ))}
@@ -243,7 +244,7 @@ export default function TrackRecordPage() {
       </section>
 
       {/* ═══ FEATURED CASES (first 2) ═══ */}
-      <section className="relative pt-4 pb-8" style={{ background: "var(--hg-color-bg)" }}>
+      <section className="hg-readable-light relative pt-4 pb-8" style={{ background: "var(--hg-color-bg)" }}>
         <div className="hg-dot-grid absolute inset-0 pointer-events-none opacity-[0.01]" />
         <div className="relative container mx-auto px-6 max-w-6xl">
           {featured.length > 0 && (
@@ -302,7 +303,7 @@ export default function TrackRecordPage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "var(--hg-color-bg)" }}>
+      <section className="hg-readable-light relative py-20 md:py-28 overflow-hidden" style={{ background: "var(--hg-color-bg)" }}>
         <div className="relative container mx-auto px-6 text-center max-w-2xl">
           <h2 className="text-2xl md:text-3xl font-bold hg-heading mb-4 tracking-tight">
             Ready to become our <span style={{ color: "var(--hg-color-accent)" }}>next success story</span>?

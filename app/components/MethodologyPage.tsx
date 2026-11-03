@@ -1,3 +1,4 @@
+import { readableAccent } from "@/app/data/contrast";
 import Link from "next/link";
 import { ChevronRight } from "@/app/components/Icons";
 
@@ -138,7 +139,7 @@ export default function MethodologyPage() {
       {steps.map((step, i) => (
         <section
           key={step.num}
-          className="relative py-16 md:py-24 overflow-hidden"
+          className="hg-readable-light relative py-16 md:py-24 overflow-hidden"
           style={{
             background: i % 2 === 0 ? "var(--hg-color-bg)" : "#ffffff",
           }}
@@ -148,14 +149,14 @@ export default function MethodologyPage() {
               {/* Step number + title */}
               <div className="lg:col-span-4">
                 <div className="lg:sticky lg:top-24">
-                  <p className="text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none"
+                  <p aria-hidden="true" className="text-7xl md:text-8xl font-black tracking-tighter mb-2 select-none"
                     style={{ fontFamily: "var(--hg-font-heading)", color: step.color, opacity: 0.12 }}>
                     {step.num}
                   </p>
                   <h2 className="text-2xl md:text-3xl font-bold hg-heading tracking-tight mb-1">
                     {step.title}
                   </h2>
-                  <p className="text-xs font-bold uppercase tracking-[0.15em] mb-4" style={{ color: step.color }}>
+                  <p className="text-xs font-bold uppercase tracking-[0.15em] mb-4" style={{ color: readableAccent(step.color) }}>
                     {step.subtitle}
                   </p>
                   {/* Timeline connector */}
@@ -177,7 +178,7 @@ export default function MethodologyPage() {
                 {/* Deliverables */}
                 <div className="rounded-2xl p-6 md:p-8 mb-6"
                   style={{ background: `rgba(${step.accentRgb},0.04)`, border: `1px solid rgba(${step.accentRgb},0.12)` }}>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-4" style={{ color: step.color }}>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-4" style={{ color: readableAccent(step.color) }}>
                     Deliverables at This Stage
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -263,7 +264,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "var(--hg-color-bg)" }}>
+      <section className="hg-readable-light relative py-20 md:py-28 overflow-hidden" style={{ background: "var(--hg-color-bg)" }}>
         <div className="relative container mx-auto px-6 text-center max-w-2xl">
           <h2 className="text-2xl md:text-3xl font-bold hg-heading mb-4">
             Ready to see our methodology in action?

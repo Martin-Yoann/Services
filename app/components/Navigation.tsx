@@ -308,7 +308,7 @@ const Navigation = () => {
                           <Link prefetch={false}
                             key={child.id || child.label}
                             href={child.href}
-                            className="block px-5 py-2.5 text-sm text-[#5b6675] hover:text-[#D96C57] transition-colors"
+                            className="block px-5 py-2.5 text-sm text-[#5b6675] hover:text-[#c0432b] transition-colors"
                             onClick={() => setDrawerOpen(false)}
                           >
                             {child.label}
